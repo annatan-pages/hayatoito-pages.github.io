@@ -1,0 +1,211 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================
+SRM291 - OutOfMemory
+====================================
+
+:slug: srm291
+:date: 2006-02-23
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/114092929748001966
+  :published: 2006-02-23T00:30:00+09:00
+
+  :replace_{RD}: 9812
+  :replace_{RM}: 247699
+  :replace_{PM1}: 6072
+  :replace_{PM2}: 6071
+  :replace_{PM3}: 5954
+
+
+SRM291__ に挑戦．
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=9812
+
+2006 TopCoder Open - Algorithm Competition が来週の2月28日から始まります．
+今日は，それに向けて最後のSRMになります．
+
+Snowflakes__ (code__)
+=====================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6072&rd=9812
+__ http://www.topcoder.com/stat?c=problem_solution&rm=247699&rd=9812&pm=6072&cr=15632820
+
+250点問題．
+折り紙で雪の結晶をつくりましょう．
+
+.. image:: http://www.topcoder.com/contest/problem/Snowflakes/snowflakefinal.gif
+   :alt: SRM291 Snowflakes From TopCoder
+
+このように8等分に折った折り紙に対して，
+
+.. image:: http://www.topcoder.com/contest/problem/Snowflakes/snowflake5.gif
+   :alt: SRM291 Snowflakes From TopCoder
+
+穴をあけてから，もとの大きさに広げると，あら不思議．
+雪の結晶のように，対称な，きれいな形ができますねー．
+あ，そう．って感じですが，，，
+
+問題は，以下のような，8等分に折った折り紙の穴のパターンが与えられたとき，
+
+.. code-block:: java
+
+  {"*",
+   "..",
+   ".*.",
+   ".**.",
+   ".*.**"}
+
+広げた形のパターンを求めてください．という問題です.
+例の場合は，答えはこのようになります．
+
+.. code-block:: java
+
+  {"**.*..*.**",
+   "*.**..**.*",
+   ".*.*..*.*.",
+   "***....***",
+   "....**....",
+   "....**....",
+   "***....***",
+   ".*.*..*.*.",
+   "*.**..**.*",
+   "**.*..*.**" }
+
+悩むところは特にないですが，いかに時間をかけないでサクサクすませられるか勝負です．
+私は，14分もかかってしまいましたが，早い人は，3分かからずにすませています．．
+
+CrazySwitches__ (code__)
+========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6071&rd=9812
+__ http://www.topcoder.com/stat?c=problem_solution&rm=247699&rd=9812&pm=6071&cr=15632820
+
+500点問題．
+素直にBFSでいけました．
+
+StickedWords__
+==================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5954&rd=9812
+
+1000点問題．
+Level1，Level2問題を終えた時点で，30分ほど時間がありましたので，1000点問題にチャレンジ．
+
+単語(Word)がいくつか与えられます．
+
+  {"salad", "sandwich", "hamburger", "rings"}
+
+これらの単語の最初の文字と最後の文字をつなげて，文字列をつくっていきます．
+
+  "hamburgeringsandwichamburger..."
+
+「しりとり」ですね．こうしてできる文字列のうち，長さが (len) 以上のもので，
+辞書的に一番最初にくる文字列を返しなさい．という問題です．
+たとえば，入力が
+
+.. code-block:: java
+
+  {"abd", "dgga", "abdg", "gga", "gg", "gaader"}
+  len: 22
+
+ならば，
+
+  "abdggabdggabdggabdgaader"
+
+が答えになります．
+
+ちょっと考え，「DPでいける！」と思い，コーディング開始.
+1000点問題 をはじめて解けるか？！ と思ったのですが，時間が足りませんでした．．
+SRM後，悔しいので完成させました．
+
+.. code-block:: java
+
+  public class StickedWords {
+
+    public String constructLine(String[] dict, int len) {
+
+        String[][] dp = new String[len+51][26];
+        for (int i = 1; i < dp.length; i++) {
+            for (int j = 0; j < 26; j++) {
+                for (String word : dict) {
+                    if (word.charAt(word.length()-1) - 'a' != j) continue;
+                    if (i == word.length()) {
+                        if (dp[i][j] == null || word.compareTo(dp[i][j]) < 0) {
+                            dp[i][j] = word;
+                        }
+                        continue;
+                    }
+                    int pre = i - (word.length() - 1);
+                    if (pre <= 0) continue;
+                    int first = word.charAt(0) - 'a';
+                    if (dp[pre][first] == null) continue;
+                    String next = dp[pre][first] + word.substring(1);
+                    if (dp[i][j] == null || next.compareTo(dp[i][j]) < 0) {
+                        dp[i][j] = next;
+                    }
+                }
+            }
+        }
+        String res = null;
+        for (int i = len; i < len+51; i++) {
+            for (int j = 0; j < 26; j++) {
+                if (dp[i][j] == null) continue;
+                if (res == null || dp[i][j].compareTo(res) < 0) {
+                    res = dp[i][j];
+                }
+            }
+        }
+        return (res == null) ? "" : res;
+    }
+  }
+
+もうちょっとだったのになーと思っていたけど，実は，ぜんぜんもうちょっとではありませんでした．
+落とし穴がまっていました．．
+最悪のケース (len=2500)では,
+
+.. code-block:: java
+
+  java.lang.OutOfMemoryError...
+
+を引き起こしてしまいます．
+TopCoderでは時間（2秒以内）という制限だけではなく，使用メモリの制限 (64Mbyte)もありました．
+最悪のケース (len=2500)では，最終的にはメモリ使用量は，
+
+  2500 x (2500 / 2) x 26 = 81250000
+
+ですから，80MByte を超えますね.．．
+これはトリッキーだ．．普通，気づかないよな．．
+1000点問題にしてはとっかかりやすいと思ったけど，こういう側面があったとは．．
+こういうのは，問題作成者が意図的にやってるんですね．
+
+ひとつあたりの単語の長さは最大50なので，DPをしつつ，最近の50ステップ分だけ，覚えるようにして，
+いらなくなったものには，null をいれると．
+
+.. code-block:: java
+
+            }
+            if (i - 51 >= 0) {
+                dp[i-51] = null;
+            }
+
+これで，なんとか System Testに通るようになります．
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=9812&rm=247699
+
+.. image:: http://static.flickr.com/27/103387512_dc267bf9ed_o.png
+   :alt: Room Statistics
+
+レーティングは 1626 -> 1730 と100ほど上昇しました．
+いよいよ来週は，2006 TopCoder Open の予選です．
+
+今日の教訓
+==========
+
+* メモリ使用量に注意．

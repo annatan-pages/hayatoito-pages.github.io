@@ -1,0 +1,183 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+================================================
+ lxmlでHTMLスクレーピング
+================================================
+
+:slug: 2007lxml
+:date: 2007-07-19
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/3263725085503171478
+  :published: 2007-07-19T14:26:22Z
+  :tags: topcoder, python
+
+たまにはPythonでTopCoderの問題を解いてみようと思ってはみたものの，
+書いたコードが正しいがどうかどうやってチェックすればいいんだろう？
+サポートされているJavaやC++なら，TopCoderのプラクティスルームでSubmitして，テストを走らせればいいんですけど．
+
+問題文に付属しているような数個のサンプルケースだけでは，テストとしてはもちろん不十分．
+実際のシステムテストで使用された入力と正解のフルセットさえ入手できれば，ローカルでもテストを走らせることができるはず．
+そう思い，そのようなデータがTopCoderで提供されているかというとちょっと探してみる．
+`Data Feeds`_ を発見したけど，該当データは提供されていない．
+
+.. _Data Feeds: http://www.topcoder.com/tc?module=Static&d1=help&d2=dataFeed
+
+システムテストでどのようなテストが走ったかは，たしかWebでもみれたはず．
+たとえば，SRM354のHard問題，RookPlacementなら，正解を提出したPetrの Code_ を見れば，
+システムテストで使用されたテストケースもすべて載っています．
+
+.. _Code: http://www.topcoder.com/stat?c=problem_solution&rm=265123&rd=10711&pm=7658&cr=10574855
+
+「このHTMLページから抜き出せばいいじゃん．」
+ということでスクレーピングしてみる．
+
+まずは、HTMLファイルの取得。
+もちろん，ブラウザ上でアクセスしてHTMLを保存してもいいですけど、
+ここでは、プログラムの中から取得してみる。
+認証チェックがあるので、ページを取得する際は，
+認証済みCookieが入ったリクエストでないとはじかれてしまいます．
+ふだんブラウザで使用しているCookieを渡してしまうのが一番楽．
+Pythonなら，こんな感じ．
+
+.. code-block:: java
+
+  In [1]: import cookielib, urllib2
+  In [2]: cj = cookielib.MozillaCookieJar()
+  In [3]: cj.load('cookies.txt')
+  In [4]: opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+  In [5]: html = opener.open(url).read()
+
+あとは，HTMLをパース． lxml_ を使用．
+
+.. _lxml: http://codespeak.net/lxml/
+
+::
+
+  In [6]: from StringIO import StringIO
+  In [7]: from lxml import etree
+  In [8]: tree = etree.parse(StringIO(html), etree.HTMLParser())
+
+lxmlは，HTMLが多少壊れていても，リカバーしてくれるので，
+このようなスクレーピング用途にはもってこいです．
+Well-FormattedでないHTMLやXMLをパースするのって，
+結構，テーマとしては奥が深いような気もするんですけど，どういうアルゴリズムになってるんですかね．
+
+HTMLを見る限り、欲しいデータはすべて、このような
+
+.. code-block:: java
+
+  <td class='statText' ...>190</td>
+
+エレメント内であることがわかりますので、
+xpathで該当エレメント内テキストをとりあえず全部取得．
+
+.. code-block:: java
+
+  In [9]: ts = [t.strip() for t in tree.xpath("//td[@class='statText']/text()")]
+
+結果を表示してみると，最初の方は余分なごみです．
+
+.. code-block:: java
+
+  In [10]: ts[30:40]
+  Out[11]:
+  ['',
+   '',
+   '',
+   'Test\n            Arguments',
+   'Expected Results',
+   'Success',
+   '4,\n5,\n2',
+   '190',
+   'Passed',
+   '2,\n3,\n3']
+
+'Success'文字列以降だけに絞る．
+
+.. code-block:: java
+
+  In [12]: ts = ts[ts.index('Success')+1:]
+  In [13]: ts
+  Out[14]:
+  ['4,\n5,\n2',
+   '190',
+   'Passed',
+   '2,\n3,\n3',
+   '6',
+   'Passed',
+   '6,\n7,\n20',
+   '0',
+   'Passed',
+   '50,\n25,\n50',
+   '879507',
+   'Passed',
+
+入力，正解はそれぞれ，3つおきに出現するので
+
+.. code-block:: java
+
+  In [15]: testcases = zip(ts[::3], ts[1::3])
+  In [16]: testcases
+  Out[17]:
+  [('4,\n5,\n2', '190'),
+   ('2,\n3,\n3', '6'),
+   ('6,\n7,\n20', '0'),
+
+入力の各パラメータは，',\\n'がセパレータになってるので
+
+.. code-block:: java
+
+  In [18]: import re
+  In [19]: testcases = [(re.split(r',\n', input), expected) for (input, expected) in testcases]
+  In [20]: testcases
+  Out[21]:
+  [(['4', '5', '2'], '190'),
+   (['2', '3', '3'], '6'),
+   (['6', '7', '20'], '0'),
+
+各データは文字列ですので、evalします．
+今回のデータには含まれていないですけど、TopCoderの配列のリテラルは'{..}'形式ですので、evalできるように'[..]'に変換してから．
+evalが怖いなら，JSONとしてパースしてもいいです．
+
+.. code-block:: java
+
+  In [22]: def evalf(s):
+      ...:     if len(s) >= 2 and s[0] == '{' and s[-1] == '}':
+      ...:         s = '[' + s[1:-1] + ']'
+      ...:     return eval(s)
+      ...:
+  In [23]: testcases = [(map(evalf, input), evalf(expected)) for (input, expected) in testcases]
+  In [24]: testcases
+  Out[25]:
+  [([4, 5, 2], 190),
+   ([2, 3, 3], 6),
+   ([6, 7, 20], 0),
+
+
+これでOK。あとはテストするだけ。
+
+.. code-block:: java
+
+  In [26]: for input, expected in testcases:
+      ...:     assert RooksPlacement().countPlacements(*input) == expected
+
+テストケースを抜き出す部分は、まとめると最終的にはこうなります。
+
+.. code-block:: java
+
+  def extract_testcases(url, cookie_file='cookies.txt'):
+      cj = cookielib.MozillaCookieJar()
+      cj.load(cookie_file)
+      opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+      html = opener.open(url).read()
+      tree = etree.parse(StringIO(html), etree.HTMLParser())
+      ts = [t.strip() for t in tree.xpath("//td[@class='statText']/text()")]
+      ts = ts[ts.index('Success')+1:]
+      return [(map(evalf, re.split(r',\n', input)), evalf(expected))
+              for (input, expected) in zip(ts[::3], ts[1::3])]
+
+
+昔はこういうことをしたかったら，Perlで正規表現を書いて抜きだしていたけど，
+どうしてもコードが長くなりがち．
+いまは，大抵どの言語でも便利なXMLライブラリが付属しているので，楽ちん．

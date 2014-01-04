@@ -1,0 +1,72 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================
+SRM308 - Hard DP
+====================================
+
+:slug: srm308
+:date: 2006-06-26
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/115289919359841472
+  :published: 2006-06-26T00:30:00+09:00
+
+  :replace_{RD}: 9988
+  :replace_{RM}: 249043
+  :replace_{PM1}: 6477
+  :replace_{PM2}: 6475
+  :replace_{PM3}: 6181
+
+SRM308__ に挑戦。
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=9988
+
+Division1の問題です．
+
+HuffmanDecoding__ (code__)
+==========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6477&rd=9988
+__ http://www.topcoder.com/stat?c=problem_solution&rm=249043&rd=9988&pm=6477&cr=15632820
+
+200点問題。ハフマン・コードの復号化です。
+悩むところはなく、いわれたとおり実装するだけです。
+
+CornersGame__ (Code__)
+======================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6475&rd=9988
+__ http://www.topcoder.com/stat?c=problem_solution&rm=249043&rd=9988&pm=6475&cr=15632820
+
+500点問題。
+
+.. image:: http://static.flickr.com/61/193897137_da8b13b779_o.gif
+   :alt: CornersGame
+
+右下のコイン4つを左上に移動させる最短手順は？という問題です。
+いくつか移動の条件が指定されます。
+状態空間はたかだか 64 C 4 ほどですので、BFSで解けました。
+
+Wardrobe__ (code__)
+===================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6181&rd=9988
+__ http://www.topcoder.com/stat?c=problem_solution&rm=249043&rd=9988&pm=6475&cr=15632820
+
+1000点問題．一見簡単そうなんですけど、この問題を解けたのはDivision1参加者319人中1人だけという超難問でした。
+非常に難しい関係式を用いたDPで解けるそうです ( 正解例__ ）。いまだに理解できていません。。。
+
+__ http://www.topcoder.com/stat?c=problem_solution&cr=251074&rd=9988&pm=6181
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=9988&rm=249043
+
+.. image:: http://static.flickr.com/52/189525145_fde50c2ddf_o.png
+   :alt: Room Statistics
+
+レーティングは1696->1782と上昇。

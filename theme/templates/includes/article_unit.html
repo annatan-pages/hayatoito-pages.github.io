@@ -1,0 +1,20 @@
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="{{ SITEURL }}/{{ article.url }}"
+         rel="bookmark"
+         title="Permalink to {{ article.title|striptags }}">
+         {{ article.title|striptags }}
+      </a>
+    </h1>
+    <small class="post-date">
+      Posted on
+      <time datetime="{{ article.date|strftime('%Y-%m-%d') }}">
+        {{ article.date|strftime("%Y-%m-%d") }}
+      </time>
+    </small>
+  </header>
+  <div class="article-content">
+    {{ article.content }}
+  </div>
+</article>

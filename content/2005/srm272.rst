@@ -1,0 +1,130 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================
+SRM272 - Division1 - 4度目の正直
+====================================
+
+:slug: srm272
+:date: 2005-11-20
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/113422252929796191
+  :published: 2005-11-20T00:30:00+09:00
+
+  :replace_{RD}: 8069
+  :replace_{RM}: 246773
+  :replace_{PM1}: 5886
+  :replace_{PM2}: 4835
+  :replace_{PM3}: 5883
+
+
+SRM272__ に挑戦．
+今回のSRMは，msnがスポンサーです．$5,000の賞金がでます．
+TopCoderでは，ときどきこのようなSponsored Match が行わています．
+優秀な人材がほしい企業と，名を売りたい人たちの出会いの場の役目も果たしています.
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=8069
+
+
+FewestFactors__ (code__)
+==========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5886&rd=8069
+__ http://www.topcoder.com/stat?c=problem_solution&rm=246773&rd=8069&pm=5886&cr=15632820
+
+250点問題．
+数字(0〜9)が最大5個与えられます．
+それらを並べ替えてできる最大5桁の数のうち，Factor(約数)の数が最も少ないものを求める問題です．
+たかだか最大5個ですので，全ての並び方を試せばOKです．いわゆるpermutationです．
+C++ だと， STL にその名もずばり ``next_permutation()`` がありますので，それを使うとよいです．
+C++以外の言語では，DFS (depth first search)で再帰的にpermutationを生成すればよいでしょう．
+
+
+RoundTable__ (code__)
+=======================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4835&rd=8069
+__ http://www.topcoder.com/stat?c=problem_solution&rm=246773&rd=8069&pm=4835&cr=15632820
+
+500点問題．
+A社の代表 (countA)人 と B社の代表 (countB) 人が円卓に座ってミーティングをします．
+椅子の数 は (chairs) です．
+同じ会社の人どおしは，隣り合って座ってもよいですが，
+A社の人とB社の人は，間に距離をいす(minDistance) 分だけあけて座らなければいけません．
+
+* minDistance = 1 は，隣り合っていてもいいです．
+* minDistance = 2 だと，間に最低1つのいすが必要．
+* minDistance = 3 だと，間に最低2つのいすが必要．
+* ...
+
+というわけです．可能な座り方の数はいくつか? という問題です．
+SRMでは，Recursive と Memoization というパターンでときました．
+この手の問題は，DP(Dynamic Programming:動的計画法)を用いることもできます．
+こんな感じになります． 
+
+.. code-block:: java
+
+ public class RoundTable {
+
+   public long arrangements(int countA, int countB, int chairs, int minDis) {
+     long[][][][][] dp = new long[chairs][minDis][minDis][countA+1][countB+1];
+     dp[0][0][minDis-1][countA-1][countB] = 1;
+     for (int c = 1; c < chairs; c++) {
+         for (int pa = 0; pa < minDis; pa++) {
+             for (int pb = 0; pb < minDis; pb++) {
+                 for (int a = 0; a <= countA; a++) {
+                     for (int b = 0; b <= countB; b++) {
+                         int npa = Math.min(minDis-1, pa+1);
+                         int npb = Math.min(minDis-1, pb+1);
+                         // Neither sit on the chair
+                         dp[c][npa][npb][a][b] += dp[c-1][pa][pb][a][b];
+                         
+                         // Arep can sit on the chair
+                         if (pb == minDis-1 && a > 0)
+                             dp[c][0][minDis-1][a-1][b] += dp[c-1][pa][pb][a][b] * a;
+                         
+                         // Brep can sit on the chair
+                         if (pa == minDis-1 && b > 0 && c + minDis <= chairs )
+                             dp[c][minDis-1][0][a][b-1] += dp[c-1][pa][pb][a][b] * b;
+                     }
+                 }
+             }
+         }
+     }
+
+     long ret = 0;
+     for (int pa = 0; pa < minDis; pa++) {
+         for (int pb = 0; pb < minDis; pb++) {
+             ret += dp[chairs-1][pa][pb][0][0];
+         }
+     }
+     return ret * chairs;
+   }
+ }
+
+レーティングが高い人たちは，平気でDPを使用してきます.
+
+
+ManhattanDistance__
+===================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5883&rd=8069
+
+1000点問題．
+これも，DPでいける と思ったのですけど，500点問題で時間をほとんど使いきったため，さすがに時間が足りませんでした.
+グラフをつくって，Dijkstra法でもいけます．1000点問題にしては，とっかかりやすいかと．
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=8069&rm=246773
+
+.. image:: http://static.flickr.com/37/74683080_2722d5598e_o.png
+   :alt: Room Statistics
+
+ようやく，Division1ではじめてSystem Testに通りました．
+Level2問題も解けたので，充実感．
+レーティングは 1214 -> 1429 と上昇しました．

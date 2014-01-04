@@ -1,0 +1,211 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+======================================
+SRM287 - 気分は中学生？連立２元方程式
+======================================
+
+:slug: srm287
+:date: 2006-02-05
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/113911838981822210
+  :published: 2006-02-05T14:46:08+09:00
+
+  :replace_{RD}: 9808
+  :replace_{RM}: 247545
+  :replace_{PM1}: 6013
+  :replace_{PM2}: 5973
+  :replace_{PM3}: 6005
+
+
+SRM287__ に挑戦．
+1ヶ月ぶりの参戦．
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=9808
+
+
+TwoEquations__ (code__)
+=======================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6013&rd=9808
+__ http://www.topcoder.com/stat?c=problem_solution&rm=247545&rd=9808&pm=6013&cr=15632820
+
+300点問題．以下のような2つの文字列が与えられます．
+
+.. code-block:: java
+
+  "1*X + 2*Y = 6"
+  "1*X + (-4)*Y = (-3)"
+
+連立2元方程式です．「中学生か俺は？」でした．．
+これを解いて，解が唯一存在するならば，以下のように解を文字列で 
+
+.. code-block:: java
+
+  "X=(-7)/3 Y=3/4"
+
+解がないならば 
+
+.. code-block:: java
+
+  "NO SOLUTIONS"
+
+を，解が複数存在するならば 
+
+.. code-block:: java
+
+  "MULTIPLE SOLUTIONS"
+
+を返しなさい．という問題です.
+250点問題ではなく300点問題ですのでちょっと面倒です．ですがそれほど難しい問題ではないと一見思ったのですが．．
+
+方針としては，各係数A1-A3, B1-B3 
+
+.. code-block:: java
+
+  A1 * X + A2 * Y = A3
+  B1 * X + B2 * Y = B3
+
+をパースしてから， 
+
+.. code-block:: java
+
+        int det = A1 * B2 - A2 * B1;
+        int x = B2 * A3 - A2 * B3;
+        int y = A1 * B3 - B1 * A3;
+
+を計算して，det == 0 ならば，「解がない」 か 「解が複数」 
+
+.. code-block:: java
+
+        if (det == 0) {
+            if (x == 0) {
+                return "MULTIPLE SOLUTIONS";
+            }
+            return "NO SOLUTIONS";
+        }
+
+それ以外ならば， 「解がひとつ」ということで， 
+
+.. code-block:: java
+
+  "X=x/det Y=y/det"
+
+として，約分等・正しくフォーマットして返せばよい．
+これでいけると思ってSubmitしたのですが，甘かったです．
+
+これだけでは，以下のような係数がゼロの場合に対処できませんでした． 
+
+.. code-block:: java
+
+  "0*X + 0*Y = 1"
+  "0*X + 0*Y = 2"
+
+この場合は，正しい正解は"NO SOLUTIONS"ですが，上記ロジックだけだと"MULTIPLE SOLUTIONS"を返してしまいます．
+
+以下のように係数ゼロを特別に扱う必要性がありました． 
+
+.. code-block:: java
+
+        if (A1 == 0 && A2 == 0 && A3 != 0) return "NO SOLUTIONS";
+        if (B1 == 0 && B2 == 0 && B3 != 0) return "NO SOLUTIONS";
+        if (A1 == 0 && B1 == 0 && (A2 * B3 - B2 * A3) != 0) return "NO SOLUTIONS";
+        if (A2 == 0 && B2 == 0 && (A1 * B3 - B1 * A3) != 0) return "NO SOLUTIONS";
+
+私も含めて多くの人はゼロのケースを考慮しないCodeを書いてしまったようです．
+これに気づいた人は，チャレンジタイムで大稼ぎしていました．
+
+この問題のDivision1での正解率は11%，
+同じ問題がDivision2のレベル2問題にも使用されていましたがDivision2ではなんと正解率0%，
+誰ひとり正解できなかったようです．．
+
+.. image:: http://static.flickr.com/25/95611480_5e4542f8c0_o.png
+   :alt: Problem Stats
+
+
+MooresLaw__ (code__)
+====================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5973&rd=9808
+__ http://www.topcoder.com/stat?c=problem_solution&rm=247545&rd=9808&pm=5973&cr=15632820
+
+450点問題．
+
+  「ムーアの法則」: コンピュータのスピードは，18ヶ月で2倍になる
+
+今，計算を始めると14年かかる問題があるとします．
+今すぐ始めるのではなく，18ヶ月待ってスピードが2倍の新しいコンピュータを買ってそれで計算を始めると7年ですみます．
+14年かかる計算が，合計 (1.5 + 7 = ) 8.5年ですむわけです．
+この例だと，約4年まってから計算を始めるのがベストです．合計( 4 + 2.2 = ) 6.2年ですみます.
+
+このように，計算にかかる年数 (years) が与えられた場合，ムーアの法則が成り立つとすると，最短・今から何年後に計算を終わらせることができるでしょうか？という問題です．
+いつ新しいコンピュータを買い計算をはじめるか？がポイントになります．
+
+x年後に，新しいコンピュータを買って計算を始めるとすると，トータルでは 
+
+  y = x +  (years / 2^(x / 1.5) )
+
+かかることになります．このyが最小になるxを探せばよいことになります．
+数学的に解くことはできるのでしょうが（微分してゼロになるところを求める）．．
+数学的に悩むよりは，このようなU字型の関数の場合は，
+いわゆるbinary searchではなく，ternary search で，yが最小になるxを探すことができます．
+
+.. image:: http://static.flickr.com/38/95712324_5b626917dd_o.png
+   :alt: ternary search
+
+区間 ( [left, right] ) 内の2点(x1, x2)をとり，y1, y2 を計算して，
+
+* y1 > y2 ならば，left = x1
+* y1 < y2 ならば，right = x2
+
+として，区間を狭めていけば，最終的には，最小のyをとるxaにたどり着きます.
+
+.. code-block:: java
+ 
+  public class MooresLaw {
+    
+    public double shortestComputationTime(int years) {
+        
+        double left = 0;
+        double right = years;
+        
+        while (right - left > 1e-11) {
+            double x1 = (left * 2 + right) / 3.0;
+            double x2 = (left + right * 2) / 3.0;
+            if (cal(x1, years) > cal(x2, years)) {
+                left = x1;
+            } else {
+                right = x2;
+            }
+        }
+        return cal(right, years);
+    }
+    
+    double cal(double x, int years) {
+        return x + years / Math.pow(2, x / 1.5);
+    }
+
+SRM中は，x年後のコンピュータのスピードが，Math.pow(2, x / 1.5) で表せることにきずかず，
+前半部分・回りくどいことをしていまいました．．．
+なんとか正解しましたが．
+
+CoinGame__
+===================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6005&rd=9808
+
+1000点問題．
+Openしたものの，手が出ず．．
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=9808&rm=247545
+
+.. image:: http://static.flickr.com/41/95603073_48fb4a2290_o.png
+   :alt: Room Statistics
+
+全体的にポイントが低かったためか，レーティングは 1542 -> 1626 と上昇しました．

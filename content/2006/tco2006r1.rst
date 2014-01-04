@@ -1,0 +1,144 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+==============================================
+ 2006 TopCoder Open - Round1 撃墜
+==============================================
+
+:slug: tco2006r1
+:date: 2006-03-05
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/114156204096010699
+  :published: 2006-03-05T21:33:17+09:00
+  :replace_{RD}: 9917
+  :replace_{RM}: 247796
+  :replace_{PM1}: 6095
+  :replace_{PM2}: 6054
+  :replace_{PM3}: 6052
+
+
+`2006 TopCoder Open - Round1`__ に挑戦．
+750名から400名へふるい落とされます．
+予選と違い，Round1以降は，通常のSRMと同様の形式です．
+チャレンジ・フェーズもあります．
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=9917
+
+ラウンドへの登録時，アンケートがありました．
+「コンタクト先をスポンサーであるNSA(National Security Agency)に教えてもいいかい？」
+というものでした．
+TopCoderはいい就職・転職の機会の場になってますね．
+実際には，NSAはUS市民でないと勤務できないそうですが．．．
+
+ラウンド本番中，ちょっとした運営側の不手際がありました．
+350点問題を開くと，実際には500点問題が，
+500点問題を開くと，実際には350点問題が表示されてしまっていたようです．
+
+FirstToLast__ (code__)
+======================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6054&rd=9917
+__ http://www.topcoder.com/stat?c=problem_solution&rm=247796&rd=9917&pm=6054&cr=15632820
+
+500点問題．最初にOpenした問題です．本番中はこれが350点問題だと思っていました．．
+
+整数 p, q (1 <= p <= 100, 1 <= q <= 100) が与えられます.
+このとき，以下の条件を満たす正の整数 a を （存在しない場合は-1 を）返しなさい という問題です．
+
+* a の各桁を左に回転シフトした結果を |rotate| とすると， a * p/q = |rotate|
+* a < 2,000,000,000 (2 billionです．)
+
+条件を満たす a が複数ある場合は，そのうちもっとも小さいものを返します．
+たとえば，p = 1, q = 4 ならば，答えは a = 102564 になります．
+
+* "102564" の左端の1 を右にくっつけて， |rotate| = 25641
+*  a * p / q = 102564 * 1/ 4 = 25641 = |rotate|
+
+.. |rotate| replace:: a\ :sub:`rotate`
+
+ですね．
+
+うーん方針が浮かびませんでした．
+とりあえずExample Case に通るようにしてからSubmitしました．
+不完全だというのはわかっていましたが，もうあきらめて次の問題に移りました．．
+
+SeparateConnections__ (code__)
+==============================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6095&rd=9917
+__ http://www.topcoder.com/stat?c=problem_solution&rm=247796&rd=9917&pm=6095&cr=15632820
+
+実は，こっちが，350点問題でした．本番中は，500点問題だと思って取り組んでいました．
+
+ノードがn個与えられます．各ノード間が通信可能かどうがが，マトリックス形式で与えられます．
+
+ノードが5個の場合です．Yが通信可能．Nは通信不可能です． 
+
+.. code-block:: java
+
+  "NYYYY",
+  "YNNNN",
+  "YNNNY",
+  "YNNNY",
+  "YNYYN"
+
+各ノードは同時に1つの他のノードと通信できるとします．2つ以上とは通信できません．
+この場合，お互いに通信しているノードのペアを最大いくつ作成できるか？
+その通信しているノード数（ペア数 x 2 になります）を求めなさいという問題です．
+
+本番中は，思いっきり問題を勘違いしてしまって，Bipertite Matching を使用して解いてしまいました．
+普通にDPで解くべき問題でした．こんな感じになります． 
+
+.. code-block:: java
+
+  public class SeparateConnections {
+
+    public int howMany(String[] mat) {
+        int N = mat.length;
+        int max = 0;
+        boolean[] ok = new boolean[1<<N];
+        ok[0] = true;
+        for (int i = 0; i < (1<<N); i++) {
+            if (!ok[i]) continue;
+            max = Math.max(max, Integer.bitCount(i));
+            for (int n1 = 0; n1 < N; n1++) {
+                for (int n2 = n1+1; n2 < N; n2++) {
+                    if ( mat[n1].charAt(n2) == 'Y'
+                            && (i & (1 << n1)) == 0
+                            && (i & (1 << n2)) == 0) {
+                        ok[ i | (1 << n1) | (1 << n2)] = true;
+                    }
+                }
+            }
+        }
+        return max;
+    }
+  }
+
+
+NumPermutationOrders__
+======================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6052&rd=9917
+
+1000点問題．ていうか無理．
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=9917&rm=247796
+
+.. image:: http://static.flickr.com/40/108055384_109a3de959_o.png
+   :alt: Room Statistics
+
+スコア0です．．．敗退決定です．
+スコア0は，401位でした．
+1点でもスコアがあったら，400位以内に入っていたようです．
+
+今日の教訓
+==========
+
+* あー勘違い．

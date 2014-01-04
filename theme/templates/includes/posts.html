@@ -1,0 +1,14 @@
+{% macro list_flat(articles) %}
+<ul>
+  {% for article in articles %}
+  <li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title|striptags }}</a></li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+{% macro list(articles) %}
+  {% for year, articles_in_year in articles|groupby('date.year')|reverse %}
+    <h4>{{ year }}</h4>
+    {{ list_flat(articles_in_year) }}
+  {% endfor %}
+{% endmacro %}

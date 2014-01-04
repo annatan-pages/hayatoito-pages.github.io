@@ -1,0 +1,146 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================
+SRM260 - TopCoderへの挑戦のはじまり
+====================================
+
+:slug: srm260
+:date: 2005-08-28
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/113357087496948810
+  :published: 2005-08-28T02:28:49+09:00
+  :replace_{RD}: 7994
+  :replace_{RM}: 203409
+  :replace_{PM1}: 4746
+  :replace_{PM2}: 4766
+  :replace_{PM3}: 4749
+
+
+TopCoder__ とは，世界中のトッププログラマが集まり，プログラミングスキルを競いあっているサイトです．
+毎週のようにオンラインでプログラミングコンテストが行われています．
+面白そうなので参加してみました． SRM260__ に挑戦です．SRMとはSingle Round Match のことです．定期的に（週に1回ほど）開催されています．
+
+__ http://www.topcoder.com/
+__ http://www.topcoder.com/stat?c=round_overview&rd=7994
+
+先日開催されたGoogle Code Jam 2005でこのサイトを知った人が多いのかいつもより参加者が多いらしく（私もその一人），驚いている様子が伺えます(800名オーバー)．
+
+.. image:: http://static.flickr.com/26/38216141_06b79260a9_o.png
+   :alt: Chat Area
+
+レーティングが1200以上の人はDivision1，それ以下の人はDivision2になります．
+Division1の方が問題が比較的易しくなっています．
+初参加の自分は，Devision2．
+
+簡単にSRMの流れをおさらいしておくと
+
+* 開始時間の5分前までにRegistrationを行う
+* 参加者は約20名づつ，Roomにアサインされる
+* 問題は3問．制限時間は75分．言語は Java, C++, C#, VB から選択できます．
+* 5分休憩
+* 15分のチャレンジタイム．この時間では，同じルームの参加者が提出したコードを見ることができます．
+  バグを発見し「チャレンジ」に成功すると50ポイントもらえます．
+
+ということです．この4つから選ぶなら(無難に?)Javaでいきます．以下のような問題が出題されました．(code) は私が提出したコードです．
+
+IsingModel__ (code__)
+=======================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4746&rd=7994
+__ http://www.topcoder.com/stat?c=problem_solution&rm=203409&rd=7994&pm=4746&cr=15632820
+
+250点問題．特に難しいところはないです．軽くこなしたいところ．
+
+GridPointsOnCircle__ (code__)
+===============================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4766&rd=7994
+__ http://www.topcoder.com/stat?c=problem_solution&rm=203409&rd=7994&pm=4766&cr=15632820
+
+500点問題．中心(0,0)，半径rの円上に座標が(整数, 整数)の形式を満たす点はいくつ存在する？って問題です．
+ちょっと，なやむ．
+単に (x, y) ( 0 <= x, y <= r) を全部調べていたらタイムオーバするってのが目に見えてるので，なんらかのちょっとした工夫が必要．
+
+RollingBlock__ (code__)
+=========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4749&rd=7994
+__ http://www.topcoder.com/stat?c=problem_solution&rm=203409&rd=7994&pm=4749&cr=15632820
+
+1000点問題.
+サイズがrows x cols の盤上を 1 x 1 x 3 のブロックがごろんごろんと動くとき，ある地点からゴールの地点まで最短，何Moveで到達できるか？という問題です．
+条件として，
+
+  rows and cols will be between 1 and 100, inclusive.
+
+とあるので，状態空間はたかだか 100 x 100 x 3 くらいです．
+BFS (Breadth First Search) で問題ない（はず）．
+不正な状態（盤からはみだす)をちゃんとチェックしてやれば，なんとかなるか．．
+
+結果
+====
+
+制限時間つきでコーディングするなんていう経験が普段ないもんだから，あせるあせる．
+で，なんとか3問ともSubmitしました．
+問題をOpenしてから，Submitするまでの時間が早ければ早いほどポイントが高くなります．
+
+|SUBMIT_RESULT|__
+
+.. |SUBMIT_RESULT| image:: http://static.flickr.com/30/38216143_7153b1a67d_m.jpg
+__ http://static.flickr.com/30/38216143_7153b1a67d_o.png
+
+75分のコーディングタイムが終了すると，5分の休憩があります．
+その後，15分間のChallenge Timeが始まりました．
+
+自分の500点コードが撃墜された瞬間．．
+
+|CHALLENGE|__
+
+.. |CHALLENGE| image:: http://static.flickr.com/25/38216144_aa73121e35_m.jpg
+__  http://static.flickr.com/25/38216144_aa73121e35_o.png
+
+Challengeで使用されたパラメータ(円の半径)は入力条件の最大値である2000000000です．
+その結果は
+
+    "The code execution time exceeded the 2 second time limit."
+
+2秒以上実行時間がかかるのは認められないってことですね．．なるほど．．
+このように，あらかじめ，必要な上限のみに制限しておけば2秒以内だったか．．
+
+.. code-block:: java
+
+    long r = (long) Math.sqrt(rSquare) + 1;
+    long y = r;
+    for (long x = 0; x < r; x++) {
+
+自分もどきどきしながらひとつChallengeしてみました．結果は成功(+50点)．
+
+Challenge Timeが終わると，ひとまず終了です．
+全員のSubmitされたコードに対してSystem Testが走ります．
+System Testに落ちると，どんなに早くその問題をSubmitしていてもゼロ点です．
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=7994&rm=203409
+
+.. image:: http://static.flickr.com/40/74680799_df314e57a5_o.png
+   :alt: Room Statistics
+
+250点問題と1000点問題は無事System Testに通りました．
+1000点問題は2回チャレンジをうけています．そんなに「間違えてる」ふうに見えたのかなー．
+
+レーティングはこうなりました．
+
+.. image:: http://static.flickr.com/29/38216145_fde67a1953_o.png
+   :alt: Rating
+
+今日の教訓
+==========
+
+* 2秒以内という時間制限を忘れないように
+* いちばん時間がかかるケースをちゃんと考慮しておくように
+
+なかなか普段は味わえない緊張感があって，面白かったです.
+レーティングシステムというのがいいですね．また挑戦してみたいです．

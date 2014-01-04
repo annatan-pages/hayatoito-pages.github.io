@@ -1,0 +1,62 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================
+SRM304 - 条件付確率
+====================================
+
+:slug: srm304
+:date: 2006-05-29
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/115289772672657871
+  :published: 2006-05-29T00:30:00+09:00
+
+  :replace_{RD}: 9825
+  :replace_{RM}: 248766
+  :replace_{PM1}: 6190
+  :replace_{PM2}: 6412
+  :replace_{PM3}: 6137
+
+SRM304__ に挑戦．実に1ヶ月半ぶりの参戦です。
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=9825
+
+Division1の問題です．
+
+PolyMove__ (code__)
+===================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6190&rd=9825
+__ http://www.topcoder.com/stat?c=problem_solution&rm=248766&rd=9825&pm=6190&cr=15632820
+
+300点問題．限られた条件のもとで、ポリゴンの頂点を移動させ、面積を最大化せよ、という問題です。
+古典的なDPでとける問題なんですけど。。つまらないミスを（実は2つも）してしまいました。
+
+Conditional__
+=============
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6412&rd=9825
+
+450点問題．条件付確率の問題です。
+十分解けるレベルの問題だったのに、題意をひとつ勘違いしていて、いつまでたってもExample Caseに通らず。。。結局、Submitできませんでした。
+
+TheXGame__
+==================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6137&rd=9825
+
+1000点問題．Openできませんでした。
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=9825&rm=248766
+
+.. image:: http://static.flickr.com/67/189512705_850c0d10c2_o.png
+   :alt: Room Statistics
+
+チャレンジも成功2、失敗4で、差し引きゼロ。結果ポイントゼロでした。。
+レーティングは1775->1696と大幅低下。

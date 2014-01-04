@@ -1,0 +1,70 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+======================================================
+ SRM384 - ゲーム
+======================================================
+
+:slug: srm384
+:date: 2007-12-26
+
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/7520565836282940111
+  :published: 2007-12-26T16:53:42Z
+  :tags: topcoder
+
+  :replace_{RD}: 10808
+  :replace_{RM}: 267772
+  :replace_{PM1}: 7659
+  :replace_{PM2}: 7657
+  :replace_{PM3}: 6866
+
+SRM384__ に挑戦。結果は、以下の通り。
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=10808
+
+
+.. csv-table:: `Room Statistics`__
+   :header: Class Name,  Method Name,  Difficulty,  Coding Time,  Status,  Points
+
+   Library__, documentAccess, Level One, 0:06:01.087, Passed System Test, 239.41
+   SchoolTrip__, duration, Level Two, 0:51:13.541, Passed System Test, 211.78
+   ChessTraining__, game, Level Three, 0:10:44.830, Opened, 0.00
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=10808&rm=267772
+
+
+__ http://www.topcoder.com/stat?c=problem_solution&rm=267772&rd=10808&pm=7659&cr=15632820
+__ http://www.topcoder.com/stat?c=problem_solution&rm=267772&rd=10808&pm=7657&cr=15632820
+__ http://www.topcoder.com/stat?c=problem_solution&rm=267772&rd=10808&pm=6866&cr=15632820
+
+
+今回は、500点問題は正確に確率を求めようとすると、かなり面倒くさいです。
+何も考えずに、メモつき再帰などで計算しようとすると、
+「あれ、元の状態に戻ってしまうよ。延々とループしてしまうよね。これ?どーしよ。。」
+となってしまいます。
+私は、これで30分くらい悩みました。
+
+うまく場合分けをすれば正確に求めることも可能ですが、
+そうではなく、強引にシミュレーション(?)で求めてしまうって方法が、
+一番楽だったようです。
+ちなみに、このような強引に一定回数ループを回して計算する方法って、
+なにか名前がついていないんですかね?
+シミュレーションって言葉も、ちょっと正しくないような気もするんですけど。
+
+----
+
+1000点問題は、ゲームの問題です。
+ひとつひとつのゲームの結果を求めるのは簡単なんですが、
+それが複数組み合わさるときの求めかたがわかりませんでした。
+「なんらかの、Nimのようなゲームの考え方に落ち着くんだろうな。」とは思ってたんですけど。
+
+TopCoderのForumによりますと、このような複合ゲームの場合の考え方は、
+以下の論文(TopCoderのメンバーである raso6sk__ の学士論文)が参考になります。
+
+__ http://www.topcoder.com/tc?module=MemberProfile&cr=13396848
+
+http://www.fmph.uniba.sk/fileadmin/user_upload/editors/studium/svk/2007/INF/lenhardt.pdf
+
+しかし、この1000点問題を解いた人は、24人もいるんですよね。
+みんな、よく知ってますね。さすが。

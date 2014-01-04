@@ -1,0 +1,81 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+==================
+ SRM293 - ビンゴ!
+==================
+
+:slug: srm293
+:date: 2006-03-27
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/114364852404241672
+  :published: 2006-03-27T00:30:00+09:00
+  :tags: topcoder
+
+  :replace_{RD}: 9814
+  :replace_{RM}: 247899
+  :replace_{PM1}: 6116
+  :replace_{PM2}: 4499
+  :replace_{PM3}: 5877
+
+SRM293__ に挑戦．
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=9814
+
+ScrabbleBet__ (code__)
+======================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6116&rd=9814
+__ http://www.topcoder.com/stat?c=problem_solution&rm=247899&rd=9814&pm=6116&cr=15632820
+
+300点問題．
+確率計算の問題です．
+セオリーどおりに組み合わせの数を求めて計算してもよいですし，
+DP的に解いてもいいです．
+
+Bingo__ (code__)
+================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4499&rd=9814
+__ http://www.topcoder.com/stat?c=problem_solution&rm=247899&rd=9814&pm=4499&cr=15632820
+
+450点問題．
+いわゆる5x5のビンゴのシミュレーションです．
+アルゴリズム的に悩むところはまったくなく，ただ単に実装にちょっと手間がかかってしまう問題です．
+参加者の間ではこの手の問題はあまり人気がありません．
+例のごとく目いっぱい時間がかかってしまいました．．
+
+CirclesOfDestruction__
+======================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5877&rd=9814
+
+1000点問題．
+SRM中はオープンしませんでした．
+SRM後に，挑戦してみました．いい問題ですね．．
+
+問題を解くアイデア自体はすぐに思い浮かびました．
+「自分のスタート地点」と「円の中心」の垂直2等分線がちょうどOKな地域とNGの地域の境目になります．
+これでゴール地点の候補が絞れるので，条件を満たすゴール地点のうち距離が一番短いものを返せばよいです．
+
+なんとか自力で解けましたが，やはり時間がかかってしまいました．
+とてもSRM本番では時間がたらなそうです．
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=9814&rm=247899
+
+.. image:: http://static.flickr.com/46/119843209_7e198f2c59_o.png
+   :alt: Room Statistics
+
+レーティングは，1730->1789と少し上昇しました．
+
+今日の教訓
+==========
+
+* 全体的に時間かけすぎなので，今後上を狙うにはもう少しスピードアップが必要か．．
+  まあでもしばらくは，あまりスピードは意識せずのんびりとやっていきたいと．．

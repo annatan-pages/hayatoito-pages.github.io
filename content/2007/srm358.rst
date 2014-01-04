@@ -1,0 +1,72 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+======================================================
+ SRM358 - Today is a Bad Day (-50).
+======================================================
+
+:slug: srm358
+:date: 2007-07-17
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/378748696129691026
+  :published: 2007-07-17T14:07:43Z
+  :tags: topcoder
+
+  :replace_{RD}: 10768
+  :replace_{RM}: 265496
+  :replace_{PM1}: 7716
+  :replace_{PM2}: 7845
+  :replace_{PM3}: 7834
+
+SRM358__ に挑戦。
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=10768
+
+BrokenButtons__ (code__)
+========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=7716&rd=10768
+__ http://www.topcoder.com/stat?c=problem_solution&rm=265496&rd=10768&pm=7716&cr=15632820
+
+250点問題。いかにケアレスミスをしないか?を問われる問題。
+で、見事にミスをしてしまいました。しかも、2つも。
+5分の休憩時間中に、自分の誤りに気がついたんですけど、ときすでに遅し。
+なぜか、自分は、250点問題のミスに、休憩時間中に気付くパターンが多いような。
+他人へのチャレンジ・ケースを考えているうちに、自分のミスに気付かされるといういつものパターン。
+
+BalanceScale__
+===================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=7845&rd=10768
+
+500点問題。苦手な整数問題。
+最大サイズが50なので、探索できっこないと思い込む。なにかクレバーなアイデアがあるはずと思いつつ、
+しかし、時間内に思いつく自信がなかったため、早めにパスして、1000点問題へ。
+
+SharksDinner__ (code__)
+========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=7834&rd=10768
+__ http://www.topcoder.com/stat?c=problem_solution&rm=265496&rd=10768&pm=7834&cr=15632820
+
+1000点問題．500点問題よりは取り組みやすそうに思えたので、今回は、ずっとこれに取り組んでいました。
+まったく同じ鮫をのぞいてしまえば、グラフはDAG(directed acyclic graph)になるので、まったく同じ鮫をどのように扱うか考えていました。
+結局提出まで至らず時間切れ。
+後で、コードを振り返ってみると、全体としての方針は間違っていなかったんですけど(DAGにしてマッチング問題に帰着)、
+前半部分で、「同じ鮫をひとつにまとめてしまっても大丈夫なはずだ」という、致命的な勘違いをしていました。
+なぜ、そう思ったのだろう。。。
+
+ほとんどのひとは、MaxFlowで解いていますね。なるほど。
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=10768
+
+チャレンジも2つ失敗して、結局スコア-50で終わるという過去最低の結果に。
+レーティングも2040->1856とものの見事な低下っぷり。
+この悔しさが、次回へのモチベーションにつながるんですけどね。

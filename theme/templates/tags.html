@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Tags — {{ super() }}{% endblock %}
+
+{% block content %}
+<section id="tags">
+  <header><h1 class="page-header">Tags</h1></header>
+  <ul class="list-inline">
+    {% for tag, articles in tags|sort %}
+    <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag|striptags }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

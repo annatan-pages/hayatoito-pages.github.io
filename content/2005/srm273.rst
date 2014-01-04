@@ -1,0 +1,118 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================
+SRM273 - bit演算はintで行われるのね
+====================================
+
+:slug: srm273
+:date: 2005-11-22
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/113448905807715231
+  :published: 2005-11-22T00:30:00+09:00
+
+  :replace_{RD}: 8070
+  :replace_{RM}: 246824
+  :replace_{PM1}: 5895
+  :replace_{PM2}: 5893
+  :replace_{PM3}: 5878
+
+
+SRM273__ に挑戦．
+はじめて，平日の昼に挑戦です．今までは，日本時間の夜に開催されるSRMにしか参加しませんでした．
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=8070
+
+
+FallingCoconuts__ (code__)
+============================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5895&rd=8070
+__ http://www.topcoder.com/stat?c=problem_solution&rm=246824&rd=8070&pm=5895&cr=15632820
+
+250点問題．
+ココナッツを上から落としておとしていきます．積みあがった形を返す問題です．テトリスみたいなものですね．
+番人(Sentinel)というちょっとしてTipsを使いました．
+あらかじめ，一番下の段にココナツを敷き詰めておけば，ココナツが下にはみだすことはありません．
+一番下までココナツが落ちたときの条件をチェックする必要がなくなります．
+一番下の段に敷き詰めたココナツば番人がわりになってくれるわけです．
+今回は，特にSentinel を使うまでもないですが，ときどきあらかじめSentinelを用意しておけば，
+条件チェックが非常に楽になるケースがあります．
+
+  
+SnakeTurbo__ (code__)
+=======================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5893&rd=8070
+__ http://www.topcoder.com/stat?c=problem_solution&rm=246824&rd=8070&pm=5893&cr=15632820
+
+500点問題．
+
+.. code-block:: java
+
+  o---o-o-S--o--o--------G---o
+
+Sが Snake(へび)がいるスタート地点，Gがゴール地点です．へびは1秒に1単位進むことができます．
+o はパワーアップえさです． o を食べるたびに，へび はスピードが2倍になります．
+
+* 2つ食べれば4倍
+* 3つ食べれば8倍
+* 4つ食べれば16倍
+
+というふうに，効果は累積します．
+へびがスタート地点からゴールするまでの最短時間を求める問題です．
+
+これも，前回のSRM272のLevel2問題，RoundTableと同様に，Recursive + Memoization で解きました.
+自信があったんですけど，System Testに落ちました．
+うーん，どこがおかしいかしばらく気づきませんでした．．発見してみてください．
+ここです 
+
+.. code-block:: java
+
+  double boost = 1 << (right - left); 
+
+ここは，現在のへびのスピード，すなわち 2の (right - left) 乗 を求めているところです．
+入力の条件は，
+
+  orbs will contain between 0 and 50 elements, inclusive.
+
+なので，(right - left) は32以上になる可能性があります．
+右辺のビットシフトは int で計算が行われます．
+int は32ビットなので，(right - left) が32以上のときは対応できません．
+素直に 
+
+.. code-block:: java
+
+ double boost = Math.pow(2, (right - left) );
+
+または 
+
+.. code-block:: java
+
+  double boost = 1L << (right - left); 
+
+とlongを使用しておけば，何の問題もなく，System Testに通っていました．残念．
+
+
+RobotCollision__
+================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5878&rd=8070
+
+900点問題．
+時間たりず．Level3 問題にしては，簡単なほうだったみたいです．
+条件を絞れば，Brute-force でいけます．
+
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=8070&rm=246824
+
+.. image:: http://static.flickr.com/39/74683489_f24f748f7c_o.png
+   :alt: Room Statistics
+
+レーティングはちょっとだけ上昇しました．

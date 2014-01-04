@@ -1,0 +1,19 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+=========================================================
+IBM Rational Software Development Forum Tokyoで講演します
+=========================================================
+
+:slug: 200604rsdf
+:date: 2006-04-27
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/115289398717063620
+  :published: 2006-04-27T00:30:00+09:00
+
+`IBM Rational Software Development Forum Tokyo`__ で講演します。
+
+__ http://www-06.ibm.com/jp/software/rational/events/rsdf/
+
+.. image:: http://static.flickr.com/75/193898029_c84bd4b73c_o.gif
+   :alt: IBM Rational Software Development Forum Tokyo

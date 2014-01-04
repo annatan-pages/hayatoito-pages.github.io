@@ -1,0 +1,67 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+======================================================
+ SRM368
+======================================================
+
+:slug: srm368
+:date: 2007-10-02
+
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/6638840212471756893
+  :published: 2007-10-02T14:38:41Z
+  :tags: topcoder
+
+  :replace_{RD}: 10936
+  :replace_{RM}: 266460
+  :replace_{PM1}: 8245
+  :replace_{PM2}: 8249
+  :replace_{PM3}: 8247
+
+SRM368__ に挑戦。結果は以下の通り。
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=10936
+
+
+.. csv-table:: `Room Statistics`__
+   :header: Class Name,  Method Name,  Difficulty,  Coding Time,  Status,  Points
+
+   JumpingBoard__, maxJumps, Level One, 0:16:20.551, Challenge Succeeded, 168.66
+   PolylineUnion__, countComponents, Level Two, 0:38:47.847, Passed System Test, 245.21
+   BinaryCodes__, ambiguous, Level Three, 0:15:17.316, Opened, 0.00
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=10936&rm=266460
+
+
+__ http://www.topcoder.com/stat?c=problem_solution&rm=266460&rd=10936&pm=8245&cr=15632820
+__ http://www.topcoder.com/stat?c=problem_solution&rm=266460&rd=10936&pm=8249&cr=15632820
+__ http://www.topcoder.com/stat?c=problem_solution&rm=266460&rd=10936&pm=8247&cr=15632820
+
+JumpingBoard
+=======================
+
+これを、1). 普通にさくっと解くか、2). 解いたつもりで間違いに気付かず次の問題にいってしまうか、で落ち着きのある・なしが判定できますね。。
+
+まー、私は後者だったわけだが。多くの人がサイクルの判定で同じようなミスをしてました。
+
+
+PolylineUnion
+========================
+
+500点問題。Geometry問題。
+セグメントの交差判定が問題の中心。
+最初は交点の座標を求めようとしたんですけど誤差の精度に確信が持てなかったので、
+方針を変えて交差判定を整数のみを使用してがんばってみた。
+
+
+BinaryCodes
+=============
+
+1000点問題。とても手が回らず。解けた人は一人だけというハードな問題でした。
+
+結果
+====
+
+レーティングは、1760 > 1853と上昇。
+Javaじゃなくて、C++にスイッチしようかなと思う、今日、このごろ。。

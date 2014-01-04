@@ -1,0 +1,16 @@
+{% macro button(url=None) %}
+<div class="g-plusone" data-size="medium" data-href="{{ url|striptags }}"></div>
+{% endmacro %}
+
+{% macro script(language=None) %}
+<script type="text/javascript">
+  {% if language %}
+  window.___gcfg = {lang: {{language|jsonify}}};
+  {% endif %}
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+{% endmacro %}

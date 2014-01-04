@@ -1,0 +1,20 @@
+======================================
+2006 TopCoder Open - NSAがスポンサーに
+======================================
+
+:slug: 200512tco
+:date: 2005-12-13
+
+`2006 TopCoder Open`__ が開催されるようです．
+
+__ http://www.topcoder.com/tc?module=Static&d1=tournaments&d2=tco06&d3=about
+
+賞金総額は，$150,000 です．
+予選，Round1,2,3,4，そしてオンサイト（ラスベガス）でのファイナル というふうに，
+何回かにわけて行われる形式のようです.
+あの `NSA (National Security Agency)`__ がスポンサーになるようですね．
+いい成績を残せた人は，NSAから声がかかるのでしょうか？
+
+予選は，来年2月28日です．とりあえず，予選通過(750名)を目標に挑戦してみたいと思います.
+
+__ http://www.topcoder.com/tc?module=Static&d1=tournaments&d2=tco06&d3=nsa

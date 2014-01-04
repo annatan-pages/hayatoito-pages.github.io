@@ -1,0 +1,91 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================
+SRM266 - NASA, we have a problem...
+====================================
+
+:slug: srm266
+:date: 2005-10-02
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/113361523481666453
+  :published: 2005-10-02T00:30:00+09:00
+
+  :replace_{RD}: 7999
+  :replace_{RM}: 203780
+  :replace_{PM1}: 4821
+  :replace_{PM2}: 4809
+  :replace_{PM3}: 4808
+
+
+SRM266__ に挑戦．
+Division2落ちしたので，今日からはDivision2．
+一発でDivision1に復帰するのが目標．
+前回，TopCoderに初挑戦したときは，Division2の問題は3問ともSubmitできたので（1問は間違っていたけど．．），今回もなんとかなるか，と甘い気持ちでスタート．
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=7999
+
+
+SwimmersDelight__ (code__)
+============================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4821&rd=7999
+__ http://www.topcoder.com/stat?c=problem_solution&rm=203780&rd=7999&pm=4821&cr=15632820
+
+250点問題．
+幅が10フィートの川があります．間には足場となる2つの石があります．
+最適な飛び方をした場合,もっとも長いジャンプはどれだけの長さですむか？という問題です．
+石の座標(x, y) (xが川の幅方向: 0<=x<=10) が(3, 5), (6, 2)だとすると，
+
+  スタート (0, 5) --(距離3)--> (3, 5) --(距離4.24..)--> (6, 2) --(距離4)--> (10, 2) 到着
+
+といけば，最大のジャンプは 4.24.. ですみます.
+全部のパスを調べればよいだけの問題ですので，さくっと終わらせて（といっても13分かかってますけど）．
+
+ExploringEuropa__
+=================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4809&rd=7999
+
+550点問題．
+木星の月・Europa上の地表探査機に対して，NASAから指示（「REVERSE」「STOP」）を出して，
+ちょうど 探査対象 の上に探査機を停めたい．
+いつ指示をだすのがBestか？という問題です.
+NASAと探査機の間は，すぐに指示が伝わらなくDelayが生じる．のが問題の肝です．
+問題文が長いのはいいとして，問題を呼んだ直後はそんなに難しいとは思わなかったのですけど，，
+はまりました．．．
+1時間以上格闘したあげく，結局時間切れでした．
+
+ZCurve__
+========
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4808&rd=7999
+
+900点問題．
+SRM中はOpenしませんでしたが，こちらのほうが簡単でした．
+ExploringEuropa はとっとと捨てて，こちらににとりかかればよかった．
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=7999&rm=203780
+
+.. image:: http://static.flickr.com/41/74681944_23c573b1ab_o.png
+   :alt: Room Statistics
+
+ExploringEuropa と ZCurve は Division1のLevel1(300点)問題, Level2(450点)問題にも使用されていました．
+どちらのDivisionの結果をみても，ExploringEuropaの方が，あきらかに正解率が悪かったです．
+なかなか状況把握やとっかかりがつかみにくいようで，みなさん苦労したようです．
+難易度とポイントのバランスを考えると，「問題をいれかえるべきだったのでは?」という声が多かったです.
+その気になれば，手作業・手計算でも正解を導き出せる問題なんですけどね．
+レーティングはさすがに下がると思っていたけれど，ちょっとだけ上昇でした．
+
+今日の教訓
+==========
+
+* はまったときはその問題を捨てて次の問題へ．必ずしも順番に解いていく必要はなし．
+
+Division2脱出はならず．．次回もDivision2です．．

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title|striptags }} — {{ super() }}{% endblock %}
+
+{% import 'includes/disqus.html' as disqus %}
+{% import 'includes/twitter.html' as twitter %}
+{% import 'includes/gplus.html' as gplus %}
+
+{% block content %}
+{% include 'includes/article_unit.html' %}
+
+{# neighbors plugin #}
+<ul class="pager">
+    {% if article.next_article %}
+        <li class="previous"><a href="{{ SITEURL }}/{{ article.next_article.url }}" rel="prev">&larr; Newer Post</a></li>
+    {% else %}
+        <li class="previous disabled"><a>&larr; Newer Post</a></li>
+    {% endif %}
+    {% if article.prev_article %}
+        <li class="next"><a href="{{ SITEURL }}/{{ article.prev_article.url }}" rel="next">Older Post &rarr;</a></li>
+    {% else %}
+        <li class="next disabled"><a>Older Post &rarr;</a></li>
+    {% endif %}
+</ul>
+
+{#
+<div class="social text-right">
+  {% if TWITTER_USERNAME %}
+  {{ twitter.button(article.title, SITEURL+'/'+article.url, TWITTER_USERNAME, article.category|lower, article.lang) }}
+  {% endif %}
+  {{ gplus.button(SITEURL+'/'+article.url) }}
+</div>
+{{ disqus.comments() }}
+
+{{ disqus.script(DISQUS_SITENAME, disqus.identifier(article), article.title|striptags, (DISQUS_SITEURL or SITEURL) + '/' + article.url)}}
+{{ gplus.script(article.lang) }}
+#}
+
+{% endblock %}

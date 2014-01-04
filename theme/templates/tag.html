@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ tag|striptags }} — {{ super() }}{% endblock %}
+
+{% import 'includes/posts.html' as posts %}
+
+{% block content %}
+<section id="content" class="content">
+  <header><h1 class="page-header">Posts tagged “{{ tag|striptags }}”</h1></header>
+  {{ posts.list(dates) }}
+</section>
+{% endblock %}

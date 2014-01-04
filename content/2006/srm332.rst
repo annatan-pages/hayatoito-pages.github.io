@@ -1,0 +1,108 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================================
+2006年のまとめ - SRM332
+====================================================
+
+:slug: srm332
+:date: 2006-12-30
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/1177943029787130999
+  :published: 2006-12-30T16:17:53Z
+
+  :replace_{RD}: 10012
+  :replace_{RM}: 263121
+  :replace_{PM1}: 7309
+  :replace_{PM2}: 6402
+  :replace_{PM3}: 6175
+
+SRM332__ に挑戦。2006年、最後のSRMになります。
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=10012
+
+CreatePairs__ (code__)
+======================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=7309&rd=10012
+__ http://www.topcoder.com/stat?c=problem_solution&rm=263121&rd=10012&pm=7309&cr=15632820
+
+250点問題。Greedyですね。落ち着けばとけます。
+
+RestoringPolygon__ (Code__)
+===========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6402&rd=10012
+__ http://www.topcoder.com/stat?c=problem_solution&rm=263121&rd=10012&pm=6402&cr=15632820
+
+550点問題。2次元平面上で水平の線分(セグメント)がいくつか与えられます。
+このセグメントに垂直のセグメントを好きなだけ足して、
+最大のポリゴンを作成して、その辺の数を返しなさい。という問題です。
+
+単純に考えてそのまま強引に解いてしまいました。
+ワーストケースでのタイムアウトが気になりましたが大丈夫だったようです。
+
+LadderPermutation__
+===================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6175&rd=10012
+
+950点問題．Openしませんでした。
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=10012&rm=263121
+
+550点問題のRestoringPolygonをシステムテストで落とされた人が続出
+( `309人中、提出が144、正解が16と正解率が11%ほど`__ )したため、
+全体的に点数が低めでした。
+950点問題のほうが、550点問題より正解者が多い。。。
+
+__ http://www.topcoder.com/tc?module=ProblemDetail&rd=10012&pm=6402
+
+.. image:: http://farm1.static.flickr.com/149/338406108_a8c377433c_o.png
+   :alt: Room Statistics
+
+なぜか同じルーム内にはRed Coderがいなかったため、ルーム内ではトップのポイント。
+レーティングは1532->1678と上昇しました。
+
+2006年のまとめ
+==============
+
+2006年も終了。この時点でのStatsを記録として残しておきます。
+
+.. image:: http://farm1.static.flickr.com/156/338419927_1cb351d94a_o.png
+   :alt: Rationg History
+
+今年のはじめはレーティングが1630で、今は1678ですのであんまり変わってません。
+
+.. image:: http://farm1.static.flickr.com/127/338428423_92a7a00025_o.png
+   :alt: Rating Distribution
+
+まだまだRed Coderへは遠い道のりです。。
+
+Pythonはどうなった?
+===================
+
+TopCoderに参加するときはこれまでのところJavaをずっと使用していますが、
+TopCoder以外の個人的な場面ではJavaを使用することはすっかりなくなり、
+大抵の場合Pythonを使用しています。
+でもあいかわらず、TopCoderのアルゴリズム・マッチで使用できる言語は、
+Java、C#、C++、VBの4つだけでPythonは採用されそうもありません。
+他言語とのスピード差がその理由だそうです。
+アルゴリズム・マッチで走らせるプログラムは外とのI/Oがまったくなく
+ほぼCPUだけに全体の処理時間が依存してしまうので、
+どうしてもスピード差が顕著になってしまうわけですね。
+そうはいっても、今年のGoogle Code JamではPythonは採用されたわけだが。。。
+
+と思っていたら、TopCoderのマラソン・マッチでは
+Pythonがいつのまにか使用言語として採用されています。
+アルゴリズム・マッチと異なり、マラソン・マッチはコンテストの性質上、
+処理時間をあまり気にする必要がないのでPythonを加えたそうです。
+じっくり未解決の難問に取り組むマラソン・マッチもやってみたいところだが、
+さすがにアルゴリズム部門と比べて時間がそれなりにとられそうなので
+しばらくは見送り。

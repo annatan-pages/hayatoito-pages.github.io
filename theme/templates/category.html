@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ category|striptags }} — {{ super() }}{% endblock %}
+
+{% import 'includes/posts.html' as posts %}
+
+{% block content %}
+<section id="content" class="content">
+  <header>
+    <h1 class="page-header">
+      Posts in category “{{ category|striptags }}”
+      {% if CATEGORY_FEED_ATOM %}
+      <small><a  href="{{ SITEURL }}/{{ CATEGORY_FEED_ATOM|format(category|escape|lower) }}"><i class="fa fa-rss"></i></a></small>
+      {% endif %}
+    </h1>
+  </header>
+  {{ posts.list(dates) }}
+</section>
+{% endblock %}

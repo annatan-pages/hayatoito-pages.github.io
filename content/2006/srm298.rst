@@ -1,0 +1,150 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================
+SRM298 - ひとふで書き
+====================================
+
+:slug: srm298
+:date: 2006-04-13
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/114492519868029050
+  :published: 2006-04-13T00:30:00+09:00
+
+  :replace_{RD}: 9819
+  :replace_{RM}: 248284
+  :replace_{PM1}: 6160
+  :replace_{PM2}: 6157
+  :replace_{PM3}: 6158
+
+
+SRM298__ に挑戦．
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=9819
+
+Division1の問題です．
+
+FibonacciPositioning__ (code__)
+===============================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6160&rd=9819
+__ http://www.topcoder.com/stat?c=problem_solution&rm=248284&rd=9819&pm=6160&cr=15632820
+
+250点問題．
+フィボナッチ数列に関する問題ですが，なにも考えず実装して終わりです．
+
+OrderDoesMatter__ (code__)
+==========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6157&rd=9819
+__ http://www.topcoder.com/stat?c=problem_solution&rm=248284&rd=9819&pm=6157&cr=15632820
+
+500点問題．
+行列が複数個あるとします．
+それぞれの行と列のサイズが与えられます．たとえば，以下の3個の行列が与えられたとします．
+
+  A = 7 x 3, B = 3 x 7, C = 3 x 3
+
+これら行列を全て使用して掛け算を行い，最終的にできる行列の行と列をかけたものの最大値を求めなさい．
+という問題です.
+たとえば，このケースなら
+
+  A * C * B = (7x3) * (3x3) * (3x7) = (7x7)
+
+で，49が最大です．
+全て使用した掛け算ができない場合は，-1を返します．たとえば
+
+  A = 3 x 5, B = 5 x 2, C = 5 x 4
+
+だと，全て使用した掛け算ができないので，-1が答えになります．
+
+．．．うーん，間違って解いてしまいました．
+bipertite matchigでいけると思ったのですけど，私のコードでは，
+
+  A = 1 x 2, B = 2 x 1, C = 3 x 4, D = 4 x 3
+
+のようなケースでも，-1を返しません．．根本的に間違っていました.
+
+これは，有向グラフを一筆書きできるかどうかって問題に落ち着くんですよね．
+グラフ理論的には， `Euler Path`__ というそうです．
+
+__ http://mathworld.wolfram.com/EulerPath.html
+
+CountingCommonSubsequences__
+============================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=6158&rd=9819
+
+1000点問題．
+長さが50以下の文字列が3つ与えられます．
+この3つの文字列に対して，共通するユニークなsubsequenceの数を求めなさい．という問題です.
+
+subsequenceとは，文字列から任意個の文字を取り除いてできる残りの文字列です．
+
+たとえば，"call"，"accelerate"，"candle"ならば，答えは6です．
+"c", "a", "l", "al", "ca" ,"cl"が共通するsubsequenceです．
+
+ちなみに，
+
+* "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabb"
+* "abababababababababababababababababababab"
+* "aaaabbbbaaaabbbbaaaabbbbaaaabbbbaaaabbbb"
+
+なら，答えは，1725660です．
+
+30分ほど考えたんですが，できませんでした．
+SRM後に書いてみました.
+
+.. code-block:: java
+
+  public class CountingCommonSubsequences {
+    char[] s1;
+    char[] s2;
+    char[] s3;
+    int N = 50;
+    long[][][] memo = new long[N][N][N];
+    public long countCommonSubsequences(String a, String b, String c) {
+        this.s1 = a.toCharArray();
+        this.s2 = b.toCharArray();
+        this.s3 = c.toCharArray();
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                Arrays.fill(memo[i][j], -1);
+            }
+        }
+        return count(0, 0, 0);
+    }
+
+    long count(int n1, int n2, int n3) {
+        if (n1 >= s1.length || n2 >= s2.length || n3 >= s3.length) return 0;
+        if (memo[n1][n2][n3] != -1) return memo[n1][n2][n3];
+
+        long res = 0;
+
+        nextchar:
+        for (char c = 'a'; c <= 'z'; c++) {
+            for (int i = n1; i < s1.length; i++) if (s1[i] == c) {
+                for (int j = n2; j < s2.length; j++) if (s2[j] == c) {
+                    for (int k = n3; k < s3.length; k++) if (s3[k] == c) {
+                        res += 1 + count(i+1, j+1, k+1);
+                        continue nextchar;
+                    }
+                }
+            }
+        }
+        return memo[n1][n2][n3] = res;
+    }
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=9819&rm=248284
+
+.. image:: http://static.flickr.com/44/127863126_219dc42588_o.png
+   :alt: Room Statistics
+
+今日は，だめだめでしたね．．
+レーティングは，1789->1775とやや低下．

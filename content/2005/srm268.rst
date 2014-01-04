@@ -1,0 +1,117 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================
+SRM268 - Division2脱出
+====================================
+
+:slug: srm268
+:date: 2005-10-19
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/113367212677932890
+  :published: 2005-10-19T00:30:00+09:00
+
+  :replace_{RD}: 8001
+  :replace_{RM}: 246654
+  :replace_{PM1}: 5867
+  :replace_{PM2}: 3490
+  :replace_{PM3}: 4699
+
+
+SRM268__ に挑戦．Division2の問題です．
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=8001
+
+CrossWordPuzzle__ (code__)
+============================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5867&rd=8001
+__ http://www.topcoder.com/stat?c=problem_solution&rm=246654&rd=8001&pm=5867&cr=15632820
+
+250点問題．
+1文字・1文字，順にチェックしている人が多かったようですが，
+正規表現を使用した文字列分割 (いわゆる split(..)) が利用できる言語なら，それを使えば簡単です．
+今回は正規表現を使用するほどでもないですが，正規表現を使用すれば，ずっと簡単になる問題もTopCoderではときどき出題されるようです．
+
+CmpdWords__ (code__)
+======================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=3490&rd=8001
+__ http://www.topcoder.com/stat?c=problem_solution&rm=246654&rd=8001&pm=3490&cr=15632820
+
+500点問題．
+一見，問題がわかりにくいですが，ハッシュテーブルを使用して，合成文字列の重複のカウントをすれば，これも簡単です．
+
+TriArea__
+=========
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4699&rd=8001
+
+1000点問題．
+重なり合う2等辺三角形が複数与えられます．それらがカバーする面積をもとめる問題です.
+3角形の重なりを判定して全体の面積を求めようととしたのですが，
+1時間以上，格闘したあげく，時間切れでした．
+
+パラメータの条件として
+
+    Each element of xCenter and yCenter will be between -100 and 100, inclusive.  
+
+とあるので，全2次元空間をひたすら調べたほうが簡単でした.
+1 x 1 のグリッドをさらに4つのエリアにわけて，そのエリアが三角形に含まれているなら 
+
+  (面積) += 0.25
+
+とすればよいです． 
+
+.. code-block:: java
+
+ public class TriArea {
+ 
+   public double area(int[] xCenter, 
+                      int[] yCenter, int[] height) {
+     double res = 0;
+     int N = xCenter.length;
+     int[] dx = {1, 2, 2, 3};
+     int[] dy = {2, 1, 3, 2};
+     for (int x = -200; x < 200; x++) {
+       for (int y = -100; y < 200; y++) {
+         for (int d = 0; d < 4; d++) {
+           double nx = x + dx[d] / 4.0;
+           double ny = y + dy[d] / 4.0;
+           for (int i = 0; i < N; i++) {
+             if (ny < yCenter[i]) continue;
+             if ( height[i] > Math.abs(xCenter[i] - nx) 
+                   + (ny - yCenter[i])) {
+               res += 0.25;
+               break;
+             }
+           }
+         }
+       }
+     }
+     return res;
+   }
+ }
+
+これでも，Order は 400 x 400 x 4 x 25(3角形の最大数) ですから，これで十分いけましたね．．
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=8001&rm=246654
+
+.. image:: http://static.flickr.com/43/74682258_bc8a562129_o.png
+   :alt: Room Statistics
+
+1000点問題ができなかったのが悔やまれますが,250点問題と500点問題は早めにSubmitできたためか，
+ルーム内ではTopのポイントでした．
+レーティングは 1152 -> 1303 と 1200を超えたので，Division2脱出です．
+
+今日の教訓
+==========
+
+* 入力条件をよくチェックする．入力条件によっては，エレガントに解く必要はない．
+  全部調べても大丈夫な場合がある．特にDivision2は．

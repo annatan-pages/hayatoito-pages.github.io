@@ -1,0 +1,43 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+======================================================
+ SRM386
+======================================================
+
+:slug: srm386
+:date: 2008-01-06
+
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/4889348902124682115
+  :published: 2008-01-06T09:40:27Z
+  :tags: topcoder
+
+  :replace_{RD}: 11120
+  :replace_{RM}: 267996
+  :replace_{PM1}: 8444
+  :replace_{PM2}: 8540
+  :replace_{PM3}: 7953
+
+2008年あけましておめでとう。今年最初のSRM、 SRM386__ に挑戦。
+今回も、ハード問題は解いた人が一人だけというスーパーハードでした。
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=11120
+
+.. csv-table:: `Room Statistics`__
+   :header: Class Name,  Method Name,  Difficulty,  Coding Time,  Status,  Points
+
+   CandidateKeys__, getKeys, Level One, 0:15:25.443, Passed System Test, 197.99  	
+   PolygonCover__, getArea, Level Two, 0:22:50.327, Passed System Test, 331.60 	
+   EscapeArtist__, bestRoute, Level Three, 0:24:44.715, Opened, 0.00 	  
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=11120&rm=267996
+__ http://www.topcoder.com/stat?c=problem_solution&rm=267996&rd=11120&pm=8444&cr=15632820
+__ http://www.topcoder.com/stat?c=problem_solution&rm=267996&rd=11120&pm=8540&cr=15632820
+__ http://www.topcoder.com/stat?c=problem_solution&rm=267996&rd=11120&pm=7953&cr=15632820
+
+レーティングは、1918 -> 2009と上昇。
+自己ベストは、2040ですので、あと一歩。
+このあたりのレーティングだと、ハードが解けなくても、
+コンスタントにEasyとMediumを解くことができれば、
+大抵レーティングは上昇しますね。

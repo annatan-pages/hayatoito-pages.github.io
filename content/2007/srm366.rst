@@ -1,0 +1,111 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+======================================================
+ SRM366 - typo2連発
+======================================================
+
+:slug: srm366
+:date: 2007-09-18
+
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/6791093376766405100
+  :published: 2007-09-18T13:35:39Z
+  :tags: topcoder
+
+  :replace_{RD}: 10781
+  :replace_{RM}: 266307
+  :replace_{PM1}: 7973
+  :replace_{PM2}: 7747
+  :replace_{PM3}: 7827
+
+久しぶりのSRM。 SRM366__ に挑戦。
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=10781
+
+ChangingSounds__ (code__)
+=========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=7973&rd=10781
+__ http://www.topcoder.com/stat?c=problem_solution&rm=266307&rd=10781&pm=7973&cr=15632820
+
+250点問題。典型的DP。
+
+GuitarConcert__ (code__)
+========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=7747&rd=10781
+__ http://www.topcoder.com/stat?c=problem_solution&rm=266307&rd=10781&pm=7747&cr=15632820
+
+500点問題。N=10なので、2^NのBrute-forceでいけます。
+結果を、lexicographicallyで優先順位をつけるところだけが注意点です。
+
+ですが、System Testに落ちました。えーと、ここの、
+
+.. code-block:: java
+
+    void sort(String[] a, String[] b) {
+        int N = a.length;
+        for (int i = 0; i < N; i++) {
+            for (int j = N-2; j >= i; j--) {
+                if (a[j+1].compareTo(a[i]) < 0) {
+                    swap(a, j, j+1);
+                    swap(b, j, j+1);
+                }
+            }
+        }
+    }
+
+この行ですね。
+
+.. code-block:: java
+
+                if (a[j+1].compareTo(a[i]) < 0) {
+
+iではなくjですよー。気付きましょうよー > 私。
+
+.. code-block:: java
+
+                if (a[j+1].compareTo(a[j]) < 0) {
+
+これでSystem Testに通りました。
+typoのままで、Example Caseに通ってしまったのが、運のつき。
+
+LateForConcert__ (code__)
+=========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=7827&rd=10781
+__ http://www.topcoder.com/stat?c=problem_solution&rm=266307&rd=10781&pm=7827&cr=15632820
+
+1000点問題にもかかわらず特に悩むところはない珍しく簡単な問題。
+ですが、どうしても答えがあわない。。そのまま時間ぎれ。
+
+やはり、一箇所ミスってました。
+
+.. code-block:: java
+
+        double[][][] next = new double[R][C][4];
+        fill(dp, INF);
+
+dpではなくnextですよー。気付きましょうよー > 私。
+
+.. code-block:: java
+
+        double[][][] next = new double[R][C][4];
+        fill(next, INF);
+
+これでSystem Testに通りました。
+typoというよりは、典型的なコピペ後の修正し忘れってやつですね。
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=10781&rm=266307
+
+今回は、3問全部解くべき簡単な問題セットだったと思うんですけど。
+ミス2連発では、お話になりません。
+
+レーティングは、1856 > 1760とまとも低下。やむなし。。

@@ -1,0 +1,231 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================
+SRM270 - Integer == Integer
+====================================
+
+:slug: srm270
+:date: 2005-11-04
+
+.. meta:
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/113405411346856373
+  :published: 2005-11-04T00:30:00+09:00
+
+  :replace_{RD}: 8067
+  :replace_{RM}: 246708
+  :replace_{PM1}: 4658
+  :replace_{PM2}: 4755
+  :replace_{PM3}: 4751
+
+
+SRM270__ に挑戦．Division1に挑戦するのはこれが3回目ですが，前の2回は，
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=8067
+
+* Level1問題 - どちらもSubmitするも，単純なミスでSystem Testに落ちる.
+* Level2問題 - どちらも時間切れ．
+* Level3問題 - Openしたことさえありません．．
+
+とまだ1問もSystem Testに通ったことがありません．今度こそは1問は通るように．．
+
+
+CountriesRanklist__ (code__)
+==============================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4658&rd=8067
+__ http://www.topcoder.com/stat?c=problem_solution&rm=246708&rd=8067&pm=4658&cr=15632820
+
+300点問題．
+Codeは提出．今度こそ大丈夫と思っていたもの，またSystem Testで落ちてしまいました．
+どこがおかしいんだろとCodeを見ていて，5分ほど．ようやく間違いを発見しました．ここです 
+
+.. code-block:: java
+
+  if (l.get(i) == maxscore.get(key))
+
+Integer と Integer を == で比較しています．．．あーやってしまった．
+J2SE5からautoboxing/unboxing が使えるようになりましたが，すっかりそれに頼りきっていました．
+このように左辺 と 右辺 ともに Integer の場合は，だめですね．．equals(..) じゃないと．
+どちらかがintならよかったんだけど．また単純ミスだ．．
+
+
+SalesmanDilemma__
+=================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4755&rd=8067
+
+600点問題．
+巡回セールスマン問題．．ではありません．
+基本的には最短経路を求める問題に落ち着くのですが，
+やっかいな点としてネガティブ・ループの考慮をする必要があります．
+SRM中は，時間切れでSubmitできませんでした．もう少しだったんですけど．
+
+SRM後に，完成させたコードです．
+タイムオーバーになるかと思ったのですが，今回の条件ではこれでも十分2秒以内でした．
+
+.. code-block:: java
+
+ import java.util.Scanner;
+ public class SalesmansDilemma {
+
+ int[][] p;
+ int[] visited;
+ int destination;
+ 
+ final int NA = Integer.MIN_VALUE;
+ final int ENDLESS = Integer.MAX_VALUE; 
+ final int IMPOSSIBLE = Integer.MIN_VALUE;
+
+ int goal = IMPOSSIBLE;
+ 
+ public String bestRoute(int towns, int origin, int destination, 
+         String[] travelCosts, int[] profits) {
+     this.destination = destination;
+     p = new int[towns][towns];
+     for (int i = 0; i < towns; i++) Arrays.fill(p[i], NA);
+     for (int i = 0; i < travelCosts.length; i++) {
+         Scanner s = new Scanner(travelCosts[i]);
+         int from = s.nextInt();
+         int to = s.nextInt();
+         int cost = s.nextInt();
+         p[from][to] = Math.max(p[from][to], profits[to] - cost);
+     }
+     
+     visited = new int[towns];
+     Arrays.fill(visited, IMPOSSIBLE);
+     visited[origin] = 0;
+     go(origin);
+
+     if (goal == IMPOSSIBLE) return "IMPOSSIBLE";
+     if (goal == ENDLESS) return "ENDLESS PROFIT";
+     return "BEST PROFIT: " + (goal + profits[origin]);
+ }
+ 
+ void go(int town) {
+     if (town == destination) goal = Math.max(goal, visited[town]);
+     
+     for (int i = 0; i < p[town].length; i++) {
+         if (p[town][i] == NA) continue;
+
+         int old = visited[i];
+         int update = (visited[town] == ENDLESS) ? 
+                      ENDLESS : visited[town] + p[town][i];
+
+         if (old == IMPOSSIBLE) {
+             visited[i] = update;
+             go(i);
+             visited[i] = old;
+         } else if (update > old) {
+             visited[i] = ENDLESS;
+             go(i);
+             visited[i] = old;
+         }
+     }
+ }
+
+この手の問題では，Bellman-Ford アルゴリズムを用いるのが定石のようです．
+ある地点からある地点までの，最短経路，およびネガティブ・ループを発見するアルゴリズムです．
+練習がてら，Javaで実装してみました．
+
+.. code-block:: java
+
+ import java.util.Scanner;
+ public class SalesmansDilemma {
+ 
+ class Edge {
+     int source;
+     int destination;
+     int weight;
+ }
+
+ public String bestRoute(int towns, int origin, int destination, 
+         String[] travelCosts, int[] profits) {
+     Edge[] edges  = new Edge[travelCosts.length];
+     for (int i = 0; i < travelCosts.length; i++) {
+         Scanner scan  = new Scanner(travelCosts[i]);
+         edges[i] = new Edge();
+         edges[i].source = scan.nextInt();
+         edges[i].destination = scan.nextInt();
+         edges[i].weight = scan.nextInt()
+                          - profits[edges[i].destination];
+     }
+     long[] verticles = new long[towns];
+     long INFINITY = Long.MAX_VALUE;
+     for (int i = 0; i < verticles.length; i++) {
+         verticles[i] = INFINITY;
+     }
+     verticles[origin] = 0;
+     
+     boolean[] negative = new boolean[towns];
+     
+     // relax and find negative cycle
+     for (int i = 0; i < verticles.length + 1; i++) {
+         for (Edge e : edges) {
+             int u = e.source;
+             int v = e.destination;
+             if (verticles[u] == INFINITY) continue;
+             if (verticles[v] > verticles[u] + e.weight) {
+                 verticles[v] = verticles[u] + e.weight;
+                 if (i == verticles.length) {
+                     negative[v] = true;
+                 }
+             }
+         }
+     }
+     
+     if (verticles[destination] == INFINITY) return "IMPOSSIBLE";
+     
+     boolean[] mark = new boolean[towns];
+     for (int i = 0; i < towns; i++) {
+         if (negative[i] && !mark[i]) {
+             go(i, mark, edges);
+         }
+     }
+     if (mark[destination]) return "ENDLESS PROFIT";
+     
+     return "BEST PROFIT: " +
+            -(verticles[destination] - profits[origin]);
+ }
+
+ void go(int v, boolean[] mark, Edge[] edges) {
+     mark[v] = true;
+     for (Edge e : edges) {
+         if (v == e.source && !mark[e.destination]) {
+             go(e.destination, mark, edges);
+         }
+     }
+ }
+ }
+
+
+PackingShapes__
+===============
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4751&rd=8067
+
+900点問題．
+SRM中はOpenしませんでした．
+ある長方形のなかに，別の長方形をはみださないようにいれることができるか判定する問題です．
+たとえば，幅100 x 高さ100 の長方形には，幅140 x 高さ1 の長方形は（傾ければ）いれることができます．
+幅140 x 50 の長方形はどんなにがんばってもはいりません．
+
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=8067&rm=246708
+
+.. image:: http://static.flickr.com/37/74682670_24668897a1_o.png
+   :alt: Room Statistics
+
+レーティングは 1303 -> 1214 と低下．かろうじてDivision1には残っています.
+
+
+今日の教訓
+==========
+
+* Primitive と ラッパー．．Javaを使い続ける限りつきまとう，もっとも頭のいたい問題です．
+  autoboxing/unboxing には惑わされないように．

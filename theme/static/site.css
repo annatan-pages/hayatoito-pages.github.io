@@ -1,0 +1,39 @@
+body {
+  padding-bottom: 1em;
+}
+
+article > header .post-date {
+  color: gray;
+}
+
+article .site-article-title {
+  font-size: 36px;
+}
+
+article h1 {
+  font-size: 30px;
+}
+
+article h2 {
+  font-size: 24px;
+}
+
+.site-page .site-page-title {
+  font-size: 36px;
+}
+
+.site-page h1 {
+  font-size: 30px;
+}
+
+.site-page h2 {
+  font-size: 24px;
+}
+
+footer.base-footer {
+  color: gray;
+}
+
+article blockquote p {
+  font-size: 14px;
+}

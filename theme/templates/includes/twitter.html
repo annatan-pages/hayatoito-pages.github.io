@@ -1,0 +1,10 @@
+{% macro button(title=None, url=None, user=None, hashtag=None, language=None) %}
+<a href="https://twitter.com/share" class="twitter-share-button"
+   {% if title %} data-text="{{title|striptags}}" {% endif %}
+   {% if url %} data-url="{{url|striptags}}" {% endif %}
+   {% if user %} data-via="{{user|striptags}}" {% endif %}
+   {% if hashtag %} data-hashtags="{{hashtag|striptags}}" {% endif %}
+   {% if language %} data-language="{{language|striptags}}" {% endif %}
+   data-dnt="true">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+{% endmacro %}

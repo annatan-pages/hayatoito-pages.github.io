@@ -1,0 +1,128 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+======================================
+SRM281 - 2006年はポイントゼロスタート
+======================================
+
+:slug: srm281
+:date: 2006-01-07
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/113663528106008641
+  :published: 2006-01-07T00:30:30+09:00
+
+  :replace_{RD}: 8078
+  :replace_{RM}: 247299
+  :replace_{PM1}: 5984
+  :replace_{PM2}: 5919
+  :replace_{PM3}: 5949
+
+
+SRM281__ に挑戦．今年，最初のSRMです．
+例のごとく日本時間の深夜1:00スタートという，ありがたいんだが，ありがたくないんだがよくわかりませんが，やはり眠いなかでの参戦となりました．まあ，平日昼間だと参加できないので，ありがたいんでしょうが．．
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=8078
+
+IntegerGenerator__ (code__)
+===========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5984&rd=8078
+__ http://www.topcoder.com/stat?c=problem_solution&rm=247299&rd=8078&pm=5984&cr=15632820
+
+250点問題．
+
+* int[] allowed: 使用が許されている数字(0-9のいずれか)のリスト 
+* String current: 現在の数 (整数)
+
+が与えられます．この時，
+
+1. 与えられた数 currentの各桁が 許可数字だけを使用しているかどうかをチェック
+2. 1がOKなら，許可数字だけを使用して currentより大きい次の数字を生成して返しなさい
+
+という問題です．
+たとえば，
+
+* allowed: {1, 2, 3}
+* current:  "2133"
+
+ならば，current: 2133 の各桁は，許可数字{1, 2, 3}に含まれているものだけを使用しているのでOKです．
+また，currentより大きい，許可数字だけを使用した次の数は，"2211" になります．
+
+最初は，ただ単にcurrentを1ずつincrementしてOKかどうかチェックするという単純な方法で十分と思い込み，8分ほどでSubmitしました．
+Submit後に，いくつかチェックしていると，入力条件によってはこれではタイムアウトすることに気づきました．入力が
+
+  {9}, "9999999999" (10桁)
+
+でタイムアウトです．
+この場合の正解は"99999999999" (11桁) ですが，1ずつincrementしていては，とてもじゃないが2秒以内には終わりません．
+
+慌ててやり直しましたが．．．はまりました．．完全に方針を誤り右往左往でした．
+最終的になんとか完成させ再提出したのですが (提出時点ではポイント75と最低点でした...），
+それでもバグがひとつ入っていたため，System Testに落ちました．
+入力のint配列: allowed が空 のケースで，ArrayIndexOutOfExceptionが発生させてしまっています．
+
+初歩的な入力条件のチェックミス．．空かどうかチェックを一行いれておけば，SystemTestに通っていましたね．
+
+SRM後に，冷静になって，コードを書き直してみました．
+使用できる数字が限られたケースで，1を足す動作を，シミュレートするだけです．
+
+.. code-block:: java
+
+  public class IntegerGenerator {
+    public String nextInteger(int[] allowed, String current) {
+        Arrays.sort(allowed);
+        char[] ca = current.toCharArray();
+        if (ca[0] == '0') return "INVALID INPUT";
+        for (char c : ca) {
+            if (Arrays.binarySearch(allowed, c - '0') < 0) return "INVALID INPUT";
+        }
+        for (int i = ca.length - 1; i >= 0; i--) {
+            int index = Arrays.binarySearch(allowed, ca[i] - '0');
+            if (index == allowed.length - 1) {
+                ca[i] = (char) ('0' + allowed[0]);
+            } else {
+                ca[i] = (char) ('0' + allowed[index + 1]);
+                return new String(ca);
+            }
+        }
+        return ((allowed[0] == 0) ? allowed[1]: allowed[0]) + new String(ca);
+    }
+  }    
+
+こうしてみるとそんなに難しい問題ではなかったですね．やっぱり250点問題です．
+本番中は，頭が回りませんでした．．．
+
+BallBouncing__
+==============
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5919&rd=8078
+
+600点問題．Openしませんでした．
+
+Equidistance__
+==============
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5949&rd=8078
+
+1000点問題．Openしませんでした．
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=8078&rm=247299
+
+.. image:: http://static.flickr.com/39/83328489_144104161d_o.png
+   :alt: Room Statistics
+
+今日は，惨敗です．
+チャレンジタイムも，ターゲットが次々とほかの人にさらわれてしまい，結局，チャレンジ ゼロでした．．
+
+レーティングは 1630 -> 1542 と，100近く低下しました．
+
+今日の教訓
+==========
+
+* 当たり前ですが，入力条件をよく読むように．

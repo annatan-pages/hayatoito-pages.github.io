@@ -1,0 +1,102 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================
+SRM262 - 初Division1はTypoに終わる
+====================================
+
+:slug: srm262
+:date: 2005-09-10
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/113357754931995752
+  :published: 2005-09-10T00:30:49+09:00
+
+  :replace_{RD}: 7996
+  :replace_{RM}: 203562
+  :replace_{PM1}: 4557
+  :replace_{PM2}: 4797
+  :replace_{PM3}: 932
+
+
+SRM262__ に挑戦．
+レートが1200以上の人はDivision1なので，今日からはDivision1．
+75分で3問という点はDivision2と同じだが，問題の内容はDivision2と比べてかなーり難しい（はず）．
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=7996
+
+
+SortBooks__ (code__)
+======================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4557&rd=7996
+__ http://www.topcoder.com/stat?c=problem_solution&rm=203562&rd=7996&pm=4557&cr=15632820
+
+250点問題．
+本のタイトルの条件をみたすものをピックアップする問題．
+アルゴリズム的には悩むところはなくただ実装するだけ．
+コーディングそのものは10分ほどで終わりましたが，作成したものにExampleと同じ入力を与えても，
+正解例と異なる値が出力され，なかなかSubmitできません．
+Exampleというのは，入力の例とその入力に対する正しい出力例のことです．
+各問題には数個のExampleがついてきます．
+最低限，Exampleで動作確認してから，Submitすべきです．
+
+そのExample Caseに通りません．．．
+おかしいとおもいつつ，あせりまくり，デバッグをはじめたが，なにがおかしいかさっぱり．
+とりあえずこれ以上250点問題に時間をかけるわけにはいかないので30分過ぎたところでSubmitしました．
+
+BestYahtzeeScore__
+==================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4797&rd=7996
+
+500点問題．
+5個のダイスを3回まで振ることができた場合（2回目以降は，振らずに残しておいてもいいです），
+5個の目の組み合わせで決まるスコアの最大値を返す問題．
+ダイスをふると何がでるかは，あらかじめ長さが15の文字列で与えられます．
+...時間切れでした．最終的に可能な5個の目の組み合わせをすべて試せばいいのですが，そこで手間取りました．
+
+MagicBoxes__
+============
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=932&rd=7996
+
+1000点問題．
+コンテスト中はOpenできませんでした．
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=7996&rm=203562
+
+.. image:: http://static.flickr.com/9/74681248_1f161f46ab_o.png
+   :alt: Room Statistics
+
+やはり，250点問題はSystem Testに落ちました．結果，Scoreはゼロです．．．
+あー，Typoでした．．ここです 
+
+.. code-block:: java
+
+    if (w.equalsIgnoreCase("the") || w.equalsIgnoreCase("and")
+            || w.equalsIgnoreCase("or")) { 
+        return 1; 
+
+"of" とするべきところを，"or" としています．．本番中はまったく気づきませんでした．
+ちなみにこの問題，はやい人は3分もかからずにSubmitしています ( `Problem Details`__ )
+
+__ http://www.topcoder.com/tc?module=ProblemDetail&rd=7996&pm=4557
+
+こうしてみると，Division2ではJavaとC++使用者は同数ほどなのに，Division1 では C++使いが多いですね．
+
+今日の教訓
+==========
+
+* 文字列リテラルは 問題文からコピーandペーストすべき．
+* Example Case はすべて通してからSubmit．やけになって途中でSubmitしても無意味です．
+  必ずどこかが間違っていますし，他の参加者にChallengeの機会を増やすことにもなります．
+
+そういえば，今回はChallenge Time では，自分の250点問題には誰もChallengeしてきませんでした．
+あまりに単純なミスすぎて逆に発見できなかったのか...
+レートは 1579 -> 1255 と大幅に減りました．かろうじてDivision1には残っています．

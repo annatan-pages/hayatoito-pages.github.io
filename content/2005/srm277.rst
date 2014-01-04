@@ -1,0 +1,114 @@
+.. -*- mode: rst; coding: utf-8 -*-
+
+====================================
+SRM277 - 初賞金げっと
+====================================
+
+:slug: srm277
+:date: 2005-12-27
+
+.. meta::
+  :edituri: http://www.blogger.com/feeds/15880554/posts/default/113561518668166547
+  :published: 2005-12-27T01:39:45+09:00
+
+  :replace_{RD}: 8074
+  :replace_{RM}: 247060
+  :replace_{PM1}: 5870
+  :replace_{PM2}: 4828
+  :replace_{PM3}: 5918
+
+
+SRM277__ に挑戦．ちょうど10回目のSRMです．土曜の深夜2:00が開始時間でしたので，眠かった．．．
+
+__ http://www.topcoder.com/stat?c=round_overview&rd=8074
+
+
+RogersPhenomenon__ (code__)
+=============================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5870&rd=8074
+__ http://www.topcoder.com/stat?c=problem_solution&rm=247060&rd=8074&pm=5870&cr=15632820
+
+250点問題．
+Division1にしては比較的容易でした．
+
+
+AirlinerSeats__ (code__)
+==========================
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=4828&rd=8074
+__ http://www.topcoder.com/stat?c=problem_solution&rm=247060&rd=8074&pm=4828&cr=15632820
+
+500点問題．
+飛行機内のいわゆる「通路側座席」の数が最大になるように座席を配置する問題です．
+これも，500点問題にしては簡単な方だと思います．小学生でも十分できる問題です．
+
+
+SafeJourney__
+=============
+
+__ http://www.topcoder.com/stat?c=problem_statement&pm=5918&rd=8074
+
+1000点問題．
+うーん，できませんでした．方針すら浮かびませんでした．
+問題空間をコンパクト化するのがポイントだったようです．あー，なるほど．
+そうすれば，十分，BFSでいけます．
+
+
+結果
+====
+
+System Testの結果です．
+( `Room Statistics`__ )
+
+__ http://www.topcoder.com/stat?c=coder_room_stats&cr=15632820&rd=8074&rm=247060
+
+.. image:: http://static.flickr.com/9/74680058_35c3a95993_o.png
+   :alt: Room Statistics
+
+レーティングは1500台になり，イエローネームになりました．
+今回でちょうど10回目のSRMでしたので，記念に，現時点の状況を残しておきます．
+レーティングの推移です．
+
+.. image:: http://static.flickr.com/43/74718339_0b2f240a32_o.png
+   :alt: Rating History
+
+まだ，初登場時のレーティングには届いていません.
+
+.. image:: http://static.flickr.com/37/74728743_48def73748_o.png
+   :alt: TopCoder Member Card
+
+今回のSRMは，MSNがスポンサーで上位の人には賞金が出ます．
+自分には縁がないと思っていたのですけど，後日，メールが来て
+
+  Congratulations! The results of TopCoder SRM 277 are official.  You have
+  won $32.0.
+
+  In order for TopCoder to release payment to you, you must complete
+  certain steps within 60 days of this email.  Please follow the instructions here:
+  http://www.topcoder.com/PactsMemberServlet?t=affidavit&c=affidavit_history
+
+  Unless you have previously specified otherwise, your prize money will, by default, be paid by check.  If you would like to be paid by wire transfer or PayPal, send an email to XXXXXXXXX with the details of your preferred payment method.  Remember to include your TopCoder handle in the email.
+
+  Please keep in mind that you have 60 days to claim your prize.  Your prize will be forfeited if it is not claimed within 60 days.
+
+  Congratulations again on your SRM performance.
+
+  As always, best of luck to you in the Arena!
+
+  - The TopCoder Competitions Team
+
+$32 賞金がもらえることになりました．
+「どうやって，賞金をうけとればよいのか？？？」
+と思って調べていたのですけど，やはり手続きが面倒そうです．．
+
+* 宣誓証書
+* Tax Form
+
+などを一度は郵送でTopCoderへ送っておく必要があります．
+賞金を受け取らずにチャリティーに寄付することもできるそうなので，寄付しようかな．
+
+今日の教訓
+==========
+
+* 問題空間のコンパクト化

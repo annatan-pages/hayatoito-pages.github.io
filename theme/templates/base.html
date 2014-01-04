@@ -1,0 +1,94 @@
+{%- import 'includes/ga.html' as ga %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{{ SITENAME|striptags }}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    {% if GOOGLE_PLUS_PROFILE_URL %}
+    <link href="{{ GOOGLE_PLUS_PROFILE_URL }}" rel="author">
+    {% endif %}
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/solarizedlight.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/site.css" rel="stylesheet">
+
+    {% if FAVICON %}
+    <link href="{{ SITE_URL }}/{{ FAVICON }}" rel="shortcut icon">
+    {% endif %}
+
+    {% if FEED_ALL_ATOM %}
+    <link href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" rel="alternate"
+          title="All posts – {{ SITENAME }}" type="application/atom+xml">
+    {% endif %}
+
+    {% if GOOGLE_ANALYTICS %}
+    {{ ga.script(GOOGLE_ANALYTICS, GOOGLE_ANALYTICS_DOMAIN) }}
+    {% endif %}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="{{ SITEURL }}/" class="navbar-brand">{{ SITENAME|striptags }}</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            {% for title, link in MENUITEMS %}
+            <li><a href="{{ link }}">{{ title|striptags }}</a></li>
+            {% endfor %}
+            <li><a href="{{ SITEURL }}/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+            {% if DISPLAY_PAGES_ON_MENU %}
+            {% for page in PAGES %}
+            <li>
+              <a href="{{ SITEURL }}/{{ page.url }}">{% if page.icon %}<i class="fa {{ page.icon }}"></i>&nbsp;{% endif %}{{ page.title|striptags }}</a>
+            </li>
+            {% endfor %}
+            {% endif %}
+            {% if DISPLAY_CATEGORIES_ON_MENU %}
+            {% for category, null in categories %}
+            <li>
+              <a href="{{ SITEURL }}/{{ category.url }}">{{ category|striptags }}</a>
+            </li>
+            {% endfor %}
+            {% endif %}
+            {% if DISPLAY_TAGS_ON_MENU %}
+            <li><a href="{{ SITEURL }}/{{ TAGS_URL }}"><i class="fa fa-tags"></i>&nbsp;Tags</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+          {% block content %}
+          {% endblock %}
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              Contents licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+            </small>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/site.js"></script>
+  </body>
+</html>
