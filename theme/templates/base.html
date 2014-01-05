@@ -3,7 +3,9 @@
 <html>
   <head>
     <title>{% block title %}{{ SITENAME|striptags }}{% endblock %}</title>
+    {% block meta_viewport %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% endblock meta_viewport %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
 
@@ -11,13 +13,16 @@
     <link href="{{ GOOGLE_PLUS_PROFILE_URL }}" rel="author">
     {% endif %}
 
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+    {% block header_site_assets %}
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/solarizedlight.css" rel="stylesheet">
     <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/site.css" rel="stylesheet">
+    {% endblock header_site_assets %}
 
     {% if FAVICON %}
-    <link href="{{ SITE_URL }}/{{ FAVICON }}" rel="shortcut icon">
+    <link id="favicon" href="{{ SITEURL }}/{{ FAVICON }}" rel="shortcut icon">
     {% endif %}
 
     {% if FEED_ALL_ATOM %}
@@ -37,6 +42,7 @@
     <![endif]-->
   </head>
   <body>
+    {% block body_content %}
     <nav class="navbar navbar-default" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -55,7 +61,7 @@
             {% if DISPLAY_PAGES_ON_MENU %}
             {% for page in PAGES %}
             <li>
-              <a href="{{ SITEURL }}/{{ page.url }}">{% if page.icon %}<i class="fa {{ page.icon }}"></i>&nbsp;{% endif %}{{ page.title|striptags }}</a>
+              <a href="{{ SITEURL }}/{{ page.url }}">{% if page.icon %}<i class="fa {{ page.icon }}"></i>&nbsp;{% endif %}{{ page.navtitle|striptags }}</a>
             </li>
             {% endfor %}
             {% endif %}
@@ -87,8 +93,13 @@
         </div>
       </div>
     </div>
+    {% endblock body_content %}
     <script src="//code.jquery.com/jquery.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    {% block body_end_site_assets %}
     <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/site.js"></script>
+    {% endblock body_end_site_assets %}
+    {% block body_end %}
+    {% endblock body_end %}
   </body>
 </html>

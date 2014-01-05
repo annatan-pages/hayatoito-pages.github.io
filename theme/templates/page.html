@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+
+{% import 'includes/twitter.html' as twitter %}
+{% import 'includes/gplus.html' as gplus %}
+
 {% block title %}{{ page.title|striptags }} — {{ super() }}{% endblock %}
 
 {% block content %}
@@ -6,4 +10,17 @@
   <header><h1 class="page-header site-page-title">{{ page.title|striptags }}</h1></header>
   {{ page.content }}
 </section>
+
+{% if page.socialbuttons %}
+<div class="social text-right">
+{% if TWITTER_BUTTON %}
+  {{ twitter.button(page.title, SITEURL + '/' + page.url, TWITTER_USERNAME, TWITTER_HASHTAG, page.lang) }}
+{% endif %}
+{% if GOOGLE_PLUS_BUTTON %}
+  {{ gplus.button(SITEURL + '/' + page.url) }}
+  {{ gplus.script(page.lang) }}
+{% endif %}
+</div>
+{% endif %}
+
 {% endblock %}

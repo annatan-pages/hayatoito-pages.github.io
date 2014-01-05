@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Timer{% endblock %}
+
+{% block header_site_assets %}
+<link href="/static/timer/timer.css" rel="stylesheet">
+{% endblock header_site_assets %}
+
+{% block body_content %}
+    <div id="timer-container" class="container-fluid">
+      <div class="row">
+        <div class="col-xs-1">
+        </div>
+        <div class="col-xs-6">
+          <h1 id="timer-time" class="text-center">00:00</h3>
+        </div>
+        <div class="col-xs-3" id="timer-buttons-column">
+          <button id="timer-start-stop" type="button" class="btn btn-sm btn-default btn-block">Start</button>
+          <button id="timer-pause-resume" type="button" class="btn btn-sm btn-default btn-block">
+            <span class="glyphicon glyphicon-pause"></span>
+            Pause
+          </button>
+          <div id="buttons">
+            <a href="#"><span id="timer-volume" class="glyphicon glyphicon-volume-off"></span></a>
+            <a href='#'><span id="timer-repeat" class="glyphicon glyphicon-repeat"></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="timer-sessions"></div>
+        </div>
+      </div>
+    </div>
+{% endblock body_content %}
+
+{% block body_end_site_assets %}
+    <script src="/static/timer/timer.js"></script>
+{% endblock body_end_site_assets %}

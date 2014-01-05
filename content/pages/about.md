@@ -1,13 +1,32 @@
 title: About
+navtitle: About
 icon: fa-user
+
 
 Hayato Ito is a software engineer working at Google.
 
 - <i class="fa fa-inbox"></i> <hayato@google.com>
-- <i class="fa fa-github"></i> [hayatoito.github.com](http://hayatoito.github.com/)
 - <i class="fa fa-google-plus"></i> [google.com/+HayatoIto](http://google.com/+HayatoIto)
+- <i class="fa fa-github"></i> [github.com/hayatoito](http://github.com/hayatoito)
 - <i class="fa fa-twitter"></i> [@hayatoito](http://twitter.com/hayatoito)
-- <i class="fa fa-twitter"></i> [@shadow_hayato](http://twitter.com/shadow_hayato)
+- <i class="fa fa-twitter"></i> [@shadow_hayato](http://twitter.com/shadow_hayato) (as a Shadow DOM spec editor)
+- [Google Chrome][Google Chrome] ([Commits][Google Chrome Committer])
+- Member of [W3C Web Applications Working Group]
+- [W3C Shadow DOM Specification][Shadow DOM Specification] Editor ([Commits][Shadow DOM Editor])
+- [WebKit] Committer
+- Technical Advisor for [Kings' Viking] ([王様達のヴァイキング][Kings' Viking] 技術監修)
+    - See [hayato.io/kingsviking/](http://hayato.io/kingsviking/) for more info.
+- [gentoo] at [TopCoder](http://topcoder.com/)
+
+[Google Chrome]: http://www.google.com/chrome
+[Google Chrome Committer]: https://codereview.chromium.org/search?closed=1&owner=hayato&limit=100
+[W3C Web Applications Working Group]: http://www.w3.org/2008/webapps/
+[Shadow DOM Editor]: https://github.com/w3c/webcomponents/commits/gh-pages/spec/shadow
+
+[Kings' Viking]: http://www.spi-shogakukan.com/viking/
+[WebKit]: http://www.webkit.org/
+[gentoo]: http://community.topcoder.com/tc?module=MemberProfile&cr=15632820
+
 
 ---
 
@@ -44,7 +63,7 @@ Shadow DOM implementations in Chrome WebKit / Blink (Q2’2011 - Present) (~ 300
 
 Shadow DOM implementation is a project to implement [Shadow DOM specification] in WebKit/Blink. Shadow DOM is one of the most important breakthrough for the current Web development. Our goal is to deliver a  component model (as [Web Components]) to the Web platform, where is the Google’s primary business platform. I’ve been working and involved on the most of the implementations of the Shadow DOM specification both as a spec editor and an implementer.
 
-* Specced and implemented a new [distribution resolution algorithm], where <shadow\> elements act as if it were a constructor of a superclass (the implementation is [on-going](https://code.google.com/p/chromium/issues/detail?id=263701)).
+* Specced and implemented a new [distribution resolution algorithm], where `<shadow>` elements act as if it were a constructor of a superclass (the implementation is [on-going](https://code.google.com/p/chromium/issues/detail?id=263701)).
 * Specced and implemented a [focus navigation] for Shadow DOM, which is based on a [tree of trees] (Q3’2013)
 * Specced and implemented an [Event Path] API (Q1’2013)
 * Specced and implemented [Touch Events retargeting] for multiple touches for Shadow DOM (Q1’2013), which enables touch events to be dispatched in shadow trees.
@@ -54,9 +73,9 @@ Shadow DOM implementation is a project to implement [Shadow DOM specification] i
    * This is the first-ever pseudo element which can take parameters.
    * This is also the first-ever CSS rule which crosses shadow boundaries.
 * Contributed to the [CSS relative selector] spec and implemented that in WebKit/Blink. Supported that in ‘[::distributed()]’ pseudo elements.
-* Implemented a /select/ reference combinator, which was replaced by ‘::distributed()’ pseudo element later.
-* Implemented an [InsertionPoint.getDistributedNodes()] API.
-* [Shipped in Chrome M25]. “Today, 310M people got Shadow DOM.”
+* Implemented a `/select/` reference combinator, which was replaced by ‘::distributed()’ pseudo element later.
+* Implemented an `InsertionPoint.getDistributedNodes()` API.
+* [Shipped in Chrome M25]. “**Today, 310M people got Shadow DOM.**”
 * Implemented [reprojection] for distributed nodes both for content insertion points and shadow insertion points (Q4’2012) . [Specced that][Distrubution Result] clearly later in the Shadow DOM specification.
 * Implemented a focus navigation based on a [composed tree] (Q1’2012).
 * Implemented a ComposedShadowTreeWalker, which enables traversing nodes in [composed tree] order.
@@ -65,49 +84,49 @@ Shadow DOM implementation is a project to implement [Shadow DOM specification] i
 * Implemented the most of [ShadowRoot JS bindings].
 * Implemented [<shadow> element] and its behavior as a [shadow insertion point].
 * Fixed the critical crashes related to editing facility in Shadow DOM (with shinyak@ rniwa@). [HTML editing specification] and implementation is one of the most difficult areas in WebKit according to Apple engineers.
-* Made <iframe\> elements [ready for Shadow DOM][HTML Element and Their Shadow Trees].
+* Made `<iframe>` elements [ready for Shadow DOM][HTML Element and Their Shadow Trees].
 * Made [events model][Shadow DOM Events] work with Shadow DOM.
    * Described as a separate accomplishment.
 
 
 [Web Components]: http://www.w3.org/TR/components-intro/
-[distribution resolution algorithm]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#dfn-distribution-resolution-algorithm
-[focus navigation]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#focus-navigation
-[tree Of trees]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#dfn-tree-of-trees
-[Event Path]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#dfn-event-path-calculation-algorithm
+[distribution resolution algorithm]: http://w3c.github.io/webcomponents/spec/shadow/index.html#dfn-distribution-resolution-algorithm
+[focus navigation]: http://w3c.github.io/webcomponents/spec/shadow/index.html#focus-navigation
+[tree Of trees]: http://w3c.github.io/webcomponents/spec/shadow/index.html#dfn-tree-of-trees
+[Event Path]: http://w3c.github.io/webcomponents/spec/shadow/index.html#dfn-event-path-calculation-algorithm
 
-[Touch Events retargeting]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#retargeting-touch-events
+[Touch Events retargeting]: http://w3c.github.io/webcomponents/spec/shadow/index.html#retargeting-touch-events
 [Touch Events support for shadow DOM]: https://www.webkit.org/blog/2278/last-week-in-webkit-touch-events-for-shadow-dom-and-an-updated-calendar-picker-ui/
 
-[Element.getDestinationInsertionPoints()]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#api-partial-element-get-destination-insertion-points
+[Element.getDestinationInsertionPoints()]: http://w3c.github.io/webcomponents/spec/shadow/index.html#api-partial-element-get-destination-insertion-points
 
-[::distributed()]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#dfn-content-pseudo-element
+[::distributed()]: http://w3c.github.io/webcomponents/spec/shadow/index.html#dfn-content-pseudo-element
 [CSS relative selector]: http://www.w3.org/TR/selectors4/#scope-relative
 
-[InsertionPoint.getDistributedNodes()]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#api-html-content-element-get-distributed-nodes
+[InsertionPoint.getDistributedNodes()]: http://w3c.github.io/webcomponents/spec/shadow/index.html#api-html-content-element-get-distributed-nodes
 
 [Shipped in Chrome M25]: https://twitter.com/ebidel/status/304759211341017088
 [Reprojection]: http://www.w3.org/TR/shadow-dom/#reprojection
 
-[Distribution Result]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#dfn-distribution-result
-[Composed Tree]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#dfn-composed-tree
+[Distribution Result]: http://w3c.github.io/webcomponents/spec/shadow/index.html#dfn-distribution-result
+[Composed Tree]: http://w3c.github.io/webcomponents/spec/shadow/index.html#dfn-composed-tree
 
 [Composed Tree Walker Design Doc]:  https://docs.google.com/a/google.com/document/d/1lXywNJgUnjMSiKFwtrrah-w5l3m0jPhEXXOXQloVf1k/edit?usp=sharing
 
 [Traversing Shadow DOM Tree]: http://trac.webkit.org/wiki/TraversingShadowDOMTree
 
-[ShadowRoot JS Bindings]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#shadow-root-object
+[ShadowRoot JS Bindings]: http://w3c.github.io/webcomponents/spec/shadow/index.html#shadow-root-object
 
-[<shadow> element]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#shadow-element
-[Shadow Insertion Point]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#dfn-shadow-insertion-point
+[<shadow> element]: http://w3c.github.io/webcomponents/spec/shadow/index.html#shadow-element
+[Shadow Insertion Point]: http://w3c.github.io/webcomponents/spec/shadow/index.html#dfn-shadow-insertion-point
 
-[Editing]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#editing
+[Editing]: http://w3c.github.io/webcomponents/spec/shadow/index.html#editing
 
 [HTML editing specification]: https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html
 
-[HTML Element and Their Shadow Trees]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#html-elements-and-their-shadow-trees
+[HTML Element and Their Shadow Trees]: http://w3c.github.io/webcomponents/spec/shadow/index.html#html-elements-and-their-shadow-trees
 
-[Shadow DOM Events]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#events
+[Shadow DOM Events]: http://w3c.github.io/webcomponents/spec/shadow/index.html#events
 
 
 Shadow DOM / New event model (Q2’2012 - Present) (~ 60 commits)

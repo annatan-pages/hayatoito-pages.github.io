@@ -1,0 +1,21 @@
+{%- import 'includes/ga.html' as ga %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>404 Not Found - {{ SITENAME|striptags }}</title>
+    {% if FAVICON %}
+    <link href="{{ SITEURL }}/{{ FAVICON }}" rel="shortcut icon">
+    {% endif %}
+    {% if GOOGLE_ANALYTICS %}
+    {{ ga.script(GOOGLE_ANALYTICS, GOOGLE_ANALYTICS_DOMAIN) }}
+    {% endif %}
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    404 Not Found.  ( ・∀・)つ <a href='{{ SITEURL }}/archives/'>hayato.io/archives/</a>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 title: hayato.io (4topcoder)
-date: 2014-01-03
+date: 2014-01-04
 slug: hayato.io
 
 [hayato.io] にコンテンツを集約させていきますね。

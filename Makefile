@@ -64,13 +64,18 @@ github: publish
 	ghp-import -b master $(OUTPUTDIR)
 	git push origin master
 
-removemaster:
-	git push --delete origin master
+github_clean: publish
+	rm .git/refs/remotes/origin/master
 	git branch -D master
+	ghp-import -b master $(OUTPUTDIR)
+	git push --force origin master
 
 pygments-style:
-	pygmentize -S solarizedlight -f html > theme/static/solarizedlight.css
-# pygmentize -S default -f html > theme/static/default.css
-# pygmentize -S github -f html > theme/static/github.css
+	pygmentize -S solarizedlight -f html -a .highlight > theme/static/solarizedlight.css
 
-.PHONY: html help clean regenerate serve devserver publish github removemaster
+# regenerate doesn't watch content/static/. It only watches *document* files in content/.
+watch:
+	fswatch 'theme:content' 'make html' &
+	cd output && python3 -m http.server
+
+.PHONY: html help clean regenerate serve devserver publish github github_clean pygments-style watch

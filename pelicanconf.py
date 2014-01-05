@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Hayato Ito'
 SITENAME = '[Dev] hayato.io'
-SITEURL = ''
+# SITEURL = ''
+SITEURL = 'http://localhost:8000'
 
 TIMEZONE = 'Asia/Tokyo'
 
@@ -18,12 +19,13 @@ FEED_MAX_ITEMS = 8
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
-FAVICON = 'images/favicon.ico'
+FAVICON = 'static/timer/chocolate.ico'
 
 TYPOGFIFY = True
 
 # http://pythonhosted.org/Markdown/extensions/footnotes.html
-MD_EXTENSIONS += ['footnotes']
+# MD_EXTENSIONS += ['footnotes']
+MD_EXTENSIONS = ['codehilite(css_class=highlight)','extra', 'footnotes']
 
 DISPLAY_CATEGORIES_ON_MENU = None
 DISPLAY_PAGES_ON_MENU = True
@@ -33,10 +35,13 @@ DISPLAY_PAGES_ON_MENU = True
 
 THEME = './theme'
 
-STATIC_PATHS = ['images']
+STATIC_PATHS = ['images', 'static']
 
-STATIC_PATHS += ['extra/CNAME']
-EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'}}
+STATIC_PATHS += ['extra/CNAME','extra/robots.txt']
+EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},
+                       'extra/robots.txt': {'path': 'robots.txt'}}
+
+ARTICLE_EXCLUDES = ['pages', 'extra']
 
 import json
 
@@ -45,7 +50,21 @@ JINJA_FILTERS = { 'jsonify': json.dumps,
 }
 
 PLUGIN_PATH = '../pelican-plugins'
-PLUGINS = ['neighbors']
+PLUGINS = ['neighbors', 'sitemap']
+
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.5,
+        'indexes': 0.5,
+        'pages': 0.5
+    },
+    'changefreqs': {
+        'articles': 'daily',
+        'indexes': 'daily',
+        'pages': 'daily'
+    }
+}
 
 TAGS_SAVE_AS = ''
 TAG_SAVE_AS = ''
@@ -71,4 +90,15 @@ PAGINATION_PATTERNS = (
 
 ARCHIVES_SAVE_AS = 'archives/index.html'
 
+
+# My own settings.
 GOOGLE_PLUS_PROFILE_URL = 'https://plus.google.com/+HayatoIto/posts'
+
+ARTICLE_PAGER = True
+
+# Social
+GOOGLE_PLUS_BUTTON = True
+TWITTER_BUTTON = True
+# TWITTER_USERNAME = ''
+# TWITTER_HASHTAG = 'hayatoio'
+GOOGLE_PLUS_COMMENTS = False
