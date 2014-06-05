@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SRM298 - ひとふで書き — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="http://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="http://hayato.io/static/timer/chocolate.ico" rel="shortcut icon">
+
+    <link href="http://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="http://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="http://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+            <li>
+              <a href="http://hayato.io/about/"><i class="fa fa-user"></i>&nbsp;About</a>
+            </li>
+            <li>
+              <a href="http://hayato.io/kingsviking/"><i class="fa fa-code"></i>&nbsp;kingsviking</a>
+            </li>
+            <li>
+              <a href="http://hayato.io/timer/"><i class="fa fa-clock-o"></i>&nbsp;Timer</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+         SRM298 - ひとふで書き
+    </h1>
+    <div class="post-date">
+      <time datetime="2006-04-13">
+        2006-04-13
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p><a class="reference external" href="http://www.topcoder.com/stat?c=round_overview&amp;rd=9819">SRM298</a> に挑戦．</p>
+<p>Division1の問題です．</p>
+<div class="section" id="fibonaccipositioning-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6160&amp;rd=9819">FibonacciPositioning</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=248284&amp;rd=9819&amp;pm=6160&amp;cr=15632820">code</a>)</h2>
+<p>250点問題．
+フィボナッチ数列に関する問題ですが，なにも考えず実装して終わりです．</p>
+</div>
+<div class="section" id="orderdoesmatter-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6157&amp;rd=9819">OrderDoesMatter</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=248284&amp;rd=9819&amp;pm=6157&amp;cr=15632820">code</a>)</h2>
+<p>500点問題．
+行列が複数個あるとします．
+それぞれの行と列のサイズが与えられます．たとえば，以下の3個の行列が与えられたとします．</p>
+<blockquote>
+A = 7 x 3, B = 3 x 7, C = 3 x 3</blockquote>
+<p>これら行列を全て使用して掛け算を行い，最終的にできる行列の行と列をかけたものの最大値を求めなさい．
+という問題です.
+たとえば，このケースなら</p>
+<blockquote>
+A * C * B = (7x3) * (3x3) * (3x7) = (7x7)</blockquote>
+<p>で，49が最大です．
+全て使用した掛け算ができない場合は，-1を返します．たとえば</p>
+<blockquote>
+A = 3 x 5, B = 5 x 2, C = 5 x 4</blockquote>
+<p>だと，全て使用した掛け算ができないので，-1が答えになります．</p>
+<p>．．．うーん，間違って解いてしまいました．
+bipertite matchigでいけると思ったのですけど，私のコードでは，</p>
+<blockquote>
+A = 1 x 2, B = 2 x 1, C = 3 x 4, D = 4 x 3</blockquote>
+<p>のようなケースでも，-1を返しません．．根本的に間違っていました.</p>
+<p>これは，有向グラフを一筆書きできるかどうかって問題に落ち着くんですよね．
+グラフ理論的には， <a class="reference external" href="http://mathworld.wolfram.com/EulerPath.html">Euler Path</a> というそうです．</p>
+</div>
+<div class="section" id="countingcommonsubsequences">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6158&amp;rd=9819">CountingCommonSubsequences</a></h2>
+<p>1000点問題．
+長さが50以下の文字列が3つ与えられます．
+この3つの文字列に対して，共通するユニークなsubsequenceの数を求めなさい．という問題です.</p>
+<p>subsequenceとは，文字列から任意個の文字を取り除いてできる残りの文字列です．</p>
+<p>たとえば，&quot;call&quot;，&quot;accelerate&quot;，&quot;candle&quot;ならば，答えは6です．
+&quot;c&quot;, &quot;a&quot;, &quot;l&quot;, &quot;al&quot;, &quot;ca&quot; ,&quot;cl&quot;が共通するsubsequenceです．</p>
+<p>ちなみに，</p>
+<ul class="simple">
+<li>&quot;aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabb&quot;</li>
+<li>&quot;abababababababababababababababababababab&quot;</li>
+<li>&quot;aaaabbbbaaaabbbbaaaabbbbaaaabbbbaaaabbbb&quot;</li>
+</ul>
+<p>なら，答えは，1725660です．</p>
+<p>30分ほど考えたんですが，できませんでした．
+SRM後に書いてみました.</p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CountingCommonSubsequences</span> <span class="o">{</span>
+  <span class="kt">char</span><span class="o">[]</span> <span class="n">s1</span><span class="o">;</span>
+  <span class="kt">char</span><span class="o">[]</span> <span class="n">s2</span><span class="o">;</span>
+  <span class="kt">char</span><span class="o">[]</span> <span class="n">s3</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">50</span><span class="o">;</span>
+  <span class="kt">long</span><span class="o">[][][]</span> <span class="n">memo</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[</span><span class="n">N</span><span class="o">][</span><span class="n">N</span><span class="o">][</span><span class="n">N</span><span class="o">];</span>
+  <span class="kd">public</span> <span class="kt">long</span> <span class="nf">countCommonSubsequences</span><span class="o">(</span><span class="n">String</span> <span class="n">a</span><span class="o">,</span> <span class="n">String</span> <span class="n">b</span><span class="o">,</span> <span class="n">String</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">s1</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">s2</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">s3</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+              <span class="n">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">memo</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">],</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="nf">count</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kt">long</span> <span class="nf">count</span><span class="o">(</span><span class="kt">int</span> <span class="n">n1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n2</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n3</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">n1</span> <span class="o">&gt;=</span> <span class="n">s1</span><span class="o">.</span><span class="na">length</span> <span class="o">||</span> <span class="n">n2</span> <span class="o">&gt;=</span> <span class="n">s2</span><span class="o">.</span><span class="na">length</span> <span class="o">||</span> <span class="n">n3</span> <span class="o">&gt;=</span> <span class="n">s3</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">memo</span><span class="o">[</span><span class="n">n1</span><span class="o">][</span><span class="n">n2</span><span class="o">][</span><span class="n">n3</span><span class="o">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="n">memo</span><span class="o">[</span><span class="n">n1</span><span class="o">][</span><span class="n">n2</span><span class="o">][</span><span class="n">n3</span><span class="o">];</span>
+
+      <span class="kt">long</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+      <span class="nl">nextchar:</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;a&#39;</span><span class="o">;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">&#39;z&#39;</span><span class="o">;</span> <span class="n">c</span><span class="o">++)</span> <span class="o">{</span>
+          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s1</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="k">if</span> <span class="o">(</span><span class="n">s1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+              <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n2</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">s2</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="k">if</span> <span class="o">(</span><span class="n">s2</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+                  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">n3</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">s3</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="k">if</span> <span class="o">(</span><span class="n">s3</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+                      <span class="n">res</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">count</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span>
+                      <span class="k">continue</span> <span class="n">nextchar</span><span class="o">;</span>
+                  <span class="o">}</span>
+              <span class="o">}</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">memo</span><span class="o">[</span><span class="n">n1</span><span class="o">][</span><span class="n">n2</span><span class="o">][</span><span class="n">n3</span><span class="o">]</span> <span class="o">=</span> <span class="n">res</span><span class="o">;</span>
+  <span class="o">}</span>
+</pre></div>
+</div>
+<div class="section" id="id8">
+<h2>結果</h2>
+<p>System Testの結果です．
+( <a class="reference external" href="http://www.topcoder.com/stat?c=coder_room_stats&amp;cr=15632820&amp;rd=9819&amp;rm=248284">Room Statistics</a> )</p>
+<img alt="Room Statistics" src="http://static.flickr.com/44/127863126_219dc42588_o.png" />
+<p>今日は，だめだめでしたね．．
+レーティングは，1789-&gt;1775とやや低下．</p>
+</div>
+
+  </div>
+</article>
+<div class="social text-right">
+  <a href="https://twitter.com/share" class="twitter-share-button"
+ data-text="SRM298 - ひとふで書き"  data-url="http://hayato.io/2006/srm298/"  data-language="en"    data-dnt="true">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <div class="g-plusone" data-size="medium" data-annotation="inline" data-href="http://hayato.io/2006/srm298/"></div>
+
+  <script type="text/javascript">
+  window.___gcfg = {lang: "en"};
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+</div>
+
+<ul class="pager">
+        <li class="previous"><a href="http://hayato.io/2006/200604rsdf/" rel="prev">&larr; Newer Post</a></li>
+        <li class="next"><a href="http://hayato.io/2006/srm293/" rel="next">Older Post &rarr;</a></li>
+</ul>
+
+
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              Contents licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+            </small>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="http://hayato.io/theme/site.js"></script>
+  </body>
+</html>

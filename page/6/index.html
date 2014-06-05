@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="http://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="http://hayato.io/static/timer/chocolate.ico" rel="shortcut icon">
+
+    <link href="http://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="http://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="http://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+            <li>
+              <a href="http://hayato.io/about/"><i class="fa fa-user"></i>&nbsp;About</a>
+            </li>
+            <li>
+              <a href="http://hayato.io/kingsviking/"><i class="fa fa-code"></i>&nbsp;kingsviking</a>
+            </li>
+            <li>
+              <a href="http://hayato.io/timer/"><i class="fa fa-clock-o"></i>&nbsp;Timer</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+<section id="content" class="content autopagerize_page_element">
+
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2006/srm287/"
+         rel="bookmark"
+         title="Permalink to SRM287 - 気分は中学生？連立２元方程式">
+         SRM287 - 気分は中学生？連立２元方程式
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2006-02-05">
+        2006-02-05
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p><a class="reference external" href="http://www.topcoder.com/stat?c=round_overview&amp;rd=9808">SRM287</a> に挑戦．
+1ヶ月ぶりの参戦．</p>
+<div class="section" id="twoequations-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6013&amp;rd=9808">TwoEquations</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=247545&amp;rd=9808&amp;pm=6013&amp;cr=15632820">code</a>)</h2>
+<p>300点問題．以下のような2つの文字列が与えられます．</p>
+<div class="highlight"><pre><span class="s">&quot;1*X + 2*Y = 6&quot;</span>
+<span class="s">&quot;1*X + (-4)*Y = (-3)&quot;</span>
+</pre></div>
+<p>連立2元方程式です．「中学生か俺は？」でした．．
+これを解いて，解が唯一存在するならば，以下のように解を文字列で</p>
+<div class="highlight"><pre><span class="s">&quot;X=(-7)/3 Y=3/4&quot;</span>
+</pre></div>
+<p>解がないならば</p>
+<div class="highlight"><pre><span class="s">&quot;NO SOLUTIONS&quot;</span>
+</pre></div>
+<p>を，解が複数存在するならば</p>
+<div class="highlight"><pre><span class="s">&quot;MULTIPLE SOLUTIONS&quot;</span>
+</pre></div>
+<p>を返しなさい．という問題です.
+250点問題ではなく300点問題ですのでちょっと面倒です．ですがそれほど難しい問題ではないと一見思ったのですが．．</p>
+<p>方針としては，各係数A1-A3, B1-B3</p>
+<div class="highlight"><pre><span class="n">A1</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="n">A2</span> <span class="o">*</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">A3</span>
+<span class="n">B1</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="n">B2</span> <span class="o">*</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">B3</span>
+</pre></div>
+<p>をパースしてから，</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">det</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">*</span> <span class="n">B2</span> <span class="o">-</span> <span class="n">A2</span> <span class="o">*</span> <span class="n">B1</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">B2</span> <span class="o">*</span> <span class="n">A3</span> <span class="o">-</span> <span class="n">A2</span> <span class="o">*</span> <span class="n">B3</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">*</span> <span class="n">B3</span> <span class="o">-</span> <span class="n">B1</span> <span class="o">*</span> <span class="n">A3</span><span class="o">;</span>
+</pre></div>
+<p>を計算して，det == 0 ならば，「解がない」 か 「解が複数」</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="o">(</span><span class="n">det</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&quot;MULTIPLE SOLUTIONS&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="s">&quot;NO SOLUTIONS&quot;</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p>それ以外ならば， 「解がひとつ」ということで，</p>
+<div class="highlight"><pre><span class="s">&quot;X=x/det Y=y/det&quot;</span>
+</pre></div>
+<p>として，約分等・正しくフォーマットして返せばよい．
+これでいけると思ってSubmitしたのですが，甘かったです．</p>
+<p>これだけでは，以下のような係数がゼロの場合に対処できませんでした．</p>
+<div class="highlight"><pre><span class="s">&quot;0*X + 0*Y = 1&quot;</span>
+<span class="s">&quot;0*X + 0*Y = 2&quot;</span>
+</pre></div>
+<p>この場合は，正しい正解は&quot;NO SOLUTIONS&quot;ですが，上記ロジックだけだと&quot;MULTIPLE SOLUTIONS&quot;を返してしまいます．</p>
+<p>以下のように係数ゼロを特別に扱う必要性がありました．</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="o">(</span><span class="n">A1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">A2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">A3</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">&quot;NO SOLUTIONS&quot;</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">B1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">B2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">B3</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">&quot;NO SOLUTIONS&quot;</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">A1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">B1</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">A2</span> <span class="o">*</span> <span class="n">B3</span> <span class="o">-</span> <span class="n">B2</span> <span class="o">*</span> <span class="n">A3</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">&quot;NO SOLUTIONS&quot;</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">A2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">B2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">A1</span> <span class="o">*</span> <span class="n">B3</span> <span class="o">-</span> <span class="n">B1</span> <span class="o">*</span> <span class="n">A3</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">&quot;NO SOLUTIONS&quot;</span><span class="o">;</span>
+</pre></div>
+<p>私も含めて多くの人はゼロのケースを考慮しないCodeを書いてしまったようです．
+これに気づいた人は，チャレンジタイムで大稼ぎしていました．</p>
+<p>この問題のDivision1での正解率は11%，
+同じ問題がDivision2のレベル2問題にも使用されていましたがDivision2ではなんと正解率0%，
+誰ひとり正解できなかったようです．．</p>
+<img alt="Problem Stats" src="http://static.flickr.com/25/95611480_5e4542f8c0_o.png" />
+</div>
+<div class="section" id="mooreslaw-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5973&amp;rd=9808">MooresLaw</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=247545&amp;rd=9808&amp;pm=5973&amp;cr=15632820">code</a>)</h2>
+<p>450点問題．</p>
+<blockquote>
+「ムーアの法則」: コンピュータのスピードは，18ヶ月で2倍になる</blockquote>
+<p>今，計算を始めると14年かかる問題があるとします．
+今すぐ始めるのではなく，18ヶ月待ってスピードが2倍の新しいコンピュータを買ってそれで計算を始めると7年ですみます．
+14年かかる計算が，合計 (1.5 + 7 = ) 8.5年ですむわけです．
+この例だと，約4年まってから計算を始めるのがベストです．合計( 4 + 2.2 = ) 6.2年ですみます.</p>
+<p>このように，計算にかかる年数 (years) が与えられた場合，ムーアの法則が成り立つとすると，最短・今から何年後に計算を終わらせることができるでしょうか？という問題です．
+いつ新しいコンピュータを買い計算をはじめるか？がポイントになります．</p>
+<p>x年後に，新しいコンピュータを買って計算を始めるとすると，トータルでは</p>
+<blockquote>
+y = x +  (years / 2^(x / 1.5) )</blockquote>
+<p>かかることになります．このyが最小になるxを探せばよいことになります．
+数学的に解くことはできるのでしょうが（微分してゼロになるところを求める）．．
+数学的に悩むよりは，このようなU字型の関数の場合は，
+いわゆるbinary searchではなく，ternary search で，yが最小になるxを探すことができます．</p>
+<img alt="ternary search" src="http://static.flickr.com/38/95712324_5b626917dd_o.png" />
+<p>区間 ( [left, right] ) 内の2点(x1, x2)をとり，y1, y2 を計算して，</p>
+<ul class="simple">
+<li>y1 &gt; y2 ならば，left = x1</li>
+<li>y1 &lt; y2 ならば，right = x2</li>
+</ul>
+<p>として，区間を狭めていけば，最終的には，最小のyをとるxaにたどり着きます.</p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MooresLaw</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kt">double</span> <span class="nf">shortestComputationTime</span><span class="o">(</span><span class="kt">int</span> <span class="n">years</span><span class="o">)</span> <span class="o">{</span>
+
+      <span class="kt">double</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+      <span class="kt">double</span> <span class="n">right</span> <span class="o">=</span> <span class="n">years</span><span class="o">;</span>
+
+      <span class="k">while</span> <span class="o">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">11</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">double</span> <span class="n">x1</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mf">3.0</span><span class="o">;</span>
+          <span class="kt">double</span> <span class="n">x2</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span> <span class="o">*</span> <span class="mi">2</span><span class="o">)</span> <span class="o">/</span> <span class="mf">3.0</span><span class="o">;</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">cal</span><span class="o">(</span><span class="n">x1</span><span class="o">,</span> <span class="n">years</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">cal</span><span class="o">(</span><span class="n">x2</span><span class="o">,</span> <span class="n">years</span><span class="o">))</span> <span class="o">{</span>
+              <span class="n">left</span> <span class="o">=</span> <span class="n">x1</span><span class="o">;</span>
+          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              <span class="n">right</span> <span class="o">=</span> <span class="n">x2</span><span class="o">;</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="nf">cal</span><span class="o">(</span><span class="n">right</span><span class="o">,</span> <span class="n">years</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kt">double</span> <span class="nf">cal</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">years</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">years</span> <span class="o">/</span> <span class="n">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">1.5</span><span class="o">);</span>
+  <span class="o">}</span>
+</pre></div>
+<p>SRM中は，x年後のコンピュータのスピードが，Math.pow(2, x / 1.5) で表せることにきずかず，
+前半部分・回りくどいことをしていまいました．．．
+なんとか正解しましたが．</p>
+</div>
+<div class="section" id="coingame">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6005&amp;rd=9808">CoinGame</a></h2>
+<p>1000点問題．
+Openしたものの，手が出ず．．</p>
+</div>
+<div class="section" id="id7">
+<h2>結果</h2>
+<p>System Testの結果です．
+( <a class="reference external" href="http://www.topcoder.com/stat?c=coder_room_stats&amp;cr=15632820&amp;rd=9808&amp;rm=247545">Room Statistics</a> )</p>
+<img alt="Room Statistics" src="http://static.flickr.com/41/95603073_48fb4a2290_o.png" />
+<p>全体的にポイントが低かったためか，レーティングは 1542 -&gt; 1626 と上昇しました．</p>
+</div>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2006/srm281/"
+         rel="bookmark"
+         title="Permalink to SRM281 - 2006年はポイントゼロスタート">
+         SRM281 - 2006年はポイントゼロスタート
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2006-01-07">
+        2006-01-07
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p><a class="reference external" href="http://www.topcoder.com/stat?c=round_overview&amp;rd=8078">SRM281</a> に挑戦．今年，最初のSRMです．
+例のごとく日本時間の深夜1:00スタートという，ありがたいんだが，ありがたくないんだがよくわかりませんが，やはり眠いなかでの参戦となりました．まあ，平日昼間だと参加できないので，ありがたいんでしょうが．．</p>
+<div class="section" id="integergenerator-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5984&amp;rd=8078">IntegerGenerator</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=247299&amp;rd=8078&amp;pm=5984&amp;cr=15632820">code</a>)</h2>
+<p>250点問題．</p>
+<ul class="simple">
+<li>int[] allowed: 使用が許されている数字(0-9のいずれか)のリスト</li>
+<li>String current: 現在の数 (整数)</li>
+</ul>
+<p>が与えられます．この時，</p>
+<ol class="arabic simple">
+<li>与えられた数 currentの各桁が 許可数字だけを使用しているかどうかをチェック</li>
+<li>1がOKなら，許可数字だけを使用して currentより大きい次の数字を生成して返しなさい</li>
+</ol>
+<p>という問題です．
+たとえば，</p>
+<ul class="simple">
+<li>allowed: {1, 2, 3}</li>
+<li>current:  &quot;2133&quot;</li>
+</ul>
+<p>ならば，current: 2133 の各桁は，許可数字{1, 2, 3}に含まれているものだけを使用しているのでOKです．
+また，currentより大きい，許可数字だけを使用した次の数は，&quot;2211&quot; になります．</p>
+<p>最初は，ただ単にcurrentを1ずつincrementしてOKかどうかチェックするという単純な方法で十分と思い込み，8分ほどでSubmitしました．
+Submit後に，いくつかチェックしていると，入力条件によってはこれではタイムアウトすることに気づきました．入力が</p>
+<blockquote>
+{9}, &quot;9999999999&quot; (10桁)</blockquote>
+<p>でタイムアウトです．
+この場合の正解は&quot;99999999999&quot; (11桁) ですが，1ずつincrementしていては，とてもじゃないが2秒以内には終わりません．</p>
+<p>慌ててやり直しましたが．．．はまりました．．完全に方針を誤り右往左往でした．
+最終的になんとか完成させ再提出したのですが (提出時点ではポイント75と最低点でした...），
+それでもバグがひとつ入っていたため，System Testに落ちました．
+入力のint配列: allowed が空 のケースで，ArrayIndexOutOfExceptionが発生させてしまっています．</p>
+<p>初歩的な入力条件のチェックミス．．空かどうかチェックを一行いれておけば，SystemTestに通っていましたね．</p>
+<p>SRM後に，冷静になって，コードを書き直してみました．
+使用できる数字が限られたケースで，1を足す動作を，シミュレートするだけです．</p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerGenerator</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">nextInteger</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">allowed</span><span class="o">,</span> <span class="n">String</span> <span class="n">current</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">allowed</span><span class="o">);</span>
+      <span class="kt">char</span><span class="o">[]</span> <span class="n">ca</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">ca</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="o">)</span> <span class="k">return</span> <span class="s">&quot;INVALID INPUT&quot;</span><span class="o">;</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">:</span> <span class="n">ca</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">binarySearch</span><span class="o">(</span><span class="n">allowed</span><span class="o">,</span> <span class="n">c</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">&quot;INVALID INPUT&quot;</span><span class="o">;</span>
+      <span class="o">}</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+          <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">binarySearch</span><span class="o">(</span><span class="n">allowed</span><span class="o">,</span> <span class="n">ca</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="o">);</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">allowed</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+              <span class="n">ca</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="o">(</span><span class="sc">&#39;0&#39;</span> <span class="o">+</span> <span class="n">allowed</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              <span class="n">ca</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="o">(</span><span class="sc">&#39;0&#39;</span> <span class="o">+</span> <span class="n">allowed</span><span class="o">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]);</span>
+              <span class="k">return</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">ca</span><span class="o">);</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="o">((</span><span class="n">allowed</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">allowed</span><span class="o">[</span><span class="mi">1</span><span class="o">]:</span> <span class="n">allowed</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">+</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">ca</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>こうしてみるとそんなに難しい問題ではなかったですね．やっぱり250点問題です．
+本番中は，頭が回りませんでした．．．</p>
+</div>
+<div class="section" id="ballbouncing">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5919&amp;rd=8078">BallBouncing</a></h2>
+<p>600点問題．Openしませんでした．</p>
+</div>
+<div class="section" id="equidistance">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5949&amp;rd=8078">Equidistance</a></h2>
+<p>1000点問題．Openしませんでした．</p>
+</div>
+<div class="section" id="id6">
+<h2>結果</h2>
+<p>System Testの結果です．
+( <a class="reference external" href="http://www.topcoder.com/stat?c=coder_room_stats&amp;cr=15632820&amp;rd=8078&amp;rm=247299">Room Statistics</a> )</p>
+<img alt="Room Statistics" src="http://static.flickr.com/39/83328489_144104161d_o.png" />
+<p>今日は，惨敗です．
+チャレンジタイムも，ターゲットが次々とほかの人にさらわれてしまい，結局，チャレンジ ゼロでした．．</p>
+<p>レーティングは 1630 -&gt; 1542 と，100近く低下しました．</p>
+</div>
+<div class="section" id="id8">
+<h2>今日の教訓</h2>
+<ul class="simple">
+<li>当たり前ですが，入力条件をよく読むように．</li>
+</ul>
+</div>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2005/srm280/"
+         rel="bookmark"
+         title="Permalink to SRM280 - Challenge祭り">
+         SRM280 - Challenge祭り
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2005-12-30">
+        2005-12-30
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p><a class="reference external" href="http://www.topcoder.com/stat?c=round_overview&amp;rd=8077">SRM280</a> に挑戦．
+今年，最後のSRMになります．思えば今年の後半は，TopCoderで楽しませてもらいました．
+いまや，2週間に一度ほどの「趣味」です．</p>
+<div class="section" id="completingbrackets-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5977&amp;rd=8077">CompletingBrackets</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=247258&amp;rd=8077&amp;pm=5977&amp;cr=15632820">code</a>)</h2>
+<p>250点問題．
+&quot; <tt class="docutils literal"><span class="pre">]][][]][</span></tt>  &quot;のように閉じ括弧・開き括弧のみを含んだ文字列が与えられます．
+この文字列の最初・または最後に，できるだけ最小限の&quot; <tt class="docutils literal">]</tt> &quot;または &quot; <tt class="docutils literal">[</tt> &quot;を与えて，ちょうど括弧が対応するように文字列を完成させその文字列を返す問題です．
+例の場合は， 最初に &quot; <tt class="docutils literal">[</tt> &quot;を3個，最後に&quot; <tt class="docutils literal">]</tt> &quot;を1個加えた，&quot; <tt class="docutils literal"><span class="pre">[[[]][][]][]</span></tt> &quot;が正解になります．</p>
+<p>これまでは250点問題は，何も考えずにただ実装ということが多かったいのですが，今回は一瞬，どうしたらよいかわかりませんでした．
+「まずい」と思いましたが，力任せに「うまくいくであろう」方法でなんとか仕上げました．
+はっきりいって根拠なしでしたが，手元で試した限りでは，あらゆるケースで問題がなかったので，そのままSubmitしました．</p>
+</div>
+<div class="section" id="gridcut-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5936&amp;rd=8077">GridCut</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=247258&amp;rd=8077&amp;pm=5936&amp;cr=15632820">code</a>)</h2>
+<p>500点問題．
+幅 (width) cm x 高さ (height) cm の紙 があります．
+紙には，方眼紙のように1cm間隔で格子状に線が引いてあるとします．
+この紙をはさみを使って，n セル だけ面積を残して切り取りたいとします．
+最低，何cmはさみで紙を切る必要があるでしょうか？という問題です．
+はさみは格子状の線に沿ってしか使用できません．ななめにきってはだめです．</p>
+<img alt="SRM280 GridCut From TopCoder" src="http://static.flickr.com/61/193898525_7f130a569d_o.png" />
+<p>図のような，5 x 10 の紙の場合，</p>
+<ul class="simple">
+<li>10セルだけ残すときは，左の赤のラインが最小の長さです．答えは5</li>
+<li>18セルだけ残すときは，左の緑のラインが最小の長さです．答えは6</li>
+</ul>
+<p>アルゴリズムの知識というよりは，論理的思考力を問われる問題です．
+いわゆる小学生でもその気になれば解ける問題です．
+散々，悩んだあげく，とりあえず提出しました．</p>
+<p>．．ですが，Level 3 問題があまりに手がでなかったのであきらめて，Level2問題を見直していたところ，バグにきずいて，再提出しました．
+再提出するとポイントは30%のペナルティが与えられます．</p>
+<p>「n」 セル残す というのは，「 width * height - n 」セル残すということと同じことなんですね．．．
+それをまったく考慮していなかったため，それに対応させました．</p>
+</div>
+<div class="section" id="drawplanar">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=4846&amp;rd=8077">DrawPlanar</a></h2>
+<p>1100点問題．いつもの「1000点」じゃなくて，「1100点」ってだけで，もう恐ろしさ満点です．
+まったくお手上げでした．
+さすがに，正解できた人は，Division1 304人中3人だけでした．
+(<a class="reference external" href="http://www.topcoder.com/tc?module=ProblemDetail&amp;rd=8077&amp;pm=4846">Problem Detail</a>)</p>
+</div>
+<div class="section" id="id8">
+<h2>結果</h2>
+<p>今回は，チャレンジタイムでは，GridCutの問題で，(100, 100, 9001) という入力でチャレンジしまくりました．
+自分がミスっていたところは，きっと他人もミスっているに違いないと勝手に思い込んで．
+手当たり次第，チャレンジして，12チャレンジ，8個撃墜しました．</p>
+<p>System Testの結果です．
+( <a class="reference external" href="http://www.topcoder.com/stat?c=coder_room_stats&amp;cr=15632820&amp;rd=8077&amp;rm=247258">Room Statistics</a> )</p>
+<img alt="Room Statistics" src="http://static.flickr.com/38/79387792_0bafbb2977_o.png" />
+<p>チャレンジしまくった結果です．
+自分も同じ問題を，チャレンジされ撃墜されたというオチまでついています．
+square * (square-1) のケースを考慮していませんでした．．</p>
+<img alt="Challeges" src="http://static.flickr.com/43/79387801_8040696132_o.png" />
+<p>レーティングは1520 -&gt; 1630 と上昇しました．</p>
+</div>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2005/srm277/"
+         rel="bookmark"
+         title="Permalink to SRM277 - 初賞金げっと">
+         SRM277 - 初賞金げっと
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2005-12-27">
+        2005-12-27
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p><a class="reference external" href="http://www.topcoder.com/stat?c=round_overview&amp;rd=8074">SRM277</a> に挑戦．ちょうど10回目のSRMです．土曜の深夜2:00が開始時間でしたので，眠かった．．．</p>
+<div class="section" id="rogersphenomenon-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5870&amp;rd=8074">RogersPhenomenon</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=247060&amp;rd=8074&amp;pm=5870&amp;cr=15632820">code</a>)</h2>
+<p>250点問題．
+Division1にしては比較的容易でした．</p>
+</div>
+<div class="section" id="airlinerseats-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=4828&amp;rd=8074">AirlinerSeats</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=247060&amp;rd=8074&amp;pm=4828&amp;cr=15632820">code</a>)</h2>
+<p>500点問題．
+飛行機内のいわゆる「通路側座席」の数が最大になるように座席を配置する問題です．
+これも，500点問題にしては簡単な方だと思います．小学生でも十分できる問題です．</p>
+</div>
+<div class="section" id="safejourney">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5918&amp;rd=8074">SafeJourney</a></h2>
+<p>1000点問題．
+うーん，できませんでした．方針すら浮かびませんでした．
+問題空間をコンパクト化するのがポイントだったようです．あー，なるほど．
+そうすれば，十分，BFSでいけます．</p>
+</div>
+<div class="section" id="id7">
+<h2>結果</h2>
+<p>System Testの結果です．
+( <a class="reference external" href="http://www.topcoder.com/stat?c=coder_room_stats&amp;cr=15632820&amp;rd=8074&amp;rm=247060">Room Statistics</a> )</p>
+<img alt="Room Statistics" src="http://static.flickr.com/9/74680058_35c3a95993_o.png" />
+<p>レーティングは1500台になり，イエローネームになりました．
+今回でちょうど10回目のSRMでしたので，記念に，現時点の状況を残しておきます．
+レーティングの推移です．</p>
+<img alt="Rating History" src="http://static.flickr.com/43/74718339_0b2f240a32_o.png" />
+<p>まだ，初登場時のレーティングには届いていません.</p>
+<img alt="TopCoder Member Card" src="http://static.flickr.com/37/74728743_48def73748_o.png" />
+<p>今回のSRMは，MSNがスポンサーで上位の人には賞金が出ます．
+自分には縁がないと思っていたのですけど，後日，メールが来て</p>
+<blockquote>
+<p>Congratulations! The results of TopCoder SRM 277 are official.  You have
+won $32.0.</p>
+<p>In order for TopCoder to release payment to you, you must complete
+certain steps within 60 days of this email.  Please follow the instructions here:
+<a class="reference external" href="http://www.topcoder.com/PactsMemberServlet?t=affidavit&amp;c=affidavit_history">http://www.topcoder.com/PactsMemberServlet?t=affidavit&amp;c=affidavit_history</a></p>
+<p>Unless you have previously specified otherwise, your prize money will, by default, be paid by check.  If you would like to be paid by wire transfer or PayPal, send an email to XXXXXXXXX with the details of your preferred payment method.  Remember to include your TopCoder handle in the email.</p>
+<p>Please keep in mind that you have 60 days to claim your prize.  Your prize will be forfeited if it is not claimed within 60 days.</p>
+<p>Congratulations again on your SRM performance.</p>
+<p>As always, best of luck to you in the Arena!</p>
+<ul class="simple">
+<li>The TopCoder Competitions Team</li>
+</ul>
+</blockquote>
+<p>$32 賞金がもらえることになりました．
+「どうやって，賞金をうけとればよいのか？？？」
+と思って調べていたのですけど，やはり手続きが面倒そうです．．</p>
+<ul class="simple">
+<li>宣誓証書</li>
+<li>Tax Form</li>
+</ul>
+<p>などを一度は郵送でTopCoderへ送っておく必要があります．
+賞金を受け取らずにチャリティーに寄付することもできるそうなので，寄付しようかな．</p>
+</div>
+<div class="section" id="id9">
+<h2>今日の教訓</h2>
+<ul class="simple">
+<li>問題空間のコンパクト化</li>
+</ul>
+</div>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2005/2005marathon/"
+         rel="bookmark"
+         title="Permalink to マラソン・マッチ">
+         マラソン・マッチ
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2005-12-17">
+        2005-12-17
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p>TopCoder が新しい形式のアルゴリズム・コンテストを開始しました．
+<a class="reference external" href="http://www.topcoder.com/longcontest/?module=Static&amp;d1=instructions">マラソン・マッチ</a> です．
+現在，ベータ・テストを行っています.</p>
+<img alt="Marathon Match" src="http://static.flickr.com/56/193899298_477be1d4d2_o.jpg" />
+<p>通常の短期決戦のSRMと違い長期戦です．</p>
+<ul class="simple">
+<li>期間は1週間</li>
+<li>与えられる問題は，いわゆる「正解」があるような問題ではない．</li>
+<li>期間内なら何回でもSubmitできる</li>
+<li>SubmitしたCodeは，ある基準（問題による）に従い採点されスコアがつけられる</li>
+</ul>
+<p>なるほど面白そうです.
+どんな問題が出題されているのか，興味があったので参加してみました．
+まだコンテスト期間内なので，問題の内容について書くことはできないですが，うーんなるほど．って感じです．
+既に参加者は700名を超えているようです．</p>
+<img alt="Marathon Match" src="http://static.flickr.com/43/74278329_af0e3d5d2f_o.png" />
+<p>早速，誰もが思いつくような方法でCodeを書いてみてSubmitしてみました．現在，43位です．</p>
+<img alt="Marathon Match" src="http://static.flickr.com/40/74278387_b424170e97_o.png" />
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2005/2005rst/"
+         rel="bookmark"
+         title="Permalink to reStructuredTextでblogger">
+         reStructuredTextでblogger
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2005-12-16">
+        2005-12-16
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p>このBlogは， もともとは <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> 形式で書いています．
+ここで公開しているのはそれをHTMLに変換した結果です．
+Blogger では， <a class="reference external" href="http://code.blogger.com/archives/atom-docs.html">ATOM API</a> が用意されているので，
+ありがたいことにブラウザを使用しなくてもBlogの更新ができます．</p>
+<p>以下のような手順をとっています．</p>
+<ol class="arabic simple">
+<li>reStructuredText形式で，テキストファイルを作成</li>
+<li>Python，docutils で html に変換</li>
+<li>2のhtmlを ATOM API で Blogger.comへ更新</li>
+</ol>
+<p>2と3はひとつのPythonスクリプト内で行っています．
+reStructuredText から html への変換は，docutilsで行えます．</p>
+<pre class="literal-block">
+from docutils.core import publish_parts
+parts = publish_parts(
+    content,
+    writer_name='blogwriter'
+    )
+</pre>
+<p>docutils付属の html_writer を継承して・ほんの少しだけ修正した 自作のblogwriter を使用しています．
+変換された，htmlのタイトル( <tt class="docutils literal"><span class="pre">parts['title']</span></tt> )と，body部分 <tt class="docutils literal"><span class="pre">parts['body']</span></tt> を，以下のテンプレートにセットして</p>
+<div class="highlight"><pre><span class="n">entrytemplate</span> <span class="o">=</span> <span class="n">u</span><span class="sc">&#39;&#39;&#39;</span><span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span> <span class="n">standalone</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="o">?&gt;</span>
+<span class="o">&lt;</span><span class="n">entry</span> <span class="n">xmlns</span><span class="o">=</span><span class="s">&quot;http://purl.org/atom/ns#&quot;</span><span class="o">&gt;</span>
+ <span class="o">&lt;</span><span class="n">title</span> <span class="n">mode</span><span class="o">=</span><span class="s">&quot;escaped&quot;</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;text/plain&quot;</span><span class="o">&gt;%(</span><span class="n">title</span><span class="o">)</span><span class="n">s</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
+ <span class="o">&lt;</span><span class="n">published</span><span class="o">&gt;%(</span><span class="n">published</span><span class="o">)</span><span class="n">s</span><span class="o">&lt;/</span><span class="n">published</span><span class="o">&gt;</span>
+ <span class="o">&lt;</span><span class="n">generator</span> <span class="n">url</span><span class="o">=</span><span class="s">&quot;http://www.yoursitesurlhere.com&quot;</span><span class="o">&gt;</span><span class="n">python</span><span class="o">&lt;/</span><span class="n">generator</span><span class="o">&gt;</span>
+ <span class="o">&lt;</span><span class="n">content</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;application/xhtml+xml&quot;</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="n">div</span> <span class="n">xmlns</span><span class="o">=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="o">&gt;</span>
+   <span class="o">%(</span><span class="n">content</span><span class="o">)</span><span class="n">s</span>
+   <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+ <span class="o">&lt;/</span><span class="n">content</span><span class="o">&gt;</span>
+<span class="o">%(</span><span class="n">draft</span><span class="o">)</span><span class="n">s</span>
+<span class="o">&lt;/</span><span class="n">entry</span><span class="o">&gt;</span><span class="sc">&#39;&#39;&#39;</span>
+</pre></div>
+<p>ATOM API で送れば，Blogの更新が行えます．
+これらの一連の作業を行う <tt class="docutils literal">myblogger.py</tt> というPythonスクリプト を作成して使用しています．
+テキストファイルを入力として，コマンド一発でBlogエントリの新規作成・更新を行えます．
+以下のような感じです</p>
+<div class="highlight"><pre><span class="n">myblogger</span><span class="o">.</span><span class="na">py</span> <span class="n">merge</span> <span class="mi">273</span><span class="o">.</span><span class="na">txt</span>
+</pre></div>
+<p>書きなれた reStructuredText 形式で Blogを書けるのは快適です．
+ATOM API はほとんどのBlogサービスがサポートしているはずですので，
+もし将来Blogを引越しすることになっても，ローカルにあるテキストを全部再発行するだけですみます．</p>
+<p>TopCoder のコンテストでは，現在，使用できる言語はJava, C#, C++, VB の4つだけです．
+Pythonが使えるようにならないかなー．</p>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2005/200512tco/"
+         rel="bookmark"
+         title="Permalink to 2006 TopCoder Open - NSAがスポンサーに">
+         2006 TopCoder Open - NSAがスポンサーに
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2005-12-13">
+        2005-12-13
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <p><a class="reference external" href="http://www.topcoder.com/tc?module=Static&amp;d1=tournaments&amp;d2=tco06&amp;d3=about">2006 TopCoder Open</a> が開催されるようです．</p>
+<p>賞金総額は，$150,000 です．
+予選，Round1,2,3,4，そしてオンサイト（ラスベガス）でのファイナル というふうに，
+何回かにわけて行われる形式のようです.
+あの <a class="reference external" href="http://www.topcoder.com/tc?module=Static&amp;d1=tournaments&amp;d2=tco06&amp;d3=nsa">NSA (National Security Agency)</a> がスポンサーになるようですね．
+いい成績を残せた人は，NSAから声がかかるのでしょうか？</p>
+<p>予選は，来年2月28日です．とりあえず，予選通過(750名)を目標に挑戦してみたいと思います.</p>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2005/srm276/"
+         rel="bookmark"
+         title="Permalink to SRM276 - お買い物は楽しくDPで">
+         SRM276 - お買い物は楽しくDPで
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2005-12-09">
+        2005-12-09
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p><a class="reference external" href="http://www.topcoder.com/stat?c=round_overview&amp;rd=8073">SRM276</a> に挑戦．
+かなーり，眠かったので，スルーしようかと思ったのですが，挑戦しました．</p>
+<div class="section" id="volumediscount-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5945&amp;rd=8073">VolumeDiscount</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=246939&amp;rd=8073&amp;pm=5945&amp;cr=15632820">code</a>)</h2>
+<p>250点問題．
+お買い物です．たとえば，</p>
+<ul class="simple">
+<li>1個なら4$</li>
+<li>3個まとめて買うと10$</li>
+<li>20個まとめて買うと48$</li>
+</ul>
+<p>だったとします．50個，買いたいとします．最低何$ですむか？という問題です.
+この例だと</p>
+<blockquote>
+20個 x 2 + 3個 x 3 + 1個 x 1= 50個 (48$ x 2 + 10$ x 3 + 4$ x 1 = 130$)</blockquote>
+<p>がベストな買い方で，答えは 130 です．
+しかし，50個ではなく，55個買いたいとすると，ベストな買い方は</p>
+<blockquote>
+20個 x 2 + 3個 x 5 = 55個 (48$ x 2 + 10$ x 5 = 146$)</blockquote>
+<p>ではなく</p>
+<blockquote>
+20個 x 3 = 60個 ( 48$ x 3 = 144$)</blockquote>
+<p>です．答えは，144 になります．
+SRM中は，入力条件が緩いのでBrute-Forceで十分いけると思ってSubmitしました．
+チャレンジタイムでは，MemoizationなしのBrute-Forceではタイムアウトすると思われたのか,
+2回チャレンジをうけました．チャレンジで使用された入力は</p>
+<img alt="SRM276 Challenge" src="http://static.flickr.com/39/74265649_2eb414d63b_o.png" />
+<p>と明らかに2秒タイムオーバー狙いです．
+チャレンジタイム後に，チャレンジしてきた人に質問されました．
+2秒以内に終わったのが，信じられなかったようです.</p>
+<img alt="SRM276 Chat" src="http://static.flickr.com/36/74263840_738db61dae_o.png" />
+<p>その後, HiltonLange さんには，さらに</p>
+<blockquote>
+{&quot;51 1&quot;,&quot;1 99&quot;}, 99 だと，失敗するんじゃない？</blockquote>
+<p>と指摘されました．
+そのとおりです．この入力だと51個x2=101個，2ドルが正解ですが，SubmitしたCodeでは</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">q</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">unit</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</pre></div>
+<p>このように上限を100にしていたため，51 x 1 + 99 * 48 = 4803ドルを出力していまいます．
+上限は，最低200じゃないと．System Testに落ちますね．．．</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">q</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">unit</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">&lt;</span> <span class="mi">200</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</pre></div>
+<p>このように上限200にしておくと，2秒近くかかりますが，なんとかSystem Testに通っていました．
+それでも無駄だらけなので，無駄をなくすと共に，Memoizationを併用すれば，劇的に早くなります．
+以下のようになります．</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">go</span><span class="o">(</span><span class="kt">int</span> <span class="n">q</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="n">N</span><span class="o">)</span> <span class="o">{</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">q</span> <span class="o">&lt;</span> <span class="n">quantity</span><span class="o">)</span> <span class="k">return</span> <span class="mi">1000000</span><span class="o">;</span>
+       <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+   <span class="o">}</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">cache</span><span class="o">[</span><span class="n">q</span><span class="o">][</span><span class="n">n</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">cache</span><span class="o">[</span><span class="n">q</span><span class="o">][</span><span class="n">n</span><span class="o">];</span>
+   <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+   <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+       <span class="n">min</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">min</span><span class="o">,</span> <span class="n">cost</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">go</span><span class="o">(</span><span class="n">q</span> <span class="o">+</span> <span class="n">unit</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">*</span> <span class="n">i</span><span class="o">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">));</span>
+       <span class="k">if</span> <span class="o">(</span><span class="n">q</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">unit</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">quantity</span><span class="o">)</span> <span class="k">break</span><span class="o">;</span>
+   <span class="o">}</span>
+   <span class="k">return</span> <span class="n">cache</span><span class="o">[</span><span class="n">q</span><span class="o">][</span><span class="n">n</span><span class="o">]</span> <span class="o">=</span> <span class="n">min</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p>この手の問題は，やはりDP(Dynamic Programming)を使うのが常套手段でしたね．
+SRM後に書いてみました.</p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="kt">int</span> <span class="nf">bestDeal</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">priceList</span><span class="o">,</span> <span class="kt">int</span> <span class="n">quantity</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="n">priceList</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">unit</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">N</span><span class="o">];</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">cost</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">N</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">unit</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">priceList</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">)[</span><span class="mi">0</span><span class="o">]);</span>
+        <span class="n">cost</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">priceList</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">)[</span><span class="mi">1</span><span class="o">]);</span>
+    <span class="o">}</span>
+
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">best</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">300</span><span class="o">];</span>
+    <span class="n">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">best</span><span class="o">,</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">);</span>
+    <span class="n">best</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">quantity</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">best</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">!=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">best</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="n">cost</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">best</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">unit</span><span class="o">[</span><span class="n">i</span><span class="o">]])</span> <span class="o">{</span>
+                    <span class="n">best</span><span class="o">[</span><span class="n">j</span><span class="o">+</span><span class="n">unit</span><span class="o">[</span><span class="n">i</span><span class="o">]]</span> <span class="o">=</span> <span class="n">best</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="n">cost</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">quantity</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">quantity</span> <span class="o">+</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">min</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">min</span><span class="o">,</span> <span class="n">best</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">min</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p>ほとんどの人は，さくっと躊躇することなくDPを使用していました．さすが，Division1．</p>
+</div>
+<div class="section" id="testingcar">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=4634&amp;rd=8073">TestingCar</a></h2>
+<p>500点問題．
+レーシングカーの試験走行をします．
+ただし，時間帯により制限速度の条件がいくつか与えられます.</p>
+<ul class="simple">
+<li>[5秒から10秒の間は，10 m/s以上スピードを出してはいけない ]</li>
+<li>[15秒から20秒の間は，15 m/s以上スピードを出してはいけない ]</li>
+<li>[30秒から40秒の間は，5 m/s以上スピードを出してはいけない ]</li>
+</ul>
+<p>というふうにです．
+入力として</p>
+<ul class="simple">
+<li>レーシングカーの加速度 a (m / s^2 )  (減速度(?) も兼ねています．）</li>
+<li>試験走行の時間 (duratation) が与えられます.</li>
+</ul>
+<p>この条件のもとで，レーシングカーが出せる最高速度はいくつになるかという問題です.
+SRM中は，途中で方針が間違っていたことことにきずき，お手上げでした．
+（つぎのつぎの制限速度の変更を考慮していなかったため減速が間に合わない．）</p>
+</div>
+<div class="section" id="forcetest">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5934&amp;rd=8073">ForceTest</a></h2>
+<p>1000点問題．
+Openしませんでした．</p>
+</div>
+<div class="section" id="id6">
+<h2>結果</h2>
+<p>System Testの結果です．
+( <a class="reference external" href="http://www.topcoder.com/stat?c=coder_room_stats&amp;cr=15632820&amp;rd=8073&amp;rm=246939">Room Statistics</a> )</p>
+<img alt="Room Statistics" src="http://static.flickr.com/9/74683887_7179f797b8_o.png" />
+<p>レーティングは低下．今日は，敗北感が強いな．．</p>
+</div>
+<div class="section" id="id8">
+<h2>今日の教訓</h2>
+<ul class="simple">
+<li>DPをちゃんとマスターしておく</li>
+</ul>
+</div>
+
+  </div>
+</article>            </ol><!-- /#posts-list -->
+<ul class="pager">
+        <li class="previous"><a href="http://hayato.io/page/5/" rel="prev">&larr; Newer Posts</a></li>
+        <li class="next"><a href="http://hayato.io/page/7/" rel="next">Older Posts &rarr;</a></li>
+</ul>
+            </section><!-- /#content -->
+</section>
+<div class="autopagerize_insert_before"></div>
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              Contents licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+            </small>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="http://hayato.io/theme/site.js"></script>
+  </body>
+</html>

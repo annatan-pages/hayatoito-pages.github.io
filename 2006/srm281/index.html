@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SRM281 - 2006年はポイントゼロスタート — hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="http://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="http://hayato.io/static/timer/chocolate.ico" rel="shortcut icon">
+
+    <link href="http://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="http://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="http://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+            <li>
+              <a href="http://hayato.io/about/"><i class="fa fa-user"></i>&nbsp;About</a>
+            </li>
+            <li>
+              <a href="http://hayato.io/kingsviking/"><i class="fa fa-code"></i>&nbsp;kingsviking</a>
+            </li>
+            <li>
+              <a href="http://hayato.io/timer/"><i class="fa fa-clock-o"></i>&nbsp;Timer</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+         SRM281 - 2006年はポイントゼロスタート
+    </h1>
+    <div class="post-date">
+      <time datetime="2006-01-07">
+        2006-01-07
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p><a class="reference external" href="http://www.topcoder.com/stat?c=round_overview&amp;rd=8078">SRM281</a> に挑戦．今年，最初のSRMです．
+例のごとく日本時間の深夜1:00スタートという，ありがたいんだが，ありがたくないんだがよくわかりませんが，やはり眠いなかでの参戦となりました．まあ，平日昼間だと参加できないので，ありがたいんでしょうが．．</p>
+<div class="section" id="integergenerator-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5984&amp;rd=8078">IntegerGenerator</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=247299&amp;rd=8078&amp;pm=5984&amp;cr=15632820">code</a>)</h2>
+<p>250点問題．</p>
+<ul class="simple">
+<li>int[] allowed: 使用が許されている数字(0-9のいずれか)のリスト</li>
+<li>String current: 現在の数 (整数)</li>
+</ul>
+<p>が与えられます．この時，</p>
+<ol class="arabic simple">
+<li>与えられた数 currentの各桁が 許可数字だけを使用しているかどうかをチェック</li>
+<li>1がOKなら，許可数字だけを使用して currentより大きい次の数字を生成して返しなさい</li>
+</ol>
+<p>という問題です．
+たとえば，</p>
+<ul class="simple">
+<li>allowed: {1, 2, 3}</li>
+<li>current:  &quot;2133&quot;</li>
+</ul>
+<p>ならば，current: 2133 の各桁は，許可数字{1, 2, 3}に含まれているものだけを使用しているのでOKです．
+また，currentより大きい，許可数字だけを使用した次の数は，&quot;2211&quot; になります．</p>
+<p>最初は，ただ単にcurrentを1ずつincrementしてOKかどうかチェックするという単純な方法で十分と思い込み，8分ほどでSubmitしました．
+Submit後に，いくつかチェックしていると，入力条件によってはこれではタイムアウトすることに気づきました．入力が</p>
+<blockquote>
+{9}, &quot;9999999999&quot; (10桁)</blockquote>
+<p>でタイムアウトです．
+この場合の正解は&quot;99999999999&quot; (11桁) ですが，1ずつincrementしていては，とてもじゃないが2秒以内には終わりません．</p>
+<p>慌ててやり直しましたが．．．はまりました．．完全に方針を誤り右往左往でした．
+最終的になんとか完成させ再提出したのですが (提出時点ではポイント75と最低点でした...），
+それでもバグがひとつ入っていたため，System Testに落ちました．
+入力のint配列: allowed が空 のケースで，ArrayIndexOutOfExceptionが発生させてしまっています．</p>
+<p>初歩的な入力条件のチェックミス．．空かどうかチェックを一行いれておけば，SystemTestに通っていましたね．</p>
+<p>SRM後に，冷静になって，コードを書き直してみました．
+使用できる数字が限られたケースで，1を足す動作を，シミュレートするだけです．</p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerGenerator</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">nextInteger</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">allowed</span><span class="o">,</span> <span class="n">String</span> <span class="n">current</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">allowed</span><span class="o">);</span>
+      <span class="kt">char</span><span class="o">[]</span> <span class="n">ca</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">ca</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span><span class="o">)</span> <span class="k">return</span> <span class="s">&quot;INVALID INPUT&quot;</span><span class="o">;</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">:</span> <span class="n">ca</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">binarySearch</span><span class="o">(</span><span class="n">allowed</span><span class="o">,</span> <span class="n">c</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">&quot;INVALID INPUT&quot;</span><span class="o">;</span>
+      <span class="o">}</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+          <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">binarySearch</span><span class="o">(</span><span class="n">allowed</span><span class="o">,</span> <span class="n">ca</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="o">);</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">allowed</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+              <span class="n">ca</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="o">(</span><span class="sc">&#39;0&#39;</span> <span class="o">+</span> <span class="n">allowed</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              <span class="n">ca</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="o">(</span><span class="sc">&#39;0&#39;</span> <span class="o">+</span> <span class="n">allowed</span><span class="o">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]);</span>
+              <span class="k">return</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">ca</span><span class="o">);</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="o">((</span><span class="n">allowed</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">allowed</span><span class="o">[</span><span class="mi">1</span><span class="o">]:</span> <span class="n">allowed</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">+</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">ca</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>こうしてみるとそんなに難しい問題ではなかったですね．やっぱり250点問題です．
+本番中は，頭が回りませんでした．．．</p>
+</div>
+<div class="section" id="ballbouncing">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5919&amp;rd=8078">BallBouncing</a></h2>
+<p>600点問題．Openしませんでした．</p>
+</div>
+<div class="section" id="equidistance">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=5949&amp;rd=8078">Equidistance</a></h2>
+<p>1000点問題．Openしませんでした．</p>
+</div>
+<div class="section" id="id6">
+<h2>結果</h2>
+<p>System Testの結果です．
+( <a class="reference external" href="http://www.topcoder.com/stat?c=coder_room_stats&amp;cr=15632820&amp;rd=8078&amp;rm=247299">Room Statistics</a> )</p>
+<img alt="Room Statistics" src="http://static.flickr.com/39/83328489_144104161d_o.png" />
+<p>今日は，惨敗です．
+チャレンジタイムも，ターゲットが次々とほかの人にさらわれてしまい，結局，チャレンジ ゼロでした．．</p>
+<p>レーティングは 1630 -&gt; 1542 と，100近く低下しました．</p>
+</div>
+<div class="section" id="id8">
+<h2>今日の教訓</h2>
+<ul class="simple">
+<li>当たり前ですが，入力条件をよく読むように．</li>
+</ul>
+</div>
+
+  </div>
+</article>
+<div class="social text-right">
+  <a href="https://twitter.com/share" class="twitter-share-button"
+ data-text="SRM281 - 2006年はポイントゼロスタート"  data-url="http://hayato.io/2006/srm281/"  data-language="en"    data-dnt="true">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <div class="g-plusone" data-size="medium" data-annotation="inline" data-href="http://hayato.io/2006/srm281/"></div>
+
+  <script type="text/javascript">
+  window.___gcfg = {lang: "en"};
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+</div>
+
+<ul class="pager">
+        <li class="previous"><a href="http://hayato.io/2006/srm287/" rel="prev">&larr; Newer Post</a></li>
+        <li class="next"><a href="http://hayato.io/2005/srm280/" rel="next">Older Post &rarr;</a></li>
+</ul>
+
+
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              Contents licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+            </small>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="http://hayato.io/theme/site.js"></script>
+  </body>
+</html>

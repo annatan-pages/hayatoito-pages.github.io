@@ -1,0 +1,41 @@
+body {
+  padding-bottom: 1em;
+}
+
+article > header .post-date {
+  color: gray;
+}
+
+article .site-article-title, .site-page .site-page-title, .site-archives-header {
+  font-size: 30px;
+}
+
+article h1, .site-page h1 {
+  font-size: 24px;
+}
+
+article h2, .site-page h2 {
+  font-size: 20px;
+}
+
+footer.base-footer {
+  color: gray;
+}
+
+article blockquote p {
+  font-size: 14px;
+}
+
+.social {
+  margin-top: 3em;
+}
+
+.site-footnote-title {
+  margin-bottom: 1em;
+}
+
+
+blockquote {
+  border-left: 3px solid #5bc0de;
+  background-color: #f4f8fa;
+}

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hayato.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://hayato.io/theme/solarizedlight.css" rel="stylesheet">
+    <link href="http://hayato.io/theme/site.css" rel="stylesheet">
+
+    <link id="favicon" href="http://hayato.io/static/timer/chocolate.ico" rel="shortcut icon">
+
+    <link href="http://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-collapse icon-2x"></span>
+          </button>
+          <a href="http://hayato.io/" class="navbar-brand">hayato.io</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="http://hayato.io/archives/"><i class="fa fa-list"></i>&nbsp;Archives</a></li>
+            <li>
+              <a href="http://hayato.io/about/"><i class="fa fa-user"></i>&nbsp;About</a>
+            </li>
+            <li>
+              <a href="http://hayato.io/kingsviking/"><i class="fa fa-code"></i>&nbsp;kingsviking</a>
+            </li>
+            <li>
+              <a href="http://hayato.io/timer/"><i class="fa fa-clock-o"></i>&nbsp;Timer</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+<section id="content" class="content autopagerize_page_element">
+
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2007/2007suffixarray/"
+         rel="bookmark"
+         title="Permalink to Suffix Array">
+         Suffix Array
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2007-03-27">
+        2007-03-27
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p>TopCoder SRM187、 <a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=2224&amp;rd=4755">DNAMultiMatcher</a> は、</p>
+<blockquote>
+Stringが3つ(それぞれの長さは最大2500)与えられたとき、
+3つ全てに含まれる最長のSubstringの長さを求めなさい。</blockquote>
+<p>という問題です。これに対して、</p>
+<ul class="simple">
+<li>長さをBinary-Searchで絞りながら、</li>
+<li>Stringが含まれるかどうかの判定をJava標準のjava.lang.String#containsを使用</li>
+</ul>
+<p>という方針で解く場合は、こうなります。</p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DNAMultiMatcher</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">longestMatch</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">sequence1</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">sequence2</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">sequence3</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span><span class="n">sequence1</span><span class="o">);</span>
+      <span class="n">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span><span class="n">sequence2</span><span class="o">);</span>
+      <span class="n">String</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span><span class="n">sequence3</span><span class="o">);</span>
+
+      <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+      <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+
+      <span class="k">while</span> <span class="o">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="o">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="o">+</span><span class="mi">1</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+          <span class="kt">boolean</span> <span class="n">found</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">mid</span> <span class="o">&lt;=</span> <span class="n">s1</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+              <span class="n">String</span> <span class="n">p</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">i</span><span class="o">+</span><span class="n">mid</span><span class="o">);</span>
+              <span class="k">if</span> <span class="o">(</span><span class="n">s2</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">p</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">s3</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">p</span><span class="o">))</span> <span class="o">{</span>
+                  <span class="n">found</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                  <span class="k">break</span><span class="o">;</span>
+              <span class="o">}</span>
+          <span class="o">}</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">found</span><span class="o">)</span> <span class="o">{</span>
+              <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span><span class="o">;</span>
+          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">low</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="n">String</span> <span class="nf">join</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">sa</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+      <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">sa</span><span class="o">)</span> <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+      <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>この場合は、ワーストケースで軽く2分以上かかってしまい、タイムアウトです。
+String Aの長さをn、String Bの長さをmとした場合、JavaのA.contains(B)は、
+普通にO(m*n)っぽいですね。</p>
+<p>AがBを含んでいるか?を高速に判定するときに使用できるのが、 <a class="reference external" href="http://en.wikipedia.org/wiki/Suffix_array">Suffix Array</a> です。</p>
+<p>ナイーブに実装してみると、</p>
+<div class="highlight"><pre><span class="kd">class</span> <span class="nc">SuffixArray</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">len</span><span class="o">;</span>
+    <span class="n">String</span><span class="o">[]</span> <span class="n">suffixes</span><span class="o">;</span>
+
+    <span class="n">SuffixArray</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">len</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="n">suffixes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">len</span><span class="o">];</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">suffixes</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">suffixes</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kt">int</span> <span class="nf">find</span><span class="o">(</span><span class="n">String</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">len</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">suffixes</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">middle</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="o">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">suffixes</span><span class="o">[</span><span class="n">middle</span><span class="o">].</span><span class="na">compareTo</span><span class="o">(</span><span class="n">p</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">high</span> <span class="o">=</span> <span class="n">middle</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">low</span> <span class="o">=</span> <span class="n">middle</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">suffixes</span><span class="o">[</span><span class="n">high</span><span class="o">].</span><span class="na">startsWith</span><span class="o">(</span><span class="n">p</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">len</span> <span class="o">-</span> <span class="n">suffixes</span><span class="o">[</span><span class="n">high</span><span class="o">].</span><span class="na">length</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>Javaのjava.lang.String#substringメソッドは、
+もとのStringと内部の配列char[]を共有したStringを返すので、
+この実装でも無駄にメモリを消費しないはずです。</p>
+<p>オーダーは、</p>
+<ul class="simple">
+<li>Aに対するSuffix Arrayの構築: O(n^2 log(n))</li>
+<li>AがBを含んでいるかの判定: O(m log(n))</li>
+</ul>
+<p>になるでしょうか?
+改良の余地はまだまだ残っていますが、今回の目的にはこれで十分です。
+(Suffix ArrayをO(n)で作成するアルゴリズムもあるようです。。。)</p>
+<p>先ほどの例を、Suffix Arrayを使用して書き直すとこうなります。</p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DNAMultiMatcher</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">longestMatch</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">sequence1</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">sequence2</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">sequence3</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span><span class="n">sequence1</span><span class="o">);</span>
+      <span class="n">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span><span class="n">sequence2</span><span class="o">);</span>
+      <span class="n">String</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span><span class="n">sequence3</span><span class="o">);</span>
+
+      <span class="n">SuffixArray</span> <span class="n">sa2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SuffixArray</span><span class="o">(</span><span class="n">s2</span><span class="o">);</span>
+      <span class="n">SuffixArray</span> <span class="n">sa3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SuffixArray</span><span class="o">(</span><span class="n">s3</span><span class="o">);</span>
+
+      <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+      <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+
+      <span class="k">while</span> <span class="o">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="o">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="o">+</span><span class="mi">1</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+          <span class="kt">boolean</span> <span class="n">found</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">mid</span> <span class="o">&lt;=</span> <span class="n">s1</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+              <span class="n">String</span> <span class="n">p</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">i</span><span class="o">+</span><span class="n">mid</span><span class="o">);</span>
+              <span class="k">if</span> <span class="o">(</span><span class="n">sa2</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">p</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">sa3</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">p</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                  <span class="n">found</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                  <span class="k">break</span><span class="o">;</span>
+              <span class="o">}</span>
+          <span class="o">}</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">found</span><span class="o">)</span> <span class="o">{</span>
+              <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span><span class="o">;</span>
+          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+          <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">low</span><span class="o">;</span>
+  <span class="o">}</span>
+</pre></div>
+<p>これで、ワーストケースでも1秒以内に処理できるようになり、システムテストに通ります。
+Suffix Arrayの応用例はほかにもいろいろあり、全文検索などでもよく使われるようです。</p>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2007/2007googlecodeprettify/"
+         rel="bookmark"
+         title="Permalink to google-code-prettifyを導入してみる">
+         google-code-prettifyを導入してみる
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2007-03-26">
+        2007-03-26
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p><a class="reference external" href="http://code.google.com/p/google-code-prettify/">google-code-prettify</a> を導入してみました。
+JavaScript + CSSでコード部分の色つけをしてくれるものです。</p>
+<p>デフォルトでは、class属性が&quot;prettyprint&quot;となっている、
+&lt;pre&gt;タグや&lt;code&gt;タグがシンタックス・ハイライトの対象になるようです。
+このブログはreStructuredTextで書いているので、
+&lt;pre&gt;タグのclass属性は、clsss=&quot;literal-block&quot;となっています。
+&lt;pre&gt;タグの方を直すのはいまさら面倒なので、prettify.jsの方を少し修正して導入しました。
+PythonとJavaは両方ともサポート言語ですので、どちらもなかなか派手に色がつきます。</p>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2007/2007subset/"
+         rel="bookmark"
+         title="Permalink to Subsetの生成">
+         Subsetの生成
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2007-03-02">
+        2007-03-02
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p>いままで、あるビットマスクsupersetのサブセットをすべて生成するには、</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">subset</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">subset</span> <span class="o">&lt;</span> <span class="n">superset</span><span class="o">;</span> <span class="n">subset</span><span class="o">++)</span> <span class="o">{</span>
+ <span class="k">if</span> <span class="o">((</span><span class="n">subset</span><span class="o">|</span><span class="n">superset</span><span class="o">)</span> <span class="o">==</span> <span class="n">superset</span><span class="o">)</span> <span class="o">{</span>
+   <span class="c1">// do with subset</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>としていたんですけど、これだと、
+superset = 10011(2)などの場合でも、約10011(2)回のループが必要です。
+生成されるサブセットは、</p>
+<blockquote>
+{10010, 10001, 00011, 10000, 00010, 00001,}</blockquote>
+<p>と6つしかないのに。すごい無駄です。</p>
+<p>もっとうまい方法がありました。</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">subset</span> <span class="o">=</span> <span class="n">superset</span><span class="o">;</span> <span class="n">subset</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">subset</span> <span class="o">=</span> <span class="o">(</span><span class="n">subset</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">superset</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// do with subset</span>
+<span class="o">}</span>
+</pre></div>
+<p>これなら、サブセットのみをうまく生成できます。
+この場合のサブセットはsupersetを含み、空セットは含みません。</p>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2006/srm332/"
+         rel="bookmark"
+         title="Permalink to 2006年のまとめ - SRM332">
+         2006年のまとめ - SRM332
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2006-12-30">
+        2006-12-30
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p><a class="reference external" href="http://www.topcoder.com/stat?c=round_overview&amp;rd=10012">SRM332</a> に挑戦。2006年、最後のSRMになります。</p>
+<div class="section" id="createpairs-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=7309&amp;rd=10012">CreatePairs</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=263121&amp;rd=10012&amp;pm=7309&amp;cr=15632820">code</a>)</h2>
+<p>250点問題。Greedyですね。落ち着けばとけます。</p>
+</div>
+<div class="section" id="restoringpolygon-code">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6402&amp;rd=10012">RestoringPolygon</a> (<a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;rm=263121&amp;rd=10012&amp;pm=6402&amp;cr=15632820">Code</a>)</h2>
+<p>550点問題。2次元平面上で水平の線分(セグメント)がいくつか与えられます。
+このセグメントに垂直のセグメントを好きなだけ足して、
+最大のポリゴンを作成して、その辺の数を返しなさい。という問題です。</p>
+<p>単純に考えてそのまま強引に解いてしまいました。
+ワーストケースでのタイムアウトが気になりましたが大丈夫だったようです。</p>
+</div>
+<div class="section" id="ladderpermutation">
+<h2><a class="reference external" href="http://www.topcoder.com/stat?c=problem_statement&amp;pm=6175&amp;rd=10012">LadderPermutation</a></h2>
+<p>950点問題．Openしませんでした。</p>
+</div>
+<div class="section" id="id7">
+<h2>結果</h2>
+<p>System Testの結果です．
+( <a class="reference external" href="http://www.topcoder.com/stat?c=coder_room_stats&amp;cr=15632820&amp;rd=10012&amp;rm=263121">Room Statistics</a> )</p>
+<p>550点問題のRestoringPolygonをシステムテストで落とされた人が続出
+( <a class="reference external" href="http://www.topcoder.com/tc?module=ProblemDetail&amp;rd=10012&amp;pm=6402">309人中、提出が144、正解が16と正解率が11%ほど</a> )したため、
+全体的に点数が低めでした。
+950点問題のほうが、550点問題より正解者が多い。。。</p>
+<img alt="Room Statistics" src="http://farm1.static.flickr.com/149/338406108_a8c377433c_o.png" />
+<p>なぜか同じルーム内にはRed Coderがいなかったため、ルーム内ではトップのポイント。
+レーティングは1532-&gt;1678と上昇しました。</p>
+</div>
+<div class="section" id="id10">
+<h2>2006年のまとめ</h2>
+<p>2006年も終了。この時点でのStatsを記録として残しておきます。</p>
+<img alt="Rationg History" src="http://farm1.static.flickr.com/156/338419927_1cb351d94a_o.png" />
+<p>今年のはじめはレーティングが1630で、今は1678ですのであんまり変わってません。</p>
+<img alt="Rating Distribution" src="http://farm1.static.flickr.com/127/338428423_92a7a00025_o.png" />
+<p>まだまだRed Coderへは遠い道のりです。。</p>
+</div>
+<div class="section" id="python">
+<h2>Pythonはどうなった?</h2>
+<p>TopCoderに参加するときはこれまでのところJavaをずっと使用していますが、
+TopCoder以外の個人的な場面ではJavaを使用することはすっかりなくなり、
+大抵の場合Pythonを使用しています。
+でもあいかわらず、TopCoderのアルゴリズム・マッチで使用できる言語は、
+Java、C#、C++、VBの4つだけでPythonは採用されそうもありません。
+他言語とのスピード差がその理由だそうです。
+アルゴリズム・マッチで走らせるプログラムは外とのI/Oがまったくなく
+ほぼCPUだけに全体の処理時間が依存してしまうので、
+どうしてもスピード差が顕著になってしまうわけですね。
+そうはいっても、今年のGoogle Code JamではPythonは採用されたわけだが。。。</p>
+<p>と思っていたら、TopCoderのマラソン・マッチでは
+Pythonがいつのまにか使用言語として採用されています。
+アルゴリズム・マッチと異なり、マラソン・マッチはコンテストの性質上、
+処理時間をあまり気にする必要がないのでPythonを加えたそうです。
+じっくり未解決の難問に取り組むマラソン・マッチもやってみたいところだが、
+さすがにアルゴリズム部門と比べて時間がそれなりにとられそうなので
+しばらくは見送り。</p>
+</div>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2006/200610googlecodejam-final/"
+         rel="bookmark"
+         title="Permalink to Google Code Jam 2006 - Championship Round">
+         Google Code Jam 2006 - Championship Round
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2006-10-31">
+        2006-10-31
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p>Google Code Jam 2006、Championship Roundが開催されました。
+オンラインラウンドを勝ち抜いた100名が、Googleニューヨーク・オフィスに招待されて対決です。
+結果は、</p>
+<img alt="Google Code Jam 2006 Championship Round Result" src="http://static.flickr.com/121/284664008_4797661794_o.png" />
+<p>見事Petrが栄冠を勝ち取りました。Petr強い。
+Googleから <a class="reference external" href="http://www.google.com/press/pressrel/codejamwinners_2006.html">プレス・リリース</a> もでてます。</p>
+<p>Google Code Jamの問題は、これまでのところ公開されていないようです。
+いま、Code Jamのアリーナにアクセスすると、出題された問題セットを見ることができますので、見たい人はお早めにどうぞ。</p>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2006/200610bloggerbeta/"
+         rel="bookmark"
+         title="Permalink to Blogger Betaに移行">
+         Blogger Betaに移行
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2006-10-30">
+        2006-10-30
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p>Blogger Betaに移行してみました。大きな変更点としては</p>
+<ul class="simple">
+<li>Labelが使えるようになった</li>
+<li>テンプレート・システムがまったく新しくなっている</li>
+<li>ページを動的に作成するようになったので、テンプレートを変更するとすぐにページに反映される</li>
+</ul>
+<p>といったところでしょうか？</p>
+<div class="section" id="id1">
+<h2>テンプレート・システム</h2>
+<p>新しいテンプレート・システムのうりのひとつは、ブラウザ上でGUIでデザインできることです。
+必ずGUIを使う必要はなく、全部自分で手作業で設定することももちろん可能でした。
+いい機会ですので、新規にテンプレート・CSSを作成してみました。
+テンプレートのタグも新規タグが用意されています。
+これまでより細部で機能アップしてますね。
+ほとんど全ての箇所をいじることができる自由度は相変わらず健在ですので、
+特にデザイン上支障はありません。
+GUIデザイン用に使用されるテンプレート内の変数部分は、わずらわしいので全部消去しました。</p>
+</div>
+<div class="section" id="id2">
+<h2>スタイルシートの動的切り替え</h2>
+<p>「Printer Friendly View」 は <a class="reference external" href="http://alistapart.com/stories/alternate/">Alternative Style: Working With Alternate Style Sheets</a> を参考にしてみました。
+スタイルシートを動的に切り替えることができます。</p>
+</div>
+<div class="section" id="google-data-apis">
+<h2>Google Data APIs</h2>
+<p>ブラウザから記事を投稿する人には関係のない話ですが、
+私の場合は、記事は <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>  形式でローカルで書いてから、
+自作のPythonスクリプトで記事を投稿できるようにしています。
+Bloggerでは、そのためにATOM APIが用意されています。
+こちらもBetaでは変更が入り、 <a class="reference external" href="http://code.google.com/apis/gdata/">Google Data APIs</a> を用いるようになりました。</p>
+<p>主な変更点としては、</p>
+<ul class="simple">
+<li>ATOM APIのバージョンが0.3から1.0に変更</li>
+<li>認証システムも、Basic認証から、 <a class="reference external" href="http://code.google.com/apis/accounts/Authentication.html">Google Account Authentication</a> に変更</li>
+</ul>
+<p>といったところです。
+<a class="reference external" href="http://code.google.com/apis/gdata/blogger.html">Blogger Data API</a> として使用方法が解説してありますので、ここを見れば簡単です。</p>
+<p>JavaやC#用のクライアント・ライブラリも用意されていましたが、
+reStructutedTextの変換を考えるとやはりPythonのほうがよいと思い、
+Pythonでクライアントを書きました。
+ATOMを使用するにあたり、いくつかすんなりとはいかなかった点としては、</p>
+<ol class="arabic simple">
+<li>指定されたPost先にPost要求を出すと、Betaのサーバはリダイレクトを返してきます。</li>
+<li>投稿に成功した場合、ステータスコード201を返してきます。</li>
+</ol>
+<p>この2点です。
+Pythonの標準のAPI(urllib/urllib2)では、Post要求に対してリダイレクトが返って来ると、
+リダイレクト先へPostを再送するのではなくGet要求を出してしまいます。
+また、ステータスコード201もエラー扱いするようになっていました。
+そのため、自分で <tt class="docutils literal">urllib2.HTTPRedirectHandler</tt> をもとにした、ちょっとしたハックが必要になります。</p>
+<p>その他に気づいた問題点は、新規記事をATOM 1.0で送る時、&lt;published&gt;での日付指定が無視されてしまうことです。
+これは、現在サーバ側の問題らしく、 <a class="reference external" href="http://groups.google.com/group/bloggerDev/">Blogger Dev Group</a> で議論されていますのでいずれ解決しそうです。</p>
+<p>これでほぼ移行作業が完了しましたが、全体としてはBetaの方がはるかに使いやすくなりましたね。
+なによりラベルが使えるようになったのがいちばんうれしいですね。</p>
+</div>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2006/200609googlecodejam-round1/"
+         rel="bookmark"
+         title="Permalink to Google Code Jam 2006 - Round1に挑戦 - GenericsとAutoBoxing">
+         Google Code Jam 2006 - Round1に挑戦 - GenericsとAutoBoxing
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2006-09-15">
+        2006-09-15
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p>Google Code Jam 2006 Round1に挑戦。
+予選を通過した1000名のうち500名が通過できます。</p>
+<div class="section" id="nearfrac">
+<h2>NearFrac</h2>
+<p>250点問題。
+問題の条件をまちがって解釈してしまいました。
+解が複数あった場合、たとえば「-1/3, -2/3」の場合は、「小さいほう」である「-2/3」を優先しなければいけないんですが、
+「小さいほう」の説明を逆に解釈してしまい、「-1/3」を優先するようなコードを書いてしまいました。
+よく問題を読めばちゃんと説明してあるんですけどね。反省。</p>
+</div>
+<div class="section" id="badbinary">
+<h2>BadBinary</h2>
+<p>500点問題。
+問題自体は難しくなくコーディングはさくさく10分ほどで完了。
+しかし、Javaの罠にはまってしまいました。。。
+たとえば、</p>
+<div class="highlight"><pre><span class="n">Map</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">memo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;();</span>
+<span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="n">memo</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+</pre></div>
+<p>として、このMapから値を取得しようと、</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="n">memo</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">);</span>
+</pre></div>
+<p>とします。するとmemo.get(j)の結果は、2ではなくnullになってしまいます。
+memoは</p>
+<div class="highlight"><pre><span class="n">Map</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">memo</span>
+</pre></div>
+<p>と宣言しているので、memo.get(j)の部分は、AutoBoxingが働いて</p>
+<div class="highlight"><pre><span class="n">memo</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="k">new</span> <span class="n">Long</span><span class="o">(</span><span class="n">j</span><span class="o">))</span>
+</pre></div>
+<p>と解釈されると思っていたのですが、実際は</p>
+<div class="highlight"><pre><span class="n">memo</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="k">new</span> <span class="n">Integer</span><span class="o">(</span><span class="n">j</span><span class="o">))</span>
+</pre></div>
+<p>とIntegerになるようですね。int-&gt;longの変換は行われません。
+当然、memo.put(new Long(1), ..)したものは、memo.get(new Integer(1))では取得できません。</p>
+<p>「Genericsのもつコンパイル時の型チェックは機能しないのか？」
+と思ったら、そもそもMapのメソッドgetは</p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="n">V</span> <span class="nf">get</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">);</span>
+</pre></div>
+<p>と定義されているんですね。てっきり</p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="n">V</span> <span class="nf">get</span><span class="o">(</span><span class="n">K</span> <span class="n">key</span><span class="o">);</span>
+</pre></div>
+<p>だと思いこんでいました。パラメータの型チェックは行われないのか。。がく。</p>
+<p>本番中はまさかこの部分に問題があるとは気づくことができず右往左往。
+なぜかこういうときだけ無駄な想像力が異様に働き、関係ないところばかり追いかけてしまいました。
+むなしく時間（50分も。。）を費やしたあげく、結局最後まで気づくことができないまま時間切れ。
+memo.get(j)ではなくmemo.get((long)j)とするだけでよかったんですけど。気づくべきでした。
+Google Code Jamくん、楽しませてもらったよ。また来年までさようなら。</p>
+</div>
+
+  </div>
+</article>
+<article>
+  <header class="page-header">
+    <h1 class="site-article-title">
+      <a href="http://hayato.io/2006/200609googlecodejam-qualification-result/"
+         rel="bookmark"
+         title="Permalink to Google Code Jam 2006 - Qualification Round通過">
+         Google Code Jam 2006 - Qualification Round通過
+      </a>
+    </h1>
+    <div class="post-date">
+      <time datetime="2006-09-09">
+        2006-09-09
+      </time>
+    </div>
+  </header>
+  <div class="article-content">
+    <!-- -*- mode: rst; coding: utf-8 -*- -->
+<p>予選通過のメールがきました。</p>
+<blockquote>
+<p>From: The Google Code Jam Team</p>
+<p>Subject: Google(TM) Code Jam 2006 Results</p>
+<p>Hello gentoo,</p>
+<p>Congratulations! The results of the Google Code Jam 2006 Qualification Round have been officially tabulated, and we're happy to announce that you have advanced to Round 1. This is a great accomplishment.</p>
+<p>Round 1 of Google Code Jam 2006 takes place online at 10:00 AM EDT (GMT/UTC -4) on Thursday, September 14. Registration is required for this round and will be open from 7:00 AM to 9:55 AM EDT (GMT/UTC -4) on the day of the event. To register for Round 1, log in to the Competition Arena, click on the Active Contests menu item, select Round One, and select Register: www.google.com/codejam2006.</p>
+<p>Of those who participate in Round 1, the top 500 scores will advance to Round 2 on Tuesday, September 19, at 10:00 AM EDT (GMT/UTC -4).</p>
+<p>Congratulations again on successfully making it through the Qualification Round of Google Code Jam 2006.</p>
+<p>- The Google Code Jam Team</p>
+</blockquote>
+<p>Google Code Jam 2006のサイトにも <a class="reference external" href="http://www.topcoder.com/pl/?&amp;module=Static&amp;d1=google06&amp;d2=advQual">通過者の一覧</a> が正式に出ていますね。
+次は、Round1、1000名から500名です。</p>
+
+  </div>
+</article>            </ol><!-- /#posts-list -->
+<ul class="pager">
+        <li class="previous"><a href="http://hayato.io/page/2/" rel="prev">&larr; Newer Posts</a></li>
+        <li class="next"><a href="http://hayato.io/page/4/" rel="next">Older Posts &rarr;</a></li>
+</ul>
+            </section><!-- /#content -->
+</section>
+<div class="autopagerize_insert_before"></div>
+          <hr/>
+          <footer class="base-footer text-center">
+            <small>
+              Contents licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+            </small>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="http://hayato.io/theme/site.js"></script>
+  </body>
+</html>

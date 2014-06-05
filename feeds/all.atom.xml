@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>hayato.io</title><link href="http://hayato.io/" rel="alternate"></link><link href="http://hayato.io/feeds/all.atom.xml" rel="self"></link><id>http://hayato.io/</id><updated>2014-02-02T00:00:00+09:00</updated><entry><title>Simple timer application for the pomodoro technique</title><link href="http://hayato.io/2014/timer/" rel="alternate"></link><updated>2014-02-02T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2014-02-02:2014/timer/</id><summary type="html">&lt;p&gt;I've created a simple &lt;a href="/timer/"&gt;timer application&lt;/a&gt; for &lt;a href="http://pomodorotechnique.com/"&gt;the pomodoro technique&lt;/a&gt;.
+You can use the timer here, &lt;a href="http://hayato.io/timer/"&gt;http://hayato.io/timer/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="timer" src="/static/2014/timer.png" /&gt;&lt;/p&gt;
+&lt;p&gt;It seems that there are a lot of timer applications for the pomodoro technique, however, I couldn't find any timer which fits me.&lt;/p&gt;
+&lt;p&gt;I need a simple, tiny, easy-to-customize, non-distractive and web-based timer. Therefore, I made it.&lt;/p&gt;
+&lt;h1&gt;Requirements&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Modern browsers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Features&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In addtion of the page, the title of the browser's tab also shows the progress.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="notification" src="/static/2014/timer-title.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Desktop notifications with sounds (only if a browser supports).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="notification" src="/static/2014/timer-notification.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Specialized for the pomodoro technique. Pre-set timers are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;25&lt;/code&gt; minutes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;5&lt;/code&gt; minutes (short break)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;25&lt;/code&gt; minutes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;5&lt;/code&gt; minutes (short break)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;25&lt;/code&gt; minutes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;5&lt;/code&gt; minutes (short break)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;25&lt;/code&gt; minutes&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;20&lt;/code&gt; minutes (long break)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Customize&lt;/h1&gt;
+&lt;p&gt;You can customise the timer by URL's request parameters.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;t&lt;/code&gt; - Comma separated timer intervals.&lt;/p&gt;
+&lt;p&gt;Example: &lt;a href="http://hayato.io/timer/?t=50,10,50,10"&gt;http://hayato.io/timer/?t=50,10,50,10&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In this case, timers are set to 50 mins, 10 mins, 50 mins and 10 mins.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="parameter-t" src="/static/2014/timer-t.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;mute&lt;/code&gt; -  Turn the notification sound off.&lt;/p&gt;
+&lt;p&gt;Example: &lt;a href="http://hayato.io/timer/?mute=1"&gt;http://hayato.io/timer/?mute=1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="parameter-mute" src="/static/2014/timer-mute.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;autostart&lt;/code&gt; - Auto start the timer after the page is loaded.&lt;/p&gt;
+&lt;p&gt;Example: &lt;a href="http://hayato.io/timer/?autostart=1"&gt;http://hayato.io/timer/?autostart=1&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;repeat&lt;/code&gt; - Repeat the timers.&lt;/p&gt;
+&lt;p&gt;Example: &lt;a href="http://hayato.io/timer/?repeat=1"&gt;http://hayato.io/timer/?repeat=1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="parameter-repeat" src="/static/2014/timer-repeat.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can combine the parameters freely, such as &lt;a href="http://hayato.io/timer/?t=50,10,50,10,50,30&amp;amp;autostart=1&amp;amp;repeat=1"&gt;http://hayato.io/timer/?t=50,10,50,10,50,30&amp;amp;autostart=1&amp;amp;repeat=1&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Future Plan&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;More customize.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sounds, Icons.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary></entry><entry><title>Googleの面接試験で出る （はずがない）「海賊と金貨」問題を空気を読まないでプログラムで解いてみる</title><link href="http://hayato.io/2014/pirates/" rel="alternate"></link><updated>2014-01-05T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2014-01-05:2014/pirates/</id><summary type="html">&lt;p&gt;2014年お正月。とある小学生に:&lt;/p&gt;
+&lt;p&gt;小学生A: 「ねー、Google の面接試験で出るらしいこの問題、どうやって解くの？」&lt;/p&gt;
+&lt;p&gt;と聞かれました。&lt;/p&gt;
+&lt;p&gt;私: 「ほうほう、どんな問題？（あー、どうせまた "スクールバスにゴルフボールは何個入るでしょうか？" 的な問題かな。
+そんな問題実際出るわけないんだけどなー。最近、よく出すのは "ゴルフボールにスクールバスを入れる方法" だからな！）」&lt;/p&gt;
+&lt;p&gt;と、軽くかわそうと思いきや、小学生A から出されたのは以下の問題でした。「海賊と金貨」問題と呼ばれているらしいです。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;17.&lt;/p&gt;
+&lt;p&gt;5人の海賊がいて、彼らは1位から5位にまでランク分けされています。1位の海賊は100枚の金貨をどのように分けるかというプランを提案する権利があります。残りの海賊はこのプランに投票する権利があり、賛成が半分に満たない場合には1位の海賊は殺されます。1位の海賊の分け前を最大にしてなおかつ彼が生き残るにはどうすればいいですか？（ヒント：一人の海賊は結局、金貨の98％で終わる）&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;出典: &lt;a href="http://gigazine.net/news/20070909_google_job_interview/"&gt;Googleの面接試験、一体どのような質問をされるのか？&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;私:「意外にまともな問題だった。」&lt;/p&gt;
+&lt;p&gt;小学生A:「ねー教えて。答えって本当にあるの？」&lt;/p&gt;
+&lt;p&gt;小学生N:「ずっと考えていたんだけど、わかんなかったの。正月に聞こうと思ってた（わくわく）」&lt;/p&gt;
+&lt;p&gt;私: 「も、もちろん、解けるよー。ちょっと待ってなー。」&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;「大人なんだから、当然解けるよね？」的な眼差しで見つめられては、答えないわけにはいきません。
+さて...。問題の設定が若干曖昧なので、まずは設定を補完しましょう。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;投票には、プランを提案する本人も含めて全員参加します。&lt;/li&gt;
+&lt;li&gt;投票の結果、賛成票が投票数の半数に満たなければ、プランの提案者はその場で殺されてしまいます。&lt;/li&gt;
+&lt;li&gt;ランク1位の海賊が殺されたら、次は残された4人で同じことを繰り返します。次にプランを提案するのは、ランク2位の海賊です。&lt;/li&gt;
+&lt;li&gt;賛成票が半数以上になって分け前が決定するまで、この手続きは繰り返されます。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;具体例です。最初に、ランク1位の海賊が「おれと海賊3は50枚ずつ。他のひとにはあげないよ」というプランを提案するとします。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pirates1" src="/static/2014/pirates1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;それぞれプランに投票します。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pirates2" src="/static/2014/pirates2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;賛成票は2票。5人の半数以上である3票に満たなかったので、プランを提案した人は殺されてしまいます。&lt;/p&gt;
+&lt;p&gt;残された4人で同じことを行います。次に提案する権利があるのは、ランク2位の海賊です。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pirates3" src="/static/2014/pirates3.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pirates4" src="/static/2014/pirates4.png" /&gt;&lt;/p&gt;
+&lt;p&gt;今度も賛成票は2票ですが、今回は4人の半数以上である２票ですので、プランは採用され、分け前が決定されます。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pirates5" src="/static/2014/pirates5.png" /&gt;&lt;/p&gt;
+&lt;p&gt;結果は、&lt;i class="fa fa-user"&gt;&lt;/i&gt;海賊1 は死亡。&lt;i class="fa fa-user"&gt;&lt;/i&gt;海賊2は金貨70枚、&lt;i class="fa fa-user"&gt;&lt;/i&gt;海賊5は金貨30枚。&lt;i class="fa fa-user"&gt;&lt;/i&gt;海賊3と&lt;i class="fa fa-user"&gt;&lt;/i&gt;海賊4 は金貨0枚ですが、幸いなことに命だけは助かっています。&lt;/p&gt;
+&lt;p&gt;さらに必要な設定として、それぞれの海賊は、以下のルールに従って行動するとします。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;自分が生存することを最優先します。&lt;/li&gt;
+&lt;li&gt;生存できる場合は、得られる金貨の枚数を最大限にしようとします。&lt;/li&gt;
+&lt;li&gt;プランに賛成しても反対しても、自分が得られる金貨の枚数が結局同じになるならば、プランに反対します。&lt;/li&gt;
+&lt;li&gt;プランを提案するとき、採用されるプランが複数あるとします。その際、自分が得られる金貨の枚数が同じであるプランが複数あるならば、できるだけランクが下位の海賊に金貨を多く分配するプランを選択します。つまり、他の条件が同じであるかぎり、ランク4位の海賊よりもランク5位の海賊に多く金貨が渡るようなプランを提案します。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;つまり、海賊は&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;(自分の命) &amp;gt;&amp;gt;&amp;gt; [超えられない壁] &amp;gt;&amp;gt;&amp;gt; (金貨) &amp;gt;&amp;gt;&amp;gt; [超えられない壁] &amp;gt;&amp;gt;&amp;gt; (ランクが上の海賊の不幸は蜜の味)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;という価値観に基いて行動します。...嫌なやつ。
+海賊は、自分以外の他の海賊も同様に「嫌なやつ」であるということを、お互いに知っています。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;私: 「これは、あれだね。帰納法的に考えればいいんだね。」&lt;/p&gt;
+&lt;p&gt;小学生A: 「キノーホー？」&lt;/p&gt;
+&lt;p&gt;私: 「（うっ...）つまり、まず海賊がひとりだけだった場合を考えてみると。
+この場合は、自分が金貨100枚ぜんぶゲットして終了。次に海賊が2人の場合を考えてみると、自分が賛成票をいれれば相手が反対しても、賛成半数とれるから、自分100枚・相手0枚の &lt;code&gt;[100, 0]&lt;/code&gt; のプランで。次に海賊が3人の場合を考えてみると、えーと、必要な票数は2票だから、自分以外から1票取得できればいいわけで...。２人になったら、最後の人は一枚ももらえないから、最後の人に1枚だけあげれば、0枚よりはましだから、賛成してくれるはず。つまり、&lt;code&gt;[99, 0, 1]&lt;/code&gt; のプランで賛成2票とれる。次に4人の場合は....」&lt;/p&gt;
+&lt;p&gt;小学生A: 「.... 」&lt;/p&gt;
+&lt;p&gt;...&lt;/p&gt;
+&lt;p&gt;私: 「... で、最後は、こうなるから、&lt;code&gt;[98, 0, 1, 0, 1]&lt;/code&gt; のプランがベストだね。ランク1位の海賊は &lt;code&gt;98&lt;/code&gt; 枚とれるな。」&lt;/p&gt;
+&lt;p&gt;小学生A: 「....わかんないよ。ほんと？ 」&lt;/p&gt;
+&lt;p&gt;私: 「うん、論理的に考えたら、そうなるはずだよ。」&lt;/p&gt;
+&lt;p&gt;小学生A: 「ロンリテキ？たった1枚しかもらえないのに賛成するかなー？信じられないなー。」&lt;/p&gt;
+&lt;p&gt;小学生N: 「うん。1枚はちょっと少ない気がする。」&lt;/p&gt;
+&lt;p&gt;小学生A: 「98枚とか言ってきたら私絶対反対する！自己中すぎる！」&lt;/p&gt;
+&lt;p&gt;小学生N: 「うん。98枚っていえちゃうところがすごいよね。すごい自信。」&lt;/p&gt;
+&lt;p&gt;小学生A: 「私だったら少なくとも33枚もらわないと、イヤっていっちゃうかな。」&lt;/p&gt;
+&lt;p&gt;小学生N: 「えー。私は20枚でおっけーだよ。」&lt;/p&gt;
+&lt;p&gt;私: 「（きみたち、ぼくの話なんにもきいてないだろ）... 証明したる。」&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;もともとこの問題の意図するところは、頭の中だけで考えて答えを導き出すことだと思われます。
+しかし、ここは &lt;strike&gt;生意気な&lt;/strike&gt; 好奇心あふれる小学生たちに大人力を見せつけたいところです。&lt;/p&gt;
+&lt;p&gt;プログラミングの出番です。方針は簡単、可能なプランを全て生成します。そのなかから、ルールを満たす「ベスト」なプランをプログラムに選択させてみて、結果が頭の中で考えた結果と一致するかどうか確認してみることにしましょう。&lt;/p&gt;
+&lt;p&gt;例えば、海賊が1人の場合は、可能なプランは &lt;code&gt;[100]&lt;/code&gt; とひとつだけです。&lt;/p&gt;
+&lt;p&gt;海賊が2人の場合は、可能なプランは以下の101通りになります。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;[0, 100]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[1, 99]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[2, 98]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[3, 97]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[99, 1]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[100, 0]&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;このうち、プランの提案者にとってもっとも有利なものは、自分が100枚取得できる &lt;code&gt;[100, 0]&lt;/code&gt; です。プログラムは、海賊が二人の場合は、&lt;code&gt;[100, 0]&lt;/code&gt; を選択するはずです。&lt;/p&gt;
+&lt;p&gt;次に海賊が三人の場合は、可能なプランはぐっと増えます &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;[0, 0, 100]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[0, 1, 99]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[1, 0, 99]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[0, 2, 98]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[1, 1, 98]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[2, 0, 98]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[99, 0, 1]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[98, 2, 0]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[99, 1, 0]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[100, 0, 0]&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;このプランの中から、賛成票を2票取得できるもののうち、一番よいプランは、&lt;code&gt;[99, 0, 1]&lt;/code&gt; になるはずです。プログラムがそれを選択してくれることを祈りましょう。以下、同様に、海賊の数が5人の場合まで繰り返します。&lt;/p&gt;
+&lt;p&gt;では、実際にやってみましょう。ここでは、Python を使用します。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/env python3&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;generate_proposal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;coin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;coin&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;proposal&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;generate_proposal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;coin&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;proposal&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num_pirates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;coin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="n"&gt;optimal_proposal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num_pirates&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;best_coin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+        &lt;span class="n"&gt;best_proposal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;None&lt;/span&gt;
+        &lt;span class="n"&gt;optimal_proposal&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;proposal&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;generate_proposal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;coin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;vote&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;proposal&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;optimal_proposal&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;vote&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;proposal&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;best_coin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;best_coin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proposal&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+                &lt;span class="n"&gt;best_proposal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;proposal&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;best_proposal&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;optimal_proposal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;best_proposal&lt;/span&gt;
+
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;optimal_proposal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;実行します。海賊が5人,金貨が100枚の場合は以下のようになります。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;% ./pirates.py 5 100&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;98&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;このプログラムは、これまでと異なり、プランを左右逆に出力することにご注意ください。つまり、一番右がランクの上位・一番先に提案する海賊の分け前を表し、一番左が最後の海賊の分け前を表します。&lt;/p&gt;
+&lt;p&gt;結果、海賊が5人の場合の金貨の分配は、 &lt;code&gt;[1, 0, 1, 0, 98]&lt;/code&gt; となり、先ほど頭の中で解いた結果と一致します。
+ランク1位の提案者が金貨を98枚、3番目と5番目の海賊が金貨が1枚、それ以外は0枚で決定します。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;私: 「ダロ？一致しただろ？（ほっ）」&lt;/p&gt;
+&lt;p&gt;小学生A: 「ほんとだー。ちょっと信じてあげれるかもー。」&lt;/p&gt;
+&lt;p&gt;私: 「（ちょっとかよ...）」&lt;/p&gt;
+&lt;p&gt;小学生A: 「このプログラム間違ってないよね？だまそうとしてない？」&lt;/p&gt;
+&lt;p&gt;私: 「た、たぶん、あってると思うんだ..。」&lt;/p&gt;
+&lt;p&gt;小学生N: 「ねえねえ。じゃあ、逆の場合は？海賊100人で金貨5枚だとどうなるの？」&lt;/p&gt;
+&lt;p&gt;私: 「（おー良い質問ではないか。おぬし、きっと大物になりよるぞ。にやにや）試してみようか。」&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;% ./pirates.py 100 5&lt;/span&gt;
+ &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;9&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;11&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;13&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;14&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;15&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;16&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;17&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;18&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;19&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;20&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;22&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;23&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;24&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;25&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;26&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="mi"&gt;27&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+ &lt;span class="c"&gt;....&lt;/span&gt;
+ &lt;span class="c"&gt;....&lt;/span&gt;
+ &lt;span class="c"&gt;....&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;私: 「...」&lt;/p&gt;
+&lt;p&gt;小学生A: 「...」&lt;/p&gt;
+&lt;p&gt;小学生N: 「...」&lt;/p&gt;
+&lt;p&gt;小学生A: 「遅いね...。」&lt;/p&gt;
+&lt;p&gt;小学生N: 「うん。」&lt;/p&gt;
+&lt;p&gt;小学生A: 「変なことしてパソコン壊したんじゃないの？」&lt;/p&gt;
+&lt;p&gt;私: 「いや、このプログラム、やっつけ仕事だったから、時間がかかるの（たらーん）。あ、&lt;code&gt;-1&lt;/code&gt; はその海賊が殺されちゃうって意味だからね。」&lt;/p&gt;
+&lt;p&gt;小学生A: 「マイナス？」&lt;/p&gt;
+&lt;p&gt;私: 「（くっ...。）海賊が殺された時は、ばってん (&lt;code&gt;x&lt;/code&gt;) にするね。結果を見やすくするために、ちょっと出力の仕方変更するね。ちょっと待ってて...。」&lt;/p&gt;
+&lt;p&gt;小学生N: 「うん。」&lt;/p&gt;
+&lt;p&gt;...&lt;/p&gt;
+&lt;p&gt;私: 「おっけー。海賊30人に減らして、もう一度やってみるね。」&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;% ./pirates.py 30 5&lt;/span&gt;
+ &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+ &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;05&lt;/span&gt;
+ &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;104&lt;/span&gt;
+ &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0104&lt;/span&gt;
+ &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10103&lt;/span&gt;
+ &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;010103&lt;/span&gt;
+ &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1010102&lt;/span&gt;
+ &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;01010102&lt;/span&gt;
+ &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;101010101&lt;/span&gt;
+&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0101010101&lt;/span&gt;
+&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010100&lt;/span&gt;
+&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;010101010100&lt;/span&gt;
+&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;010101010100&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
+&lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010100000&lt;/span&gt;
+&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010100000&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
+&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010100000&lt;/span&gt;&lt;span class="n"&gt;xx&lt;/span&gt;
+&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010100000&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;
+&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;010101010100000000&lt;/span&gt;
+&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;010101010100000000&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
+&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;010101010100000000&lt;/span&gt;&lt;span class="n"&gt;xx&lt;/span&gt;
+&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;010101010100000000&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;
+&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;010101010100000000&lt;/span&gt;&lt;span class="n"&gt;xxxx&lt;/span&gt;
+&lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;010101010100000000&lt;/span&gt;&lt;span class="n"&gt;xxxxx&lt;/span&gt;
+&lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;010101010100000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxx&lt;/span&gt;
+&lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;010101010100000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxx&lt;/span&gt;
+&lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010100000000000000000&lt;/span&gt;
+&lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
+&lt;span class="mi"&gt;28&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xx&lt;/span&gt;
+&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;
+&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxx&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;小学生N: 「海賊が30人のときは、４人死んじゃうの？」&lt;/p&gt;
+&lt;p&gt;私: 「そうだね。最初の4人はどんなにがんばっても半数以上の賛成を得られるプランがつくれないんだね。」&lt;/p&gt;
+&lt;p&gt;小学生N: 「かわいそう。」&lt;/p&gt;
+&lt;p&gt;私: 「例えば、30人のときは賛成票を自分以外で14票とらないといけないんだけど、29人残った時のブランはえーと...」&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;私: 「...こうであることがわかっているので、どんなにうまく5枚の金貨を配分しても、14票集めることができないんだね。例えば、金貨の配分を」&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="m"&gt;29&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;10101010100000000000000000&lt;/span&gt;xxx
+    &lt;span class="m"&gt;01010101010000000000000000000&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;-&lt;/span&gt; 金貨の配分&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;私: 「...としても、賛成してくれる人は、8人しかいないので、殺されちゃうんだなー。かわいそうだね。」&lt;/p&gt;
+&lt;p&gt;小学生N: 「社会きびしいね。」&lt;/p&gt;
+&lt;p&gt;私: 「（お、おう）... しかし、これ面白いな..。なるほど。」&lt;/p&gt;
+&lt;p&gt;小学生A: 「(突然) え、面白い？なになに？」&lt;/p&gt;
+&lt;p&gt;私: 「（きみ今アイカツ見てただろ...）いあ、パターンがあって...。いや何でもないです。これ、一般解 &lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt; とか求められそうだな。うん。」&lt;/p&gt;
+&lt;p&gt;小学生A: 「パソコンってもっと早いのかと思ったけど、遅いんだー。海賊100人で金貨1万枚を奪い合う戦いを見たかったなー。」&lt;/p&gt;
+&lt;p&gt;私: 「（アイカツでも見てなさい...）ごめんなさい。パソコンは悪くない、僕が悪いんです...。早くしようと思えばできるんだけど...。」&lt;/p&gt;
+&lt;p&gt;小学生N: 「早くできるの？私もみてみたいなー。」&lt;/p&gt;
+&lt;p&gt;私: 「うん、プランを全通り生成しているところはもっと早くできるよ &lt;sup id="fnref:3"&gt;&lt;a class="footnote-ref" href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt;。でも、それよりはちゃんと論理的に解くのが一番だと思う。ちょっと待っててね。」&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;先ほど頭の中で解いた方法を今度はプログラムで再現してみましょう。以下のようになります。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/env python3&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num_pirates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;coin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;solve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;proposal&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;necessary_vote&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;proposal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+        &lt;span class="n"&gt;ranks&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;proposal&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="n"&gt;necessary_coin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;ranks&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="n"&gt;necessary_vote&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;coin&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;necessary_coin&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ranks&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;necessary_vote&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;proposal&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;coin&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;necessary_coin&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;proposal&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;pretty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;x&amp;#39;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;G&amp;#39;&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;optimal_proposal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num_pirates&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;optimal_proposal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;solve&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;optimal_proposal&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;{:4}: {}&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pretty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;optimal_proposal&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;こちらだと、海賊100人、金貨1万枚の場合も時間をかけないで解くことが可能です。&lt;/p&gt;
+&lt;p&gt;例として、海賊100人、金貨20枚の場合の結果は以下のようになります。
+（見やすくするため、金貨が10枚以上のときは &lt;code&gt;G&lt;/code&gt; にしています。）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;G&lt;/span&gt;
+  &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+  &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+  &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+  &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+  &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;01010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+  &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+  &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;0101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+  &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;01010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;101010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;0101010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1010101010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;01010101010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;101010101010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;0101010101010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010&lt;/span&gt;&lt;span class="n"&gt;G&lt;/span&gt;
+ &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010109&lt;/span&gt;
+ &lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;01010101010101010101010&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;
+ &lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1010101010101010101010108&lt;/span&gt;
+ &lt;span class="mi"&gt;26&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;0101010101010101010101010&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+ &lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;101010101010101010101010107&lt;/span&gt;
+ &lt;span class="mi"&gt;28&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;0101010101010101010101010107&lt;/span&gt;
+ &lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010106&lt;/span&gt;
+ &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010106&lt;/span&gt;
+ &lt;span class="mi"&gt;31&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1010101010101010101010101010105&lt;/span&gt;
+ &lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;01010101010101010101010101010105&lt;/span&gt;
+ &lt;span class="mi"&gt;33&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;101010101010101010101010101010104&lt;/span&gt;
+ &lt;span class="mi"&gt;34&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;0101010101010101010101010101010104&lt;/span&gt;
+ &lt;span class="mi"&gt;35&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010103&lt;/span&gt;
+ &lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010103&lt;/span&gt;
+ &lt;span class="mi"&gt;37&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1010101010101010101010101010101010102&lt;/span&gt;
+ &lt;span class="mi"&gt;38&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;01010101010101010101010101010101010102&lt;/span&gt;
+ &lt;span class="mi"&gt;39&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;101010101010101010101010101010101010101&lt;/span&gt;
+ &lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;0101010101010101010101010101010101010101&lt;/span&gt;
+ &lt;span class="mi"&gt;41&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100&lt;/span&gt;
+ &lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100&lt;/span&gt;
+ &lt;span class="mi"&gt;43&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
+ &lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000&lt;/span&gt;
+ &lt;span class="mi"&gt;45&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
+ &lt;span class="mi"&gt;46&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000&lt;/span&gt;&lt;span class="n"&gt;xx&lt;/span&gt;
+ &lt;span class="mi"&gt;47&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;
+ &lt;span class="mi"&gt;48&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000&lt;/span&gt;
+ &lt;span class="mi"&gt;49&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
+ &lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000&lt;/span&gt;&lt;span class="n"&gt;xx&lt;/span&gt;
+ &lt;span class="mi"&gt;51&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;
+ &lt;span class="mi"&gt;52&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000&lt;/span&gt;&lt;span class="n"&gt;xxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;53&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000&lt;/span&gt;&lt;span class="n"&gt;xxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;54&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;55&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;56&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;
+ &lt;span class="mi"&gt;57&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
+ &lt;span class="mi"&gt;58&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xx&lt;/span&gt;
+ &lt;span class="mi"&gt;59&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;
+ &lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;61&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;62&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;63&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;66&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;67&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;68&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;69&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;71&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10101010101010101010101010101010101010100000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;72&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;
+ &lt;span class="mi"&gt;73&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
+ &lt;span class="mi"&gt;74&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xx&lt;/span&gt;
+ &lt;span class="mi"&gt;75&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxx&lt;/span&gt;
+ &lt;span class="mi"&gt;76&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;78&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;79&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;81&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;82&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;83&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;84&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;85&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;86&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;87&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;88&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;89&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;91&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;92&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;93&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;94&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;95&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;96&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;97&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;98&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxxxxxxxxxxx&lt;/span&gt;
+ &lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxxxxxxxxxxxx&lt;/span&gt;
+&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mo"&gt;010101010101010101010101010101010101010100000000000000000000000000000000&lt;/span&gt;&lt;span class="n"&gt;xxxxxxxxxxxxxxxxxxxxxxxxxxxx&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr /&gt;
+&lt;p&gt;小学生A: 「海賊がいっぱいいて、金貨の枚数がちょっとだったら、人がいっぱい死んじゃうだね。納得。」&lt;/p&gt;
+&lt;p&gt;私: 「（納得していいのか...) 試しに両方のプログラムの結果を比較してみるとだ...。うん、同じだな。」&lt;/p&gt;
+&lt;p&gt;小学生N: 「どういうこと？」&lt;/p&gt;
+&lt;p&gt;私: 「最初に紙と鉛筆で説明したでしょ。あの考え方間違ってなかったってことかな？」&lt;/p&gt;
+&lt;p&gt;小学生N: 「うん。不思議だったけどあっていたんだね。」&lt;/p&gt;
+&lt;p&gt;私: 「うん。よかった（ほっ）」&lt;/p&gt;
+&lt;p&gt;小学生A: 「なんだ、やっぱり自信なかったんだ。」&lt;/p&gt;
+&lt;p&gt;私: 「（くっ。）」&lt;/p&gt;
+&lt;p&gt;...&lt;/p&gt;
+&lt;p&gt;(小学生A と 小学生N、何やら2人で相談しはじめる)&lt;/p&gt;
+&lt;p&gt;...&lt;/p&gt;
+&lt;p&gt;小学生A: 「...ところで。」&lt;/p&gt;
+&lt;p&gt;私: 「なに？」&lt;/p&gt;
+&lt;p&gt;小学生A: 「お年玉は何枚くれるの？」&lt;/p&gt;
+&lt;p&gt;小学生N: 「枚数が少なかったら反対しちゃうぞ♡」&lt;/p&gt;
+&lt;p&gt;私: 「(ちょ。ぼく、ころさないでよ) ... 」&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;海賊3人の場合は、&lt;code&gt;Combination(102, 2) = 5,151&lt;/code&gt; 通りです。4人の場合は、&lt;code&gt;Combination(103, 3) = 176,851&lt;/code&gt; 通り、5人の場合は、&lt;code&gt;Combination(104, 4) = 4,598,126&lt;/code&gt; 通りです。&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;海賊の人数を &lt;code&gt;n&lt;/code&gt;, 自分のランクを &lt;code&gt;i&lt;/code&gt;, 金貨の枚数を &lt;code&gt;c&lt;/code&gt; とした場合、得られる金貨の枚数の一般解 &lt;code&gt;f(n, i, c)&lt;/code&gt; を式で表すことが可能です。&amp;#160;&lt;a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Branch_and_bound"&gt;Branch and bound&lt;/a&gt; すること（枝刈り) で大幅に生成されるプランの数を減らすことが可能です。&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</summary></entry><entry><title>hayato.io (4topcoder)</title><link href="http://hayato.io/2014/hayato.io/" rel="alternate"></link><updated>2014-01-04T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2014-01-04:2014/hayato.io/</id><summary type="html">&lt;p&gt;&lt;a href="http://hayato.io"&gt;hayato.io&lt;/a&gt; にコンテンツを集約させていきますね。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://4topcoder.blogspot.com"&gt;4topcoder&lt;/a&gt; のコンテンツはすべて &lt;a href="http://hayato.io/archives/"&gt;hayato.io/archives/&lt;/a&gt; にリダイレクトされます。
+  Feed もリダイレクトされます。&lt;/li&gt;
+&lt;/ul&gt;</summary></entry><entry><title>SRM432</title><link href="http://hayato.io/2009/srm432/" rel="alternate"></link><updated>2009-01-07T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2009-01-07:2009/srm432/</id><summary type="html">&lt;p&gt;SRM432に挑戦。前回から6ヶ月以上たってるよ。
+6ヶ月以上、参戦してないと、ランキングから除外されるんですねー。&lt;/p&gt;
+&lt;p&gt;今までは、ThinkPad + Linux (もち、Gentoo Linux) + Eclipse + Javaという環境でやってたんですが、ThinkPadが壊れてからは、なかなか環境を整えることをしないまま、時間がたってしまいました。&lt;/p&gt;
+&lt;p&gt;今回は、Macbook Pro + Eclipse + Javaという環境で、久しぶりに参戦してみました。
+レーティングが下がるフラグがたちまくりの状態だったんですが、 結果は、250 Passed, 500 Passed, 4 successful challengesで、レーティングは2121 -&amp;gt; 2220と上昇。ようやくRedになりました。&lt;/p&gt;</summary></entry><entry><title>SRM405</title><link href="http://hayato.io/2008/srm405/" rel="alternate"></link><updated>2008-06-15T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2008-06-15:2008/srm405/</id><summary type="html">&lt;p&gt;久しぶりのSRM。実に5ヶ月ぶりですよ。
+C++にスイッチするはずが、手元の環境の問題で、やむなくJavaで参加してみる。&lt;/p&gt;
+&lt;p&gt;250はやるだけの問題。 500はいい解法がなかなか思いつかないまま、時間がなくなってきたので
+ エレガントな解法はもうあきらめてBrute-force的に解いてみる。
+コンテスト中は解法として正しいかどうか証明できなかったので、自信がなかったんですけど、Passしました。
+ちょっと驚き。&lt;/p&gt;
+&lt;p&gt;レーティングは、2000 -&amp;gt; 2121と上昇。 賞金つきマッチでしたので、おそらく賞金ももらえます&lt;/p&gt;</summary></entry><entry><title>SRM386</title><link href="http://hayato.io/2008/srm386/" rel="alternate"></link><updated>2008-01-06T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2008-01-06:2008/srm386/</id><summary type="html">&lt;!-- -*- mode: rst; coding: utf-8 -*- --&gt;
+&lt;p&gt;2008年あけましておめでとう。今年最初のSRM、 &lt;a class="reference external" href="http://www.topcoder.com/stat?c=round_overview&amp;amp;rd=11120"&gt;SRM386&lt;/a&gt; に挑戦。
+今回も、ハード問題は解いた人が一人だけというスーパーハードでした。&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;caption&gt;&lt;a class="reference external" href="http://www.topcoder.com/stat?c=coder_room_stats&amp;amp;cr=15632820&amp;amp;rd=11120&amp;amp;rm=267996"&gt;Room Statistics&lt;/a&gt;&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col width="17%" /&gt;
+&lt;col width="17%" /&gt;
+&lt;col width="17%" /&gt;
+&lt;col width="17%" /&gt;
+&lt;col width="17%" /&gt;
+&lt;col width="17%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Class Name&lt;/th&gt;
+&lt;th class="head"&gt;Method Name&lt;/th&gt;
+&lt;th class="head"&gt;Difficulty&lt;/th&gt;
+&lt;th class="head"&gt;Coding Time&lt;/th&gt;
+&lt;th class="head"&gt;Status&lt;/th&gt;
+&lt;th class="head"&gt;Points&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;amp;rm=267996&amp;amp;rd=11120&amp;amp;pm=8444&amp;amp;cr=15632820"&gt;CandidateKeys&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;getKeys&lt;/td&gt;
+&lt;td&gt;Level One&lt;/td&gt;
+&lt;td&gt;0:15:25.443&lt;/td&gt;
+&lt;td&gt;Passed System Test&lt;/td&gt;
+&lt;td&gt;197.99&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;amp;rm=267996&amp;amp;rd=11120&amp;amp;pm=8540&amp;amp;cr=15632820"&gt;PolygonCover&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;getArea&lt;/td&gt;
+&lt;td&gt;Level Two&lt;/td&gt;
+&lt;td&gt;0:22:50.327&lt;/td&gt;
+&lt;td&gt;Passed System Test&lt;/td&gt;
+&lt;td&gt;331.60&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;amp;rm=267996&amp;amp;rd=11120&amp;amp;pm=7953&amp;amp;cr=15632820"&gt;EscapeArtist&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;bestRoute&lt;/td&gt;
+&lt;td&gt;Level Three&lt;/td&gt;
+&lt;td&gt;0:24:44.715&lt;/td&gt;
+&lt;td&gt;Opened&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;レーティングは、1918 -&amp;gt; 2009と上昇。
+自己ベストは、2040ですので、あと一歩。
+このあたりのレーティングだと、ハードが解けなくても、
+コンスタントにEasyとMediumを解くことができれば、
+大抵レーティングは上昇しますね。&lt;/p&gt;
+</summary></entry><entry><title>SRM385</title><link href="http://hayato.io/2007/srm385/" rel="alternate"></link><updated>2007-12-27T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2007-12-27:2007/srm385/</id><summary type="html">&lt;!-- -*- mode: rst; coding: utf-8 -*- --&gt;
+&lt;p&gt;SRM385 に挑戦。今年、最後のSRMです。&lt;/p&gt;
+&lt;p&gt;今回は、1100点問題は誰も解けないほどのハードな問題、
+250点問題と500点問題はとっても素直な問題なんですけど、
+500点問題はワーストケースのタイムアウトで落ちてしまいました。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mf"&gt;2.004&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;うーん。惜しい。0.004秒ほどオーバー。&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;メモするところで、HashMapではなく、普通に配列使っとく&lt;/li&gt;
+&lt;li&gt;または、ゴールに達したらすぐ値を返す&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;でなんの問題なかったんですよね。
+状態のサイズは、最大でも7 * 7 * 2^14 = 802,816 ですので、
+HashMap使ってもまあ楽勝で2秒以内だろ。と勝手に思い込んだ、私の負けです。
+ちゃんとTopCoderのシステム上で計測しとかないとだめですね。&lt;/p&gt;
+</summary></entry><entry><title>SRM384 - ゲーム</title><link href="http://hayato.io/2007/srm384/" rel="alternate"></link><updated>2007-12-26T00:00:00+09:00</updated><author><name>Hayato Ito</name></author><id>tag:hayato.io,2007-12-26:2007/srm384/</id><summary type="html">&lt;!-- -*- mode: rst; coding: utf-8 -*- --&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.topcoder.com/stat?c=round_overview&amp;amp;rd=10808"&gt;SRM384&lt;/a&gt; に挑戦。結果は、以下の通り。&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;caption&gt;&lt;a class="reference external" href="http://www.topcoder.com/stat?c=coder_room_stats&amp;amp;cr=15632820&amp;amp;rd=10808&amp;amp;rm=267772"&gt;Room Statistics&lt;/a&gt;&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col width="17%" /&gt;
+&lt;col width="17%" /&gt;
+&lt;col width="17%" /&gt;
+&lt;col width="17%" /&gt;
+&lt;col width="17%" /&gt;
+&lt;col width="17%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;Class Name&lt;/th&gt;
+&lt;th class="head"&gt;Method Name&lt;/th&gt;
+&lt;th class="head"&gt;Difficulty&lt;/th&gt;
+&lt;th class="head"&gt;Coding Time&lt;/th&gt;
+&lt;th class="head"&gt;Status&lt;/th&gt;
+&lt;th class="head"&gt;Points&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;amp;rm=267772&amp;amp;rd=10808&amp;amp;pm=7659&amp;amp;cr=15632820"&gt;Library&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;documentAccess&lt;/td&gt;
+&lt;td&gt;Level One&lt;/td&gt;
+&lt;td&gt;0:06:01.087&lt;/td&gt;
+&lt;td&gt;Passed System Test&lt;/td&gt;
+&lt;td&gt;239.41&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;amp;rm=267772&amp;amp;rd=10808&amp;amp;pm=7657&amp;amp;cr=15632820"&gt;SchoolTrip&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;duration&lt;/td&gt;
+&lt;td&gt;Level Two&lt;/td&gt;
+&lt;td&gt;0:51:13.541&lt;/td&gt;
+&lt;td&gt;Passed System Test&lt;/td&gt;
+&lt;td&gt;211.78&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;a class="reference external" href="http://www.topcoder.com/stat?c=problem_solution&amp;amp;rm=267772&amp;amp;rd=10808&amp;amp;pm=6866&amp;amp;cr=15632820"&gt;ChessTraining&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;game&lt;/td&gt;
+&lt;td&gt;Level Three&lt;/td&gt;
+&lt;td&gt;0:10:44.830&lt;/td&gt;
+&lt;td&gt;Opened&lt;/td&gt;
+&lt;td&gt;0.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;今回は、500点問題は正確に確率を求めようとすると、かなり面倒くさいです。
+何も考えずに、メモつき再帰などで計算しようとすると、
+「あれ、元の状態に戻ってしまうよ。延々とループしてしまうよね。これ?どーしよ。。」
+となってしまいます。
+私は、これで30分くらい悩みました。&lt;/p&gt;
+&lt;p&gt;うまく場合分けをすれば正確に求めることも可能ですが、
+そうではなく、強引にシミュレーション(?)で求めてしまうって方法が、
+一番楽だったようです。
+ちなみに、このような強引に一定回数ループを回して計算する方法って、
+なにか名前がついていないんですかね?
+シミュレーションって言葉も、ちょっと正しくないような気もするんですけど。&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;1000点問題は、ゲームの問題です。
+ひとつひとつのゲームの結果を求めるのは簡単なんですが、
+それが複数組み合わさるときの求めかたがわかりませんでした。
+「なんらかの、Nimのようなゲームの考え方に落ち着くんだろうな。」とは思ってたんですけど。&lt;/p&gt;
+&lt;p&gt;TopCoderのForumによりますと、このような複合ゲームの場合の考え方は、
+以下の論文(TopCoderのメンバーである &lt;a class="reference external" href="http://www.topcoder.com/tc?module=MemberProfile&amp;amp;cr=13396848"&gt;raso6sk&lt;/a&gt; の学士論文)が参考になります。&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.fmph.uniba.sk/fileadmin/user_upload/editors/studium/svk/2007/INF/lenhardt.pdf"&gt;http://www.fmph.uniba.sk/fileadmin/user_upload/editors/studium/svk/2007/INF/lenhardt.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;しかし、この1000点問題を解いた人は、24人もいるんですよね。
+みんな、よく知ってますね。さすが。&lt;/p&gt;
+</summary></entry></feed>

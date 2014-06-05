@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Timer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
+    <link href="https://plus.google.com/+HayatoIto/posts" rel="author">
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="/static/timer/timer.css" rel="stylesheet">
+
+    <link id="favicon" href="http://hayato.io/static/timer/chocolate.ico" rel="shortcut icon">
+
+    <link href="http://hayato.io/feeds/all.atom.xml" rel="alternate"
+          title="All posts – hayato.io" type="application/atom+xml">
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-195971-6', 'hayato.io');
+  ga('send', 'pageview');
+</script>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="timer-container" class="container-fluid">
+      <div class="row">
+        <div class="col-xs-1">
+        </div>
+        <div class="col-xs-6">
+          <h1 id="timer-time" class="text-center">00:00</h3>
+        </div>
+        <div class="col-xs-3" id="timer-buttons-column">
+          <button id="timer-start-stop" type="button" class="btn btn-sm btn-default btn-block">Start</button>
+          <button id="timer-pause-resume" type="button" class="btn btn-sm btn-default btn-block">
+            <span class="glyphicon glyphicon-pause"></span>
+            Pause
+          </button>
+          <div id="buttons">
+            <a href="#"><span id="timer-volume" class="glyphicon glyphicon-volume-off"></span></a>
+            <a href='#'><span id="timer-repeat" class="glyphicon glyphicon-repeat"></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="timer-sessions"></div>
+        </div>
+      </div>
+    </div>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/static/timer/timer.js"></script>
+  </body>
+</html>
